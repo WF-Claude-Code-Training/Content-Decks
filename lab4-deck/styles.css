@@ -1,0 +1,112 @@
+@import url("../shared/base.css");
+@import url("../shared/dark-theme.css");
+
+.example-list {
+  margin: 0.35rem 0 0 0;
+  padding-left: 1.05rem;
+  font-size: 1.12rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.example-list li {
+  margin-bottom: 0.35rem;
+}
+
+.example-list li:last-child {
+  margin-bottom: 0;
+}
+
+.example-list li::marker {
+  color: var(--teal);
+}
+
+.split-card h3 {
+  margin: 0 0 0.9rem 0;
+  color: var(--teal);
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.day-arc {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  max-width: 96%;
+  margin-top: 1.6rem;
+}
+
+.day-arc-card {
+  flex: 1;
+  border-radius: 10px;
+  padding: 0.9rem 1.05rem;
+}
+
+.day-arc-tag {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.day-arc-scale {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.85;
+  margin: 0 0 0.4rem 0;
+}
+
+.day-arc-card h4 {
+  margin: 0 0 0.35rem 0;
+  font-size: 1.3rem;
+}
+
+.day-arc-card p {
+  margin: 0;
+  font-size: 1.12rem;
+  line-height: 1.4;
+}
+
+.day-arc-current {
+  background: rgba(53, 182, 201, 0.12);
+  border: 1px solid rgba(53, 182, 201, 0.55);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.day-arc-current .day-arc-tag,
+.day-arc-current .day-arc-scale {
+  color: var(--teal);
+}
+
+.day-arc-current h4 {
+  color: var(--text);
+}
+
+.day-arc-current p {
+  color: var(--muted);
+}
+
+.day-arc-muted {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  opacity: 0.72;
+}
+
+.day-arc-muted .day-arc-tag,
+.day-arc-muted .day-arc-scale {
+  color: var(--muted);
+}
+
+.day-arc-muted h4 {
+  color: var(--muted);
+  font-size: 1.2rem;
+}
+
+.day-arc-muted p {
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+

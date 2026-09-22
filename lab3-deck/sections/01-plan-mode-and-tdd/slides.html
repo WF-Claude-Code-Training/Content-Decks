@@ -1,0 +1,325 @@
+  <section>
+  <div class="slide-card">
+    <div class="brand-strip">
+      <img src="../images/anthropic-logo.jpg" alt="Anthropic" class="brand-logo" />
+      <span class="brand-sep">&times;</span>
+      <img src="../images/cognizant-logo.jpeg" alt="Cognizant" class="brand-logo" />
+      <span class="brand-sep">&times;</span>
+      <img src="../images/wells-fargo-logo.jpeg" alt="Wells Fargo" class="brand-logo" />
+    </div>
+
+    <div class="eyebrow">Claude Code Developer Enablement · Day 1</div>
+    <h1>Lab 3: Plan Mode &amp; <span class="accent">Test-Driven Delivery</span></h1>
+    <p class="subtitle">Give Claude a verifiable target, force planning before execution, and implement only after reviewing the plan.</p>
+
+    <div class="meta-row">
+      <div>
+        <span class="meta-label">Block</span>
+        <span>Plan Mode &amp; TDD</span>
+      </div>
+      <div>
+        <span class="meta-label">Ticket</span>
+        <span>WM-110</span>
+      </div>
+      <div>
+        <span class="meta-label">Time</span>
+        <span>15:30 – 16:30</span>
+      </div>
+    </div>
+    </div>
+</section>
+
+  <!-- Slide 2: Where this fits -->
+  <section>
+  <div class="slide-card">
+    <div class="agenda-title">Where Lab 3 Fits</div>
+    <div class="agenda-sub">Same repo, same app: the discipline tightens</div>
+
+    <div class="agenda-columns">
+      <div class="agenda-col">
+        <h3>Recap · Lab 2</h3>
+        <div class="agenda-item"><span class="time">Did</span><span class="topic">Used an existing generic Skill to fix quarterly fees, then authored a fee-specific Skill for monthly fees.</span></div>
+        <div class="agenda-item"><span class="time">Built</span><span class="topic">Your own team-reusable Skill encoding the progressive-tier fee rule.</span></div>
+      </div>
+
+      <div class="agenda-col">
+        <h3>This lab · Lab 3</h3>
+        <div class="agenda-item"><span class="time">New</span><span class="topic">Plan mode: Claude proposes, you approve, then it edits.</span></div>
+        <div class="agenda-item"><span class="time">New</span><span class="topic">Test-driven delivery: failing tests are the verifiable target.</span></div>
+      </div>
+    </div>
+    </div>
+</section>
+
+  <!-- Slide 3: Learning objectives -->
+  <section>
+  <div class="slide-card">
+    <div class="eyebrow">15:30 – 16:30 · Learning Objectives</div>
+    <h1 class="w-80">After This Lab, You Will Be Able To...</h1>
+
+    <ul class="split-bullets objectives-list" style="margin-top: 1.6rem;">
+      <li class="fragment">Explain what Plan mode does and when to reach for it instead of default mode.</li>
+      <li class="fragment">Use a failing test as the "spec" before writing code: test-driven delivery.</li>
+      <li class="fragment">Describe the analyze → plan → implement → verify → deliver flow.</li>
+      <li class="fragment">Recognize when a verified acceptance criterion improves both the plan and the implementation.</li>
+    </ul>
+    </div>
+</section>
+
+  <!-- Slide 4: The pattern -->
+  <section>
+  <div class="slide-card">
+    <div class="eyebrow">15:30 – 16:30 · The Pattern</div>
+    <h1 class="title-benchmark">analyze → plan → implement → verify → deliver</h1>
+    <p class="bench-note">The Lab 2 shape gains one governed step: <strong>Plan</strong>. Claude proposes changes and waits for your approval before touching a file: human-in-the-loop governance at the edit level.</p>
+
+    <div class="bench-wrap fragment" data-fragment-index="1">
+      <table class="bench-table">
+        <thead>
+          <tr>
+            <th class="metric-col">Phase</th>
+            <th>What happens</th>
+            <th>Artifact</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="metric-name">Analyze</td>
+            <td>Read the failing tests: they are the verifiable target</td>
+            <td class="hero-score">Clear acceptance criteria</td>
+          </tr>
+          <tr>
+            <td class="metric-name">Plan</td>
+            <td>Use Plan mode to propose changes <em>before</em> executing</td>
+            <td class="hero-score">Reviewed plan</td>
+          </tr>
+          <tr>
+            <td class="metric-name">Implement</td>
+            <td>Execute the approved plan, one step at a time</td>
+            <td class="hero-score">Code changes</td>
+          </tr>
+          <tr>
+            <td class="metric-name">Verify</td>
+            <td>Run the tests: green means done</td>
+            <td class="hero-score">Passing tests</td>
+          </tr>
+          <tr>
+            <td class="metric-name">Deliver</td>
+            <td>Hand back a diff summary</td>
+            <td class="hero-score">Reviewable artifact</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+</section>
+
+  <!-- Slide 5: The ticket -->
+  <section>
+  <div class="slide-card">
+    <div class="eyebrow">15:30 – 16:30 · Grounding the Lab</div>
+    <h1 class="w-82">WM-110: Drift Alerts Fire on Momentary Spikes</h1>
+    <p class="bench-note w-78 note-tight-plus">
+      Before any tooling talk, here's the real ticket you're walking into.
+    </p>
+
+    <div class="category-grid grid-two-wide problem-fix-grid">
+      <div class="category-card">
+        <h4>The problem</h4>
+        <p>A portfolio can drift 6% off target for a couple of minutes and self-correct, but today the system alerts on that very first crossing anyway. Advisors get paged for problems that were never real, and start tuning out every alert, including the ones that matter.</p>
+      </div>
+      <div class="category-card">
+        <h4>The fix</h4>
+        <p>Add hysteresis: only fire an alert once a breach has lasted at least <code>min_duration_minutes</code>. A brief spike that corrects itself before then stays quiet. Hysteresis just means "wait a moment before reacting", like a smoke detector that ignores a bit of shower steam but still catches real smoke.</p>
+      </div>
+    </div>
+
+    <div class="survey-box box-92">
+      <span class="live-tag">Your goal for Lab 3</span>
+      <p class="lead-copy">
+        Add that hysteresis to <code>drift.py</code>: planned in Plan mode before you edit, and proven green by the tests, not by a claim that it works.
+      </p>
+    </div>
+    </div>
+</section>
+
+  <!-- Slide 6: Plan mode -->
+  <section>
+  <div class="slide-card">
+    <div class="step-eyebrow-row">
+      <span class="step-badge">Governance</span>
+      <div class="eyebrow" style="margin-bottom:0;">15:30 – 16:30 · Plan Mode</div>
+    </div>
+    <h1 class="w-78">Propose, Review, Then Edit</h1>
+
+    <div class="split-layout">
+      <div class="split-card">
+        <h3>Why Plan mode matters</h3>
+        <ul class="split-bullets">
+          <li>Enable it with the panel toggle, or press <code>Shift+Tab</code> to cycle Manual &rarr; Edit automatically &rarr; Plan: nothing executes until you approve.</li>
+          <li>You see what Claude intends <strong>before</strong> it happens; reject, modify, or approve.</li>
+          <li>The plan becomes documentation of intent: critical for alerting systems, unfamiliar code, and reviewing before approving.</li>
+          <li>For WM-110, a good plan names the exact change to <code>drift.py</code> and confirms <code>min_duration_minutes=0</code> still alerts immediately; if it skips that, ask for a revision before you approve.</li>
+        </ul>
+      </div>
+      <div class="split-media"><img src="__STAGING__/images/plan.png" alt="Plan mode interface showing proposal, review, and edit workflow" style="width: 100%; height: 100%; object-fit: contain;" /></div>
+    </div>
+    </div>
+</section>
+
+  <!-- Slide 7: What is a verifiable target -->
+  <section>
+  <div class="slide-card">
+    <div class="eyebrow">15:30 – 16:30 · Core Concept</div>
+    <h1 class="w-80">What Makes a Target "Verifiable"?</h1>
+    <p class="bench-note w-78 note-tight">
+      This is the <strong>Verification</strong> ingredient of the five-ingredient task frame from Lab 1: the same idea, sharpened. A verifiable target is a concrete, automated check that proves a change worked, instead of a claim that it worked.
+    </p>
+
+    <div class="category-grid grid-two-wide problem-fix-grid">
+      <div class="category-card">
+        <h4>Without one</h4>
+        <p>"Fix the false-positive alerts" is an outcome, not a check. Claude says "done," and the only way to know if that's true is to read the code yourself or take its word for it, against vibes.</p>
+      </div>
+      <div class="category-card">
+        <h4>With one</h4>
+        <p>A failing test names the exact input and expected output before any code changes. Run it, get a pass/fail; no judgment call, no vibes.</p>
+      </div>
+    </div>
+
+    <div class="survey-box box-92">
+      <span class="live-tag">Why it's "verifiable"</span>
+      <p class="lead-copy">
+        Deterministic (same input, same result, every time), specific (states exactly what "done" means), and automatable (a machine checks it, not a human's eyeball). Plan mode reviews a plan <em>against</em> this target; that's what makes the review real instead of a rubber stamp.
+      </p>
+    </div>
+    </div>
+</section>
+
+  <!-- Slide 8: The verifiable target -->
+  <section>
+  <div class="slide-card">
+    <div class="eyebrow">15:30 – 16:30 · The Verifiable Target</div>
+    <h1 class="w-80">The Failing Test Defines "Done"</h1>
+    <p class="bench-note w-78 note-tight">
+      Run <code>pytest test_drift.py -v</code>. Four tests: one fails on purpose. Read it before you implement.
+    </p>
+
+    <div class="category-grid grid-two-wide verifiable-target-grid">
+      <div class="category-card">
+        <h4>✅ within threshold</h4>
+        <p><code>test_no_alert_when_within_threshold</code>: passes. No breach, no alert.</p>
+      </div>
+      <div class="category-card">
+        <h4>✅ breach exceeds threshold</h4>
+        <p><code>test_alert_when_breach_exceeds_threshold</code>: passes. A real breach still alerts.</p>
+      </div>
+      <div class="category-card">
+        <h4>❌ brief spike</h4>
+        <p><code>test_no_alert_for_brief_spike</code>: <strong>fails</strong>. A spike under <code>min_duration_minutes</code> should NOT alert. This is the target.</p>
+      </div>
+      <div class="category-card">
+        <h4>✅ sustained breach</h4>
+        <p><code>test_alert_after_sustained_breach</code>: passes (for now, the wrong reason). A breach ≥ min duration should alert.</p>
+      </div>
+    </div>
+
+    <div class="bench-footnote" style="margin-top:1.4rem;">
+      <strong>Why test-first:</strong> the failing tests are deterministic, specific, and automatable: they tell you exactly what "done" means before you write a line of implementation. Same discipline whether you code by hand or drive an agent.
+    </div>
+    </div>
+</section>
+
+  <!-- Slide 9: Lab handoff -->
+  <section>
+  <div class="slide-card">
+    <div class="eyebrow">15:30 – 16:30 · Put It Into Practice</div>
+    <h1 class="w-78">Lab 3 Handoff</h1>
+    <p class="bench-note w-78 note-tight">
+      Frame the task, plan before editing, then prove it green.
+    </p>
+
+    <div class="survey-box box-94">
+      <span class="live-tag">The frame to give Claude</span>
+      <p class="handoff-copy">
+        "Fix WM-110 drift alert false positives in <code>drift.py</code> by adding hysteresis: only alert if the breach lasts at least <code>min_duration_minutes</code>. The failing tests in <code>test_drift.py</code> define the acceptance criteria. Propose a plan first. Don't edit until I approve."
+      </p>
+    </div>
+
+    <p class="bench-footnote" style="margin-top:1rem;">When reviewing the plan: a strong one names <em>how</em> breach duration will be tracked using <code>reading.timestamp</code>, not just "add a duration check."</p>
+
+    <div class="agenda-columns columns-playbook" style="margin-top:1.6rem;">
+      <div class="agenda-col col-fill">
+        <h3>Verify this lab</h3>
+        <div class="agenda-item"><span class="time">Lab</span><span class="topic"><code>pytest test_drift.py -v</code>: all 4 green.</span></div>
+        <div class="agenda-item"><span class="time">Full</span><span class="topic"><code>pytest -v</code>: confirm nothing regressed.</span></div>
+      </div>
+      <div class="agenda-col col-fill">
+        <h3>Deliverables</h3>
+        <div class="agenda-item"><span class="time">1</span><span class="topic">Understood the failing tests as the verifiable target.</span></div>
+        <div class="agenda-item"><span class="time">2</span><span class="topic">Used Plan mode to review the approach before editing.</span></div>
+        <div class="agenda-item"><span class="time">3</span><span class="topic">Implemented hysteresis; all tests passing.</span></div>
+      </div>
+    </div>
+    </div>
+</section>
+
+  <!-- Slide 10: Knowledge check -->
+  <section>
+  <div class="slide-card">
+    <div class="eyebrow">15:30 – 16:30 · Knowledge Check</div>
+    <h1 class="w-80">Quick Check: Plan Mode &amp; Test-Driven Delivery</h1>
+
+    <div class="mcq-list">
+      <div class="mcq-item fragment" data-fragment-index="1">
+        <p class="mcq-question">1. Which scenario is the best fit for Plan mode?</p>
+        <p class="mcq-option fragment" data-fragment-index="2">(a) Renaming a variable on a single line</p>
+        <p class="mcq-option fragment" data-fragment-index="3">(b) Adding a one-line print statement for debugging</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="4">(c) Fixing a fee calculation where a failing test already defines the acceptance criteria</p>
+        <span class="mcq-reveal fragment" data-fragment-index="5"></span>
+      </div>
+      <div class="mcq-item fragment" data-fragment-index="6">
+        <p class="mcq-question">2. What does it mean to use a failing test as the "verifiable target" before writing code?</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="7">(a) The failing test defines exactly what "done" looks like, before any implementation exists</p>
+        <p class="mcq-option fragment" data-fragment-index="8">(b) Tests are optional documentation you can skip</p>
+        <p class="mcq-option fragment" data-fragment-index="9">(c) Tests only matter after the code is finished</p>
+        <span class="mcq-reveal fragment" data-fragment-index="10"></span>
+      </div>
+      <div class="mcq-item fragment" data-fragment-index="11">
+        <p class="mcq-question">3. In the analyze → plan → implement → verify → deliver flow, what comes right after "plan"?</p>
+        <p class="mcq-option fragment" data-fragment-index="12">(a) Deliver</p>
+        <p class="mcq-option fragment" data-fragment-index="13">(b) Analyze again</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="14">(c) Implement</p>
+        <span class="mcq-reveal fragment" data-fragment-index="15"></span>
+      </div>
+      <div class="mcq-item fragment" data-fragment-index="16">
+        <p class="mcq-question">4. Why does a verified acceptance criterion (like a failing test) make both the plan and the implementation better?</p>
+        <p class="mcq-option fragment" data-fragment-index="17">(a) It removes the need for a plan entirely</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="18">(b) It gives Claude and the reviewer a concrete, checkable target instead of a vague description</p>
+        <p class="mcq-option fragment" data-fragment-index="19">(c) It guarantees the first attempt is always correct</p>
+        <span class="mcq-reveal fragment" data-fragment-index="20"></span>
+      </div>
+    </div>
+    </div>
+</section>
+
+  <!-- Slide 11: Recap -->
+  <section>
+  <div class="slide-card">
+    <div class="eyebrow">15:30 – 16:30 · Recap</div>
+    <h1 class="w-80">You Can Now...</h1>
+
+    <ul class="split-bullets objectives-list" style="margin-top: 1.2rem;">
+      <li class="fragment">Explain what Plan mode does and when to reach for it instead of default mode.</li>
+      <li class="fragment">Use a failing test as the "spec" before writing code: test-driven delivery.</li>
+      <li class="fragment">Describe the analyze → plan → implement → verify → deliver flow.</li>
+      <li class="fragment">Recognize when a verified acceptance criterion improves both the plan and the implementation.</li>
+    </ul>
+
+    <div class="survey-box box-94">
+      <span class="live-tag">Next up</span>
+      <p class="lead-copy">You've done this live in Lab 3. Watch for this same discipline in Lab 4's agent loop, and again in Lab 7's enforced governance checks on Day 2.</p>
+    </div>
+    </div>
+</section>
+

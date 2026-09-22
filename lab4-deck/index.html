@@ -1,0 +1,899 @@
+<!-- GENERATED FILE — do not edit directly.
+     Source: lab4-deck/sections/<slug>/slides.html
+     Regenerate with: python3 scripts/build_deck.py --deck lab4-deck -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lab 4: Meet the Pod, Then Add to It</title>
+<link rel="stylesheet" href="../vendor/reveal.js-6.0.1/reveal.css" />
+<link rel="stylesheet" href="../vendor/reveal.js-6.0.1/plugin/highlight/vscode-dark-modern.css" />
+<link rel="stylesheet" href="./styles.css" />
+<style>
+:root {
+  --deck-font-scale: 1;
+}
+html {
+  font-size: calc(16px * var(--deck-font-scale));
+}
+.slide-nav-bar {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 100;
+  background: rgba(5,10,40,0.78);
+  border-radius: 28px;
+  padding: 6px 12px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.slide-nav-arrow {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.8);
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+.slide-nav-arrow:hover {
+  background: rgba(255,255,255,0.12);
+}
+.slide-nav-dots {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  transition: gap 0.3s ease;
+}
+.slide-nav-bar:hover .slide-nav-dots {
+  gap: 4px;
+}
+.slide-nav-dot {
+  max-width: 0;
+  min-width: 0;
+  height: 28px;
+  overflow: hidden;
+  opacity: 0;
+  border-style: solid;
+  border-width: 0;
+  border-color: rgba(255,255,255,0.28);
+  border-radius: 5px;
+  color: rgba(255,255,255,0.5);
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 600;
+  font-family: inherit;
+  transition: max-width 0.3s ease, opacity 0.25s ease, border-width 0s, padding 0.3s ease;
+}
+.slide-nav-dot.active {
+  max-width: 28px;
+  width: 28px;
+  opacity: 1;
+  border-width: 1px;
+  border-color: rgba(255,255,255,0.7);
+  color: #fff;
+  background: rgba(255,255,255,0.18);
+}
+.slide-nav-dot.objectives {
+  border-color: #35b6c9;
+  color: #35b6c9;
+}
+.slide-nav-dot.objectives.active {
+  background: rgba(53,182,201,0.35);
+  border-color: #35b6c9;
+  color: #fff;
+}
+.slide-nav-bar:hover .slide-nav-dot {
+  max-width: 28px;
+  width: 28px;
+  opacity: 1;
+  border-width: 1px;
+}
+.slide-nav-dot:hover {
+  background: rgba(255,255,255,0.1);
+}
+.slide-font-controls {
+  position: fixed;
+  right: 24px;
+  bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 100;
+  background: rgba(5,10,40,0.78);
+  border-radius: 28px;
+  padding: 6px 8px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.slide-font-button {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.86);
+  min-width: 36px;
+  height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  line-height: 1;
+  font-family: inherit;
+  font-weight: 700;
+  transition: background 0.15s;
+}
+.slide-font-button:hover {
+  background: rgba(255,255,255,0.12);
+}
+.slide-font-reset {
+  min-width: 48px;
+  color: #35b6c9;
+}
+</style>
+</head>
+<body>
+
+<div class="section-links" aria-label="Section navigation">
+  <a class="section-link" href="../index.html">Main Menu</a>
+</div>
+
+<div class="reveal">
+  <div class="slides">
+<section>
+  <div class="slide-card">
+    <div class="agenda-title">Day 2 Agenda</div>
+    <div class="agenda-sub">Extending an Enterprise Codebase, the Right Way</div>
+
+    <div class="agenda-columns">
+      <div class="agenda-col">
+        <h3>Morning</h3>
+        <div class="agenda-item"><span class="time">09:00</span><span class="topic">Day 2 Agenda &amp; Warm-up</span></div>
+        <div class="agenda-item"><span class="time">09:15</span><span class="topic">Wells Fargo Champion Spotlight</span></div>
+        <div class="agenda-item"><span class="time">09:30</span><span class="topic">Lab 4 · Meet the Pod, Then Add to It</span></div>
+        <div class="agenda-item break"><span class="time">10:45</span><span class="topic">Break</span></div>
+        <div class="agenda-item"><span class="time">11:00</span><span class="topic">Lab 5 · Pod Ships Feature</span></div>
+        <div class="agenda-item break"><span class="time">12:30</span><span class="topic">Lunch</span></div>
+      </div>
+
+      <div class="agenda-col">
+        <h3>Afternoon</h3>
+        <div class="agenda-item"><span class="time">13:30</span><span class="topic">Lab 5 Wrap-up</span></div>
+        <div class="agenda-item"><span class="time">14:00</span><span class="topic">Lab 6 · MCP &amp; Developer Experience</span></div>
+        <div class="agenda-item"><span class="time">14:30</span><span class="topic">Lab 7 · Skills, Subagents, Hooks &amp; Coordination</span></div>
+        <div class="agenda-item break"><span class="time">15:15</span><span class="topic">Break</span></div>
+        <div class="agenda-item"><span class="time">15:30</span><span class="topic">Lab 8 · Capstone: Skill &amp; Subagent Recommendation</span></div>
+        <div class="agenda-item"><span class="time">16:30</span><span class="topic">Day 2 Recap &amp; Preview of Day 3</span></div>
+      </div>
+    </div>
+
+    <div class="day-arc">
+      <div class="day-arc-card day-arc-muted">
+        <div class="day-arc-tag">Day 1</div>
+        <div class="day-arc-scale">Scale: Individual</div>
+        <h4>Foundations &amp; the Agentic Mindset Shift</h4>
+        <p>Frame a task, delegate it to Claude Code, verify the result; then add Skills and plan mode.</p>
+      </div>
+      <div class="day-arc-card day-arc-current">
+        <div class="day-arc-tag">Day 2</div>
+        <div class="day-arc-scale">Scale: Team</div>
+        <h4>Enterprise Workflows, Subagents &amp; Safe Extension</h4>
+        <p>Map an existing system, coordinate subagents, and package reusable enterprise patterns for safe delivery.</p>
+      </div>
+      <div class="day-arc-card day-arc-muted">
+        <div class="day-arc-tag">Day 3</div>
+        <div class="day-arc-scale">Scale: Full Lifecycle</div>
+        <h4>Live Build: Greenfield Delivery</h4>
+        <p>Apply the full toolkit to a governed build, with evidence and sustainment planning.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="brand-strip">
+      <img src="../images/anthropic-logo.jpg" alt="Anthropic" class="brand-logo" />
+      <span class="brand-sep">&times;</span>
+      <img src="../images/cognizant-logo.jpeg" alt="Cognizant" class="brand-logo" />
+      <span class="brand-sep">&times;</span>
+      <img src="../images/wells-fargo-logo.jpeg" alt="Wells Fargo" class="brand-logo" />
+    </div>
+
+    <div class="eyebrow">Claude Code Developer Enablement · Day 2</div>
+    <h1>Lab 4 · <span class="accent">Meet the Pod, Then Add to It</span></h1>
+    <p class="subtitle">Read three shipped subagent roles, watch them hand off a bug fix end to end, author a fourth role yourself, then route a real ticket through the pod you just staffed.</p>
+
+    <div class="meta-row">
+      <div>
+        <span class="meta-label">Block</span>
+        <span>Subagent Pods</span>
+      </div>
+      <div>
+        <span class="meta-label">Tickets</span>
+        <span>WM-106 (demo) &middot; WM-115 (yours)</span>
+      </div>
+      <div>
+        <span class="meta-label">Time</span>
+        <span>09:30 – 10:45</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="agenda-title">Where Lab 4 Fits</div>
+    <div class="agenda-sub">Day 1 built one developer's discipline. Day 2 opens by asking who else should be involved.</div>
+
+    <div class="agenda-columns">
+      <div class="agenda-col">
+        <h3>Recap · Lab 3 (Day 1)</h3>
+        <div class="agenda-item"><span class="time">Did</span><span class="topic">Used Plan mode and a failing test as a verifiable target to deliver a bounded, one-shot fix.</span></div>
+        <div class="agenda-item"><span class="time">Did</span><span class="topic">Reviewed the plan yourself before it executed: human-in-the-loop, same conversation, every step.</span></div>
+      </div>
+
+      <div class="agenda-col">
+        <h3>This lab · Lab 4 (Day 2)</h3>
+        <div class="agenda-item"><span class="time">New</span><span class="topic">You stop doing every step and start <strong>staffing the work</strong>: naming which role does what, and in what order.</span></div>
+        <div class="agenda-item"><span class="time">New</span><span class="topic">Three roles ship pre-built: <code>implementer</code>, <code>test-author</code>, <code>contract-reviewer</code>. You watch them hand off a bug fix, then write a fourth.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · Learning Objectives</div>
+    <h1 class="w-84">After This Lab, You Will Be Able To...</h1>
+
+    <ul class="split-bullets objectives-list" style="margin-top: 1.6rem;">
+      <li class="fragment">Explain why a pod of narrow roles beats one conversation doing everything: it reviews its own work, carries everything it reads, and always has every tool.</li>
+      <li class="fragment">Name the two kinds of boundary a role can have: <strong>tool-enforced</strong> and <strong>contract-only</strong>, and say which of the three shipped roles is which.</li>
+      <li class="fragment">Read a real hand-off: explain why <code>implementer</code> reports a stale test instead of fixing it, and why that's <code>test-author</code>'s job instead.</li>
+      <li class="fragment">Author a new read-only role from a written contract, and get it delegated to both explicitly (by name) and proactively (by description).</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · Core Concept</div>
+    <h1 class="w-80">What Is a Subagent, and Why Would You Need One?</h1>
+    <p class="bench-note w-78 note-tight">A subagent (<code>.claude/agents/*.md</code>) runs in its own context: its own history, its own model, its own tool list, separate from your main session, and <strong>disposable</strong>. Once it reports back, that context is gone.</p>
+
+    <div class="category-grid grid-three-wide problem-fix-grid" style="margin-top: 1.2rem;">
+      <div class="category-card">
+        <h4>Independence</h4>
+        <ul class="example-list">
+          <li>Never saw the reasoning behind the code.</li>
+          <li>Can't be talked into rubber-stamping a blind spot the same conversation would miss.</li>
+        </ul>
+      </div>
+      <div class="category-card">
+        <h4>A disposable context</h4>
+        <ul class="example-list">
+          <li>Its exploration happens in a context window thrown away once it reports back.</li>
+          <li>Only the verdict lands in your conversation.</li>
+          <li>Your main session's context budget stays exactly as it was.</li>
+        </ul>
+      </div>
+      <div class="category-card">
+        <h4>Enforced restriction, not a suggestion</h4>
+        <ul class="example-list">
+          <li><code>contract-reviewer</code>'s tools are locked to <code>Read, Grep, Glob</code>.</li>
+          <li>No <code>Edit</code>, no <code>Bash</code>.</li>
+          <li>It is <em>not able</em> to patch the code, no matter the main session's permission mode.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="survey-box box-94" style="margin-top: 1.2rem;">
+      <span class="live-tag">How you call one</span>
+      <p class="handoff-copy">No slash command, no special syntax. Plain English: "Use the &lt;name&gt; subagent to &lt;do the task&gt;." For example: "Use the contract-reviewer subagent to review the changes in reconcile.py."</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · Skill vs. Subagent</div>
+    <h1 class="w-80">Reach for a Subagent When Isolation Actually Buys You Something</h1>
+    <p class="bench-note w-78 note-tight">Not every reusable workflow needs a subagent: a Skill is the cheaper default. This is a decision, not a reflex.</p>
+
+    <div class="split-layout" style="margin-top: 1rem;">
+      <div class="split-card">
+        <h3>A Skill</h3>
+        <ul class="split-bullets">
+          <li class="fragment" data-fragment-index="1">Runs inline, in your main session: shares its context and history.</li>
+          <li class="fragment" data-fragment-index="2">The cheap, default choice for a reusable workflow.</li>
+          <li class="fragment" data-fragment-index="3">Fine when the workflow doesn't need independence from the conversation driving it.</li>
+        </ul>
+      </div>
+      <div class="split-card">
+        <h3>A subagent</h3>
+        <ul class="split-bullets">
+          <li class="fragment" data-fragment-index="1">Runs in its own context, with its own enforced tool list and its own model, discarded once it reports back.</li>
+          <li class="fragment" data-fragment-index="2">Earns its overhead when you need independence, a disposable context, or an enforced restriction your main session can't give itself.</li>
+          <li class="fragment" data-fragment-index="3">Usually a reviewer or explorer, not an implementer.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · Grounding the Demo</div>
+    <h1 class="w-82">WM-106: A Stub That Always Escalates</h1>
+    <p class="bench-note w-82 note-tight">Same reconciliation module as before. <code>stock_split_adjustment</code> in <code>reconcile.py</code> is stubbed to always return <code>False</code>, so a 2-for-1 stock split escalates to an advisor even though a known rule could explain it.</p>
+
+    <div class="category-grid grid-two-wide problem-fix-grid" style="margin-top: 1.2rem;">
+      <div class="category-card">
+        <h4>The bug</h4>
+        <p><code>test_stock_split_auto_resolves</code> fails. The rule for resolving it lives in the stub's own docstring.</p>
+      </div>
+      <div class="category-card">
+        <h4>Why it's the demo, not the deliverable</h4>
+        <p>This ticket exists so you can watch three roles hand off a real fix before you're asked to route one yourself in Part 4.</p>
+      </div>
+    </div>
+
+    <div class="survey-box box-94" style="margin-top: 1.2rem;">
+      <span class="live-tag">Definition of done</span>
+      <p class="lead-copy">Full step-by-step prompts live in <code>README.md</code> Part 2. Watch the hand-off, don't just read the diff at the end: the interesting part is the seam between roles.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · Core Concept</div>
+    <h1 class="w-80">Why a Pod, Not One Conversation</h1>
+    <p class="bench-note w-78 note-tight">A single conversation doing everything has three problems that better prompting doesn't fix.</p>
+
+    <div class="category-grid grid-three-wide problem-fix-grid" style="margin-top: 1.2rem;">
+      <div class="category-card">
+        <h4>It reviews its own work</h4>
+        <p>It has a stake in the reasoning that produced the code, and will defend a shortcut it invented forty messages ago.</p>
+      </div>
+      <div class="category-card">
+        <h4>It carries everything</h4>
+        <p>Reading six files to trace a dependency leaves six files in your context for the rest of the session, whether you need them or not.</p>
+      </div>
+      <div class="category-card">
+        <h4>It has every tool, always</h4>
+        <p>"Please don't edit the fee tiers" is a request. A reviewer without <code>Edit</code> is a control.</p>
+      </div>
+    </div>
+
+    <div class="survey-box box-94" style="margin-top: 1.2rem;">
+      <span class="live-tag">The cost</span>
+      <p class="lead-copy">A pod addresses all three by construction, but now you have to design the hand-offs. That's the actual skill this lab teaches.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · Core Concept</div>
+    <h1 class="w-80">What Is a Subagent Pod?</h1>
+    <p class="bench-note w-78 note-tight">A <strong>pod</strong> is a small set of named subagent roles, each an isolated <code>.claude/agents/*.md</code> definition with its own context, its own tool list, and one narrow job. You don't run them all yourself: you <strong>route</strong> the work and <strong>review the verdicts</strong>.</p>
+
+    <div class="category-grid grid-three-wide problem-fix-grid" style="margin-top: 1.2rem;">
+      <div class="category-card">
+        <h4>Named roles, not tasks</h4>
+        <p><code>implementer</code>, <code>test-author</code>, <code>contract-reviewer</code>: each one is reusable across tickets, not written fresh per task.</p>
+      </div>
+      <div class="category-card">
+        <h4>You staff, they execute</h4>
+        <p>Your job shifts to deciding which role does a piece of work, in what order, and what each one hands the next.</p>
+      </div>
+      <div class="category-card">
+        <h4>One shared working tree</h4>
+        <p>They don't get private copies of the repo. That makes the hand-off order a real design decision, not a formality.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · Core Concept</div>
+    <h1 class="w-80">The Two Kinds of Boundary</h1>
+    <p class="bench-note w-78 note-tight">The most important distinction in the lab. Every role's restriction is one of these two, and knowing which is the difference between a framework and a wish.</p>
+
+    <div class="split-layout" style="margin-top: 1rem;">
+      <div class="split-card">
+        <h3>Tool-enforced</h3>
+        <ul class="split-bullets">
+          <li class="fragment" data-fragment-index="1"><code>contract-reviewer</code>'s tools are <code>Read, Grep, Glob</code>. No <code>Edit</code>, no <code>Write</code>, no <code>Bash</code>.</li>
+          <li class="fragment" data-fragment-index="2">It genuinely <strong>cannot</strong> edit your code. <code>Bash</code> matters most, since <code>python3 -c "open(...).write(...)"</code> is an edit too.</li>
+          <li class="fragment" data-fragment-index="3">Holds regardless of the main session's permission mode, and regardless of what the role is asked to do.</li>
+        </ul>
+      </div>
+      <div class="split-card">
+        <h3>Contract-only</h3>
+        <ul class="split-bullets">
+          <li class="fragment" data-fragment-index="4"><code>implementer</code> has <code>Edit</code> and is told "never edit a test file." <code>test-author</code> has <code>Edit</code> and is told "never edit source."</li>
+          <li class="fragment" data-fragment-index="5">Neither is enforceable with a <code>tools:</code> list: it gates tool <em>types</em>, not file <em>paths</em>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · The Three Shipped Roles</div>
+    <h1 class="w-80">Read Them Before You Imitate Them</h1>
+    <p class="bench-note w-78 note-tight">All three live in <code>.claude/agents/</code>. Each explains its own design decisions inline, and they're the templates for the fourth role, which is yours to write.</p>
+
+    <div class="category-grid grid-three-wide problem-fix-grid" style="margin-top: 1.2rem;">
+      <div class="category-card">
+        <h4>implementer</h4>
+        <p><code>Read, Edit, Bash</code> &middot; contract-only. Makes a failing test pass, then verifies. Never edits a test file.</p>
+      </div>
+      <div class="category-card">
+        <h4>test-author</h4>
+        <p><code>Read, Write, Edit, Bash</code> &middot; contract-only. Turns criteria into failing tests; repairs tests a change made untrue. Never edits source.</p>
+      </div>
+      <div class="category-card">
+        <h4>contract-reviewer</h4>
+        <p><code>Read, Grep, Glob</code> &middot; tool-enforced. Reviews the finished diff against acceptance criteria, independently. Cannot patch anything.</p>
+      </div>
+    </div>
+
+    <div class="survey-box box-94" style="margin-top: 1.2rem;">
+      <span class="live-tag">The one that acts</span>
+      <p class="lead-copy"><code>implementer</code> is the exception to "subagents are reviewers and explorers." <code>Edit</code> + <code>Bash</code> close a loop: change code, run tests, read the failure, change again, a cycle that would otherwise cost the main conversation a round trip per iteration.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · Watch the Hand-off</div>
+    <h1 class="w-80">One Bug, Three Roles, One Seam Worth Noticing</h1>
+    <p class="bench-note w-78 note-tight"><code>implementer</code>'s fix for WM-106 makes the target test pass, and makes a different, previously-passing test false. Watch what happens next.</p>
+
+    <div class="agenda-columns columns-playbook" style="margin-top: 1rem;">
+      <div class="agenda-col col-fill">
+        <h3>Step 1 &middot; implementer</h3>
+        <div class="agenda-item"><span class="time">Fix</span><span class="topic">Implements the stock-split rule. Target test passes, a strategy-count test now fails.</span></div>
+        <div class="agenda-item"><span class="time">Reports</span><span class="topic">Flags the broken test. Does <strong>not</strong> edit it: that's its contract.</span></div>
+      </div>
+      <div class="agenda-col col-fill">
+        <h3>Step 2 &middot; test-author</h3>
+        <div class="agenda-item"><span class="time">Repairs</span><span class="topic">Updates the stale assertion: the test was right yesterday, wrong today, and nothing about the fix is at fault.</span></div>
+      </div>
+      <div class="agenda-col col-fill">
+        <h3>Step 3 &middot; contract-reviewer</h3>
+        <div class="agenda-item"><span class="time">Reviews</span><span class="topic">Independently checks the diff against the acceptance criteria. Verdict, not a vibe.</span></div>
+      </div>
+    </div>
+
+    <div class="survey-box box-94" style="margin-top: 1rem;">
+      <span class="live-tag">Why this is two roles, not one</span>
+      <p class="lead-copy">An implementer with a red test has two ways to make it green: change the code, or change the test. The first is the job. The second is how a suite quietly stops meaning anything.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · The Hazard Nobody Warns You About</div>
+    <h1 class="w-80">Subagents Share One Working Tree</h1>
+    <p class="bench-note w-78 note-tight">They don't get private copies of the repo. Two roles holding <code>Edit</code> and running at the same time will overwrite each other, and the loser's work is gone with no error message.</p>
+
+    <div class="survey-box box-94" style="margin-top: 1.2rem;">
+      <span class="live-tag">The rule</span>
+      <p class="handoff-copy">Fan out reads and reviews. Serialize edits.</p>
+    </div>
+
+    <div class="survey-box box-94" style="margin-top: 0.8rem;">
+      <span class="live-tag">In this pod</span>
+      <p class="lead-copy">Both <code>implementer</code> and <code>test-author</code> can <code>Edit</code>. That's not a bug; sometimes you genuinely need two editors across a session. You, not the model, are responsible for never having both live at once.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · Author the Fourth Role</div>
+    <h1 class="w-80">reference-data-steward: Yours to Write</h1>
+    <p class="bench-note w-78 note-tight">Read-only, tool-enforced. It answers one question about a diff: <em>could the team who owns this data change it without an engineer and a release?</em></p>
+
+    <div class="category-grid grid-two-wide problem-fix-grid" style="margin-top: 1.2rem;">
+      <div class="category-card">
+        <h4>Tool budget</h4>
+        <p>Needs <code>Read</code> and <code>Grep</code>. Must not have <code>Edit</code>, <code>Write</code>, <code>MultiEdit</code>, <code>Bash</code>, or <code>Task</code>.</p>
+      </div>
+      <div class="category-card">
+        <h4>Use the closest template</h4>
+        <p><code>contract-reviewer</code> is the closest shape: read-only, checklist-driven, returns a verdict.</p>
+      </div>
+    </div>
+
+    <div class="survey-box box-94" style="margin-top: 1.2rem;">
+      <span class="live-tag">Its full contract</span>
+      <p class="lead-copy">Written out in <code>ROLES.md</code>, not here, since that's Part 3's exercise. Iterate against <code>python3 check_pod.py</code> until it exits 0, then test delegation both ways: name the role explicitly, then describe the task without naming it and see whether Claude picks it proactively.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · Knowledge Check</div>
+    <h1 class="w-80">Quick Check: The Pod and Its Boundaries</h1>
+
+    <div class="mcq-list">
+      <div class="mcq-item fragment" data-fragment-index="1">
+        <p class="mcq-question">1. Why is <code>contract-reviewer</code> called "tool-enforced" while <code>implementer</code> is called "contract-only"?</p>
+        <p class="mcq-option fragment" data-fragment-index="2">(a) <code>contract-reviewer</code> just runs on a stricter model.</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="3">(b) <code>contract-reviewer</code>'s <code>tools:</code> list makes editing genuinely impossible; <code>implementer</code>'s "never edit a test" is a prose instruction a <code>tools:</code> list can't express.</p>
+        <p class="mcq-option fragment" data-fragment-index="4">(c) They're the same thing, just different names.</p>
+        <span class="mcq-reveal fragment" data-fragment-index="5"></span>
+      </div>
+
+      <div class="mcq-item fragment" data-fragment-index="6">
+        <p class="mcq-question">2. <code>implementer</code>'s fix breaks a previously-passing test. What should it do?</p>
+        <p class="mcq-option fragment" data-fragment-index="7">(a) Edit the test so the suite goes green again.</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="8">(b) Report the failure and leave the test alone; repairing a stale test is <code>test-author</code>'s job.</p>
+        <p class="mcq-option fragment" data-fragment-index="9">(c) Delete the failing test.</p>
+        <span class="mcq-reveal fragment" data-fragment-index="10"></span>
+      </div>
+
+      <div class="mcq-item fragment" data-fragment-index="11">
+        <p class="mcq-question">3. Two roles both hold <code>Edit</code>. What's the safe way to run them?</p>
+        <p class="mcq-option fragment" data-fragment-index="12">(a) Run them at the same time to save turns.</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="13">(b) Fan out reads and reviews, but serialize edits: only one editor live on the shared working tree at a time.</p>
+        <p class="mcq-option fragment" data-fragment-index="14">(c) It doesn't matter; subagents get private copies of the repo.</p>
+        <span class="mcq-reveal fragment" data-fragment-index="15"></span>
+      </div>
+
+      <div class="mcq-item fragment" data-fragment-index="16">
+        <p class="mcq-question">4. Your new <code>reference-data-steward</code> role never gets picked when you describe a task without naming it. What's the most likely cause?</p>
+        <p class="mcq-option fragment" data-fragment-index="17">(a) Claude can't do proactive delegation at all.</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="18">(b) Its <code>description</code> says what the role <em>is</em> instead of <em>when to reach for it</em>.</p>
+        <p class="mcq-option fragment" data-fragment-index="19">(c) The role needs <code>Bash</code> to be selectable.</p>
+        <span class="mcq-reveal fragment" data-fragment-index="20"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · Recap</div>
+    <h1 class="w-80">You Can Now...</h1>
+
+    <ul class="split-bullets objectives-list" style="margin-top: 1.2rem;">
+      <li class="fragment">Explain why a pod of narrow roles beats one conversation doing everything: it reviews its own work, carries everything it reads, and always has every tool.</li>
+      <li class="fragment">Name the two kinds of boundary a role can have: <strong>tool-enforced</strong> and <strong>contract-only</strong>, and say which of the three shipped roles is which.</li>
+      <li class="fragment">Read a real hand-off: explain why <code>implementer</code> reports a stale test instead of fixing it, and why that's <code>test-author</code>'s job instead.</li>
+      <li class="fragment">Author a new read-only role from a written contract, and get it delegated to both explicitly (by name) and proactively (by description).</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · Learning Objectives</div>
+    <h1 class="w-84">Part 2: Route a Real Ticket Through the Pod</h1>
+
+    <ul class="split-bullets objectives-list" style="margin-top: 1.6rem;">
+      <li class="fragment">Reframe a vague ticket into outcome, scope, verification, deliverable, and guardrails before any code changes.</li>
+      <li class="fragment">Decide which roles a ticket needs and in what order; not every ticket needs all four.</li>
+      <li class="fragment">Treat a reviewer's verdict, not a green test suite, as the finish line.</li>
+      <li class="fragment">Explain WM-115's back-compat trap: why widening a default to fit a new caller is a regression wearing a feature's clothes.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · Grounding the Ticket</div>
+    <h1 class="w-82">WM-115: Ops Can't Add a Split Ratio Without a Release</h1>
+    <p class="bench-note w-82 note-tight">Written the way tickets actually arrive: a symptom, a vague ask, and no statement of what must keep working. Reframing it is the first thing you do, since no prompts are supplied for this part.</p>
+
+    <div class="category-grid grid-two-wide problem-fix-grid" style="margin-top: 1.2rem;">
+      <div class="category-card">
+        <h4>The seam already exists</h4>
+        <p><code>reconcile_positions</code> already accepts <code>strategies=</code>. This ticket uses a seam that's already there, it doesn't cut a new one. Have a role read the signature before anyone proposes an architecture.</p>
+      </div>
+      <div class="category-card">
+        <h4>The back-compat trap</h4>
+        <p>A caller who passes no reference data must keep today's exact behavior. Widening a default is how you silently change every existing caller.</p>
+      </div>
+    </div>
+
+    <div class="survey-box box-94" style="margin-top: 1.2rem;">
+      <span class="live-tag">The acceptance contract</span>
+      <p class="lead-copy"><code>test_reconcile_epic.py</code>, six seeded failures. Read it before you plan: it answers what reconciliation should do at 2am when the file Ops maintains is missing or malformed, a question the ticket itself doesn't answer.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · The Payoff</div>
+    <h1 class="w-80">ORCL Moves From Escalated to Resolved</h1>
+    <p class="bench-note w-78 note-tight">Both commands below are required acceptance tests. Compare the two outputs.</p>
+
+    <div class="split-layout" style="margin-top: 1rem;">
+      <div class="split-card">
+        <h3>Without reference data</h3>
+        <ul class="split-bullets">
+          <li class="fragment" data-fragment-index="1">Today's back-compat behavior, no flag.</li>
+          <li class="fragment" data-fragment-index="2">ORCL escalates: 3 resolved, 4 escalated. Ratio <code>1.5</code> isn't in the compiled-in table.</li>
+          <li class="fragment" data-fragment-index="3">Correct on Day 1, and still correct: nothing reads free text, and auto-resolving on a press-release note would have been a guess.</li>
+        </ul>
+      </div>
+      <div class="split-card">
+        <h3>With Ops-loaded reference data</h3>
+        <ul class="split-bullets">
+          <li class="fragment" data-fragment-index="4"><code>--reference-data reference_data/split_ratios.json</code>, WM-115's change.</li>
+          <li class="fragment" data-fragment-index="5">ORCL resolves via <code>stock_split_adjustment</code>: 4 resolved, 3 escalated. Ops added <code>1.5</code> to the JSON file, no code change needed.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="survey-box box-94" style="margin-top: 0.8rem;">
+      <span class="live-tag">Say this out loud when you present</span>
+      <p class="lead-copy">You didn't make the system guess better. You shortened the path from "a human knows the answer" to "the system knows it too" from a release to a data change.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · Guardrails</div>
+    <h1 class="w-80">What Stays True No Matter How You Route It</h1>
+
+    <div class="category-grid grid-three-wide problem-fix-grid" style="margin-top: 1.2rem;">
+      <div class="category-card">
+        <h4>Don't touch Ops's data</h4>
+        <p><code>reference_data/*.json</code> is Ops- and Risk-owned. A missing or malformed file is a case the contract covers, not a reason to fix the data.</p>
+      </div>
+      <div class="category-card">
+        <h4>Don't widen a default</h4>
+        <p>A caller who passes nothing must get today's exact behavior. A new capability that changes existing callers is a regression wearing a feature's clothes.</p>
+      </div>
+      <div class="category-card">
+        <h4>Never guess a value</h4>
+        <p>No ratio, rate, or band outside a reference table, ever. A config file doesn't relax the escalate-rather-than-guess rule; it's why the file exists.</p>
+      </div>
+    </div>
+
+    <div class="survey-box box-94" style="margin-top: 1.2rem;">
+      <span class="live-tag">Read-only by design</span>
+      <p class="lead-copy"><code>contract-reviewer</code> and <code>reference-data-steward</code> report; they don't fix. If one flags something, route the fix back to <code>implementer</code>. Don't loosen the checklist, and don't grant either role <code>Bash</code> so it can "just fix it."</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · Knowledge Check</div>
+    <h1 class="w-80">Quick Check: Reframing and Routing WM-115</h1>
+
+    <div class="mcq-list">
+      <div class="mcq-item fragment" data-fragment-index="1">
+        <p class="mcq-question">1. WM-115 asks Ops to control a split ratio without a release. What's the first move, before naming any role?</p>
+        <p class="mcq-option fragment" data-fragment-index="2">(a) Start implementing the flag right away, since the ask is clear enough.</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="3">(b) Reframe it: outcome, scope, verification, deliverable, guardrails.</p>
+        <p class="mcq-option fragment" data-fragment-index="4">(c) Design a new configuration architecture from scratch.</p>
+        <span class="mcq-reveal fragment" data-fragment-index="5"></span>
+      </div>
+
+      <div class="mcq-item fragment" data-fragment-index="6">
+        <p class="mcq-question">2. A caller that passes no reference data starts behaving differently after your change. What happened?</p>
+        <p class="mcq-option fragment" data-fragment-index="7">(a) Nothing to worry about: more capability is always better.</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="8">(b) A default got widened, which is a regression wearing a feature's clothes; the back-compat test exists to catch exactly this.</p>
+        <p class="mcq-option fragment" data-fragment-index="9">(c) The reviewer role should have caught it and fixed it directly.</p>
+        <span class="mcq-reveal fragment" data-fragment-index="10"></span>
+      </div>
+
+      <div class="mcq-item fragment" data-fragment-index="11">
+        <p class="mcq-question">3. Why does <code>reference-data-steward</code>'s verdict matter for WM-115 specifically, more than for most tickets?</p>
+        <p class="mcq-option fragment" data-fragment-index="12">(a) It doesn't: it's the same checklist every time.</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="13">(b) "Could Ops change this without an engineer and a release?" <em>is</em> WM-115's acceptance criterion.</p>
+        <p class="mcq-option fragment" data-fragment-index="14">(c) It's the only role that can run <code>pytest</code>.</p>
+        <span class="mcq-reveal fragment" data-fragment-index="15"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · Recap</div>
+    <h1 class="w-80">You Can Now...</h1>
+
+    <ul class="split-bullets objectives-list" style="margin-top: 1.2rem;">
+      <li class="fragment">Reframe a vague ticket into outcome, scope, verification, deliverable, and guardrails before any code changes.</li>
+      <li class="fragment">Decide which roles a ticket needs and in what order; not every ticket needs all four.</li>
+      <li class="fragment">Treat a reviewer's verdict, not a green test suite, as the finish line.</li>
+      <li class="fragment">Explain WM-115's back-compat trap: why widening a default to fit a new caller is a regression wearing a feature's clothes.</li>
+    </ul>
+
+    <div class="survey-box box-94" style="margin-top: 1.2rem;">
+      <span class="live-tag">Watch for this again</span>
+      <p class="lead-copy"><code>contract-reviewer</code>'s restriction is enforced; <code>implementer</code>'s is a contract in prose. That gap is deliberate setup for Lab 7's <code>PreToolUse</code> hook, the layer that makes "please don't touch the fee tiers" something that cannot be done.</p>
+    </div>
+  </div>
+</section>
+
+  </div>
+</div>
+
+<div class="slide-footer-label">Claude Code Developer Enablement · Day 2 · Lab 4</div>
+
+<script src="../vendor/reveal.js-6.0.1/reveal.js"></script>
+<script src="../vendor/reveal.js-6.0.1/plugin/notes.js"></script>
+<script src="../vendor/reveal.js-6.0.1/plugin/highlight.js"></script>
+<script>
+  (function() {
+    var savedScale = 1;
+    try {
+      savedScale = parseFloat(window.localStorage.getItem('deck-font-scale')) || 1;
+    } catch (e) {}
+    window.__deckFontScale = Math.min(Math.max(savedScale, 0.8), 1.6);
+    document.documentElement.style.setProperty('--deck-font-scale', window.__deckFontScale.toFixed(2));
+  })();
+
+  Reveal.initialize({
+    hash: true,
+    center: false,
+    width: 1920,
+    height: 1080,
+    margin: 0,
+    minScale: 0.2,
+    maxScale: 2.0,
+    transition: 'none',
+    controls: false,
+    progress: false,
+    slideNumber: false,
+    plugins: [ RevealNotes, RevealHighlight ]
+  });
+
+  // Adjust line numbers based on data-start attribute
+  function adjustLineNumbers() {
+    document.querySelectorAll('code[data-start]').forEach(function(code) {
+      var startLine = parseInt(code.getAttribute('data-start'), 10);
+      if (isNaN(startLine)) return;
+
+      var table = code.querySelector('table[class*="hljs"]');
+      if (!table) return;
+
+      var rows = table.querySelectorAll('tr');
+      rows.forEach(function(row, idx) {
+        var lineCell = row.querySelector('td:first-child');
+        if (lineCell) {
+          var lineNum = startLine + idx;
+          lineCell.textContent = lineNum;
+        }
+      });
+    });
+  }
+
+  Reveal.on('ready', adjustLineNumbers);
+  Reveal.on('slidechanged', adjustLineNumbers);
+
+  (function() {
+    if (window.__slideNavInit) return;
+    window.__slideNavInit = true;
+
+    function buildNav() {
+      var slides = Reveal.getSlides();
+      var objIdx = {};
+      slides.forEach(function(s, i) {
+        var eyebrow = s.querySelector('.eyebrow');
+        if (s.querySelector('[data-nav-objectives]') || (eyebrow && eyebrow.textContent.trim().endsWith('Learning Objectives'))) objIdx[i] = true;
+      });
+
+      var bar = document.createElement('div');
+      bar.className = 'slide-nav-bar';
+
+      var prev = document.createElement('button');
+      prev.className = 'slide-nav-arrow';
+      prev.innerHTML = '&#8592;';
+      prev.setAttribute('aria-label', 'Previous slide');
+      prev.addEventListener('click', function() { Reveal.prev(); });
+
+      var dotsEl = document.createElement('div');
+      dotsEl.className = 'slide-nav-dots';
+
+      slides.forEach(function(_, i) {
+        var dot = document.createElement('button');
+        dot.className = 'slide-nav-dot' + (objIdx[i] ? ' objectives' : '');
+        dot.textContent = String(i + 1);
+        dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+        dot.addEventListener('click', (function(idx) {
+          return function() { Reveal.slide(idx); };
+        })(i));
+        dotsEl.appendChild(dot);
+      });
+
+      var next = document.createElement('button');
+      next.className = 'slide-nav-arrow';
+      next.innerHTML = '&#8594;';
+      next.setAttribute('aria-label', 'Next slide');
+      next.addEventListener('click', function() { Reveal.next(); });
+
+      bar.appendChild(prev);
+      bar.appendChild(dotsEl);
+      bar.appendChild(next);
+      document.body.appendChild(bar);
+      updateNav(Reveal.getState().indexh || 0);
+    }
+
+    function updateNav(idx) {
+      document.querySelectorAll('.slide-nav-dot').forEach(function(d, i) {
+        d.classList.toggle('active', i === idx);
+      });
+    }
+
+    Reveal.on('ready', function() { buildNav(); });
+    Reveal.on('slidechanged', function(e) { updateNav(e.indexh); });
+  })();
+
+  (function() {
+    if (window.__slideFontControlsInit) return;
+    window.__slideFontControlsInit = true;
+
+    var minScale = 0.8;
+    var maxScale = 1.6;
+    var step = 0.1;
+    var scale = window.__deckFontScale || 1;
+    var resetButton;
+
+    function saveScale() {
+      try {
+        window.localStorage.setItem('deck-font-scale', scale.toFixed(2));
+      } catch (e) {}
+    }
+
+    function applyScale() {
+      scale = Math.min(Math.max(scale, minScale), maxScale);
+      document.documentElement.style.setProperty('--deck-font-scale', scale.toFixed(2));
+      if (resetButton) resetButton.textContent = Math.round(scale * 100) + '%';
+      saveScale();
+      if (window.Reveal && typeof Reveal.layout === 'function') Reveal.layout();
+    }
+
+    function addButton(parent, label, ariaLabel, onClick, className) {
+      var button = document.createElement('button');
+      button.className = 'slide-font-button' + (className ? ' ' + className : '');
+      button.type = 'button';
+      button.textContent = label;
+      button.setAttribute('aria-label', ariaLabel);
+      button.addEventListener('click', onClick);
+      parent.appendChild(button);
+      return button;
+    }
+
+    function buildControls() {
+      var controls = document.createElement('div');
+      controls.className = 'slide-font-controls';
+      addButton(controls, 'A-', 'Decrease slide text size', function() { scale -= step; applyScale(); });
+      resetButton = addButton(controls, '100%', 'Reset slide text size', function() { scale = 1; applyScale(); }, 'slide-font-reset');
+      addButton(controls, 'A+', 'Increase slide text size', function() { scale += step; applyScale(); });
+      document.body.appendChild(controls);
+      applyScale();
+    }
+
+    Reveal.on('ready', buildControls);
+  })();
+</script>
+</body>
+</html>

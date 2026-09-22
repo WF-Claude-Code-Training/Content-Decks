@@ -1,0 +1,30 @@
+@import url("../shared/base.css");
+@import url("../shared/dark-theme.css");
+
+/* WM-109 and What-Is-a-Hook slides only — baseline card text at 1.5x the shared
+   .category-card size instead of relying on a presenter-time zoom. */
+.big-card-text .category-card h4 {
+  font-size: 1.425rem;
+}
+
+.big-card-text .category-card ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.big-card-text .category-card li,
+.big-card-text .category-card p {
+  font-size: 1.23rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 0.35rem;
+}
+
+.big-card-text .category-card li:last-child,
+.big-card-text .category-card p:last-child {
+  margin-bottom: 0;
+}
+
+.big-card-text .category-card a {
+  color: var(--teal);
+}

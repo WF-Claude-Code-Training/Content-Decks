@@ -1,0 +1,9 @@
+{
+  "title": "Lab 8: Put It All Together",
+  "subtitle": "Claude Code Developer Enablement",
+  "footer_suffix": "Day 2 · Lab 8",
+  "summary": "Two subagents, run in parallel, synthesized by you: the Skill-vs-Subagent call, applied cold to a real codebase.",
+  "sections": [
+    { "slug": "01-put-it-all-together", "title": "Put It All Together" }
+  ]
+}

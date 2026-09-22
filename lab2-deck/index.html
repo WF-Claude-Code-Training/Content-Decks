@@ -1,0 +1,830 @@
+<!-- GENERATED FILE — do not edit directly.
+     Source: lab2-deck/sections/<slug>/slides.html
+     Regenerate with: python3 scripts/build_deck.py --deck lab2-deck -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lab 2: Fee Logic Rollout with Two-Pass Skills</title>
+<link rel="stylesheet" href="../vendor/reveal.js-6.0.1/reveal.css" />
+<link rel="stylesheet" href="../vendor/reveal.js-6.0.1/plugin/highlight/vscode-dark-modern.css" />
+<link rel="stylesheet" href="./styles.css" />
+<style>
+:root {
+  --deck-font-scale: 1;
+}
+html {
+  font-size: calc(16px * var(--deck-font-scale));
+}
+.slide-nav-bar {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 100;
+  background: rgba(5,10,40,0.78);
+  border-radius: 28px;
+  padding: 6px 12px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.slide-nav-arrow {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.8);
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+.slide-nav-arrow:hover {
+  background: rgba(255,255,255,0.12);
+}
+.slide-nav-dots {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  transition: gap 0.3s ease;
+}
+.slide-nav-bar:hover .slide-nav-dots {
+  gap: 4px;
+}
+.slide-nav-dot {
+  max-width: 0;
+  min-width: 0;
+  height: 28px;
+  overflow: hidden;
+  opacity: 0;
+  border-style: solid;
+  border-width: 0;
+  border-color: rgba(255,255,255,0.28);
+  border-radius: 5px;
+  color: rgba(255,255,255,0.5);
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 600;
+  font-family: inherit;
+  transition: max-width 0.3s ease, opacity 0.25s ease, border-width 0s, padding 0.3s ease;
+}
+.slide-nav-dot.active {
+  max-width: 28px;
+  width: 28px;
+  opacity: 1;
+  border-width: 1px;
+  border-color: rgba(255,255,255,0.7);
+  color: #fff;
+  background: rgba(255,255,255,0.18);
+}
+.slide-nav-dot.objectives {
+  border-color: #35b6c9;
+  color: #35b6c9;
+}
+.slide-nav-dot.objectives.active {
+  background: rgba(53,182,201,0.35);
+  border-color: #35b6c9;
+  color: #fff;
+}
+.slide-nav-bar:hover .slide-nav-dot {
+  max-width: 28px;
+  width: 28px;
+  opacity: 1;
+  border-width: 1px;
+}
+.slide-nav-dot:hover {
+  background: rgba(255,255,255,0.1);
+}
+.slide-font-controls {
+  position: fixed;
+  right: 24px;
+  bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 100;
+  background: rgba(5,10,40,0.78);
+  border-radius: 28px;
+  padding: 6px 8px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.slide-font-button {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.86);
+  min-width: 36px;
+  height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  line-height: 1;
+  font-family: inherit;
+  font-weight: 700;
+  transition: background 0.15s;
+}
+.slide-font-button:hover {
+  background: rgba(255,255,255,0.12);
+}
+.slide-font-reset {
+  min-width: 48px;
+  color: #35b6c9;
+}
+</style>
+</head>
+<body>
+
+<div class="section-links" aria-label="Section navigation">
+  <a class="section-link" href="../index.html">Main Menu</a>
+</div>
+
+<div class="reveal">
+  <div class="slides">
+<section>
+  <div class="slide-card">
+    <div class="brand-strip">
+      <img src="../images/anthropic-logo.jpg" alt="Anthropic" class="brand-logo" />
+      <span class="brand-sep">&times;</span>
+      <img src="../images/cognizant-logo.jpeg" alt="Cognizant" class="brand-logo" />
+      <span class="brand-sep">&times;</span>
+      <img src="../images/wells-fargo-logo.jpeg" alt="Wells Fargo" class="brand-logo" />
+    </div>
+
+    <div class="eyebrow">Claude Code Developer Enablement · Day 1</div>
+    <h1>Lab 2: Fee Logic Rollout with <span class="accent">Two-Pass Skills</span></h1>
+    <p class="subtitle">Use a generic Skill, author a fee-specific Skill, and verify both against the same progressive-tier rule.</p>
+
+    <div class="meta-row">
+      <div>
+        <span class="meta-label">Block</span>
+        <span>Claude Code Interface &amp; Team Skills</span>
+      </div>
+      <div>
+        <span class="meta-label">Ticket</span>
+        <span>WM-202</span>
+      </div>
+      <div>
+        <span class="meta-label">Time</span>
+        <span>13:30 – 14:45</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">13:30 – 14:45 · Fee Logic Rollout with Two-Pass Skills</div>
+    <h1 class="w-80">After This Session, You Will Be Able To...</h1>
+
+    <ul class="split-bullets objectives-list" style="margin-top: 1.6rem;">
+      <li class="fragment">Distinguish Claude's built-in capabilities, Anthropic's downloadable Skills, and the Skill you author yourself, and recognize which to reach for.</li>
+      <li class="fragment">Use slash commands to manage the Claude Code context window and token usage.</li>
+      <li class="fragment">Use Claude Code's built-in tools, Glob to find the fee module and its tests, Grep to confirm the tiered-rate pattern, instead of dumping the whole repo into context.</li>
+      <li class="fragment">Author your own fee-specific Skill (<code>.claude/skills/&lt;your-name&gt;-fee-standardization-flow/SKILL.md</code>) and invoke it to apply the same progressive-tier rule to <code>monthly_advisory_fee</code>, verified by <code>test_fee_rollout.py</code>.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">13:30 – 14:45 · Fee Logic Rollout with Two-Pass Skills</div>
+    <h1 class="w-84">Before You Write One: Skills Claude Already Has</h1>
+    <p class="bench-note w-78 note-tight-plus">Authoring a Skill is one of three ways Claude gets a capability. Here are the other two.</p>
+
+    <div class="split-layout">
+      <div class="split-card">
+        <h3>Built into every task, zero setup</h3>
+        <ul class="split-bullets">
+          <li class="fragment">Core tool belt baked into Claude Code: Read, Edit, Write, Bash, Grep, Glob, WebSearch, WebFetch, available with no <code>SKILL.md</code> required.</li>
+          <li class="fragment">Vision &amp; document understanding: reads screenshots, PDFs, and images directly in context.</li>
+        </ul>
+      </div>
+      <div class="split-card" style="justify-content: flex-start;">
+        <h3>Reasoning Claude brings on its own</h3>
+        <ul class="split-bullets">
+          <li class="fragment">Native reasoning: code generation/debugging, data analysis, summarization, multi-step planning, part of the model itself, not a packaged workflow.</li>
+          <li class="fragment">Self-orchestration: TodoWrite planning and sub-agent delegation (the Task tool); Claude breaks down its own multi-step work without a Skill telling it how.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Frame this as the map before the lab: inherent capabilities (this slide) vs. Anthropic-hosted downloadable Skills (later, after Anatomy of a SKILL.md) vs. the Skill you're about to author yourself.</aside>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">13:30 – 14:45 · Fee Logic Rollout with Two-Pass Skills</div>
+    <h1 class="w-80">Read Stage: Explicit Tool Invocation</h1>
+
+    <div class="split-layout">
+      <div class="split-card">
+        <h3>Why navigate, not dump?</h3>
+        <ul class="split-bullets">
+          <li class="fragment"><strong>Context bloat:</strong> pulling every module and test into context floods Claude's window with noise; signal gets buried</li>
+          <li class="fragment"><strong>Token cost:</strong> every unneeded file loaded is spend on text Claude ignores</li>
+          <li class="fragment"><strong>Slower, hedgier answers:</strong> Claude qualifies more when context is messy; surgical reads produce sharper responses</li>
+          <li class="fragment"><strong>Transferable habit:</strong> Glob → Grep → Read works on any repo, any team, at any scale</li>
+        </ul>
+      </div>
+      <div class="split-card" style="justify-content: flex-start;">
+        <h3>The habit</h3>
+        <ul class="split-bullets">
+          <li class="fragment"><strong>Glob</strong> the lab folder to confirm <code>fee_rollout.py</code> and <code>test_fee_rollout.py</code> before opening anything else.</li>
+          <li class="fragment"><strong>Grep</strong> for <code>quarterly_advisory_fee</code> / <code>monthly_advisory_fee</code> to see both cliff-rate methods side by side.</li>
+          <li class="fragment"><strong>Read</strong> the WM-202 ticket (<code>backlog/WM-202-fee-rollout.md</code>) once, for the shared business rule both passes apply.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">This lab is one file with two analogous methods, not a folder of tickets; the habit is the same discipline (Glob → Grep → Read) at a smaller scale.</aside>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">13:30 – 14:45 · Fee Logic Rollout with Two-Pass Skills</div>
+    <h1 class="w-80">Read Stage: <code>/context</code> confirms what's loaded</h1>
+
+    <div class="split-layout">
+      <div class="split-card">
+        <ul class="split-bullets">
+          <li class="fragment"><strong>It's a report, not a filter:</strong> <code>/context</code> shows tokens by category: system prompt, tools, memory files (<code>CLAUDE.md</code>), skills, messages, for whatever is already loaded.</li>
+          <li class="fragment"><strong>Catch drift after the fact:</strong> if a broad read pulled in more than you meant to, the token/percentage breakdown shows it immediately.</li>
+          <li class="fragment"><strong>Reusable habit:</strong> after reading the WM-202 ticket + <code>fee_rollout.py</code>, run <code>/context</code> to confirm nothing extra got pulled in.</li>
+        </ul>
+      </div>
+      <div class="split-media">
+        <img src="../images/context.png" alt="Context command in Claude Code" style="width: 100%; height: auto; border-radius: 10px; display: block;"/>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">The /context command reports what's currently loaded in the context window, as tokens and % by category; it doesn't scope or restrict what Claude reads, it just reports it.</aside>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">13:30 – 14:45 · Fee Logic Rollout with Two-Pass Skills</div>
+    <h1 class="w-80">Read Stage: <code>/usage</code> shows plan &amp; skill usage</h1>
+
+    <div class="split-layout">
+      <div class="split-card">
+        <ul class="split-bullets">
+          <li class="fragment"><strong>Account-level, not per-task:</strong> <code>/usage</code> opens Account &amp; Usage: your plan, and what's contributing to your rate limits by Skill, over the last day or week.</li>
+          <li class="fragment"><strong>Pair it with <code>/context</code>:</strong> for a single task's before/after token cost, use <code>/context</code>'s token count; <code>/usage</code> is the wider, cumulative picture.</li>
+          <li class="fragment"><strong>Coach the habit:</strong> a Skill that shows up disproportionately in <code>/usage</code> is worth reviewing for scope creep.</li>
+        </ul>
+      </div>
+      <div class="split-media">
+        <img src="../images/usage.png" alt="Usage command in Claude Code" style="width: 100%; height: auto; border-radius: 10px; display: block;"/>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">/usage shows account plan info and cumulative rate-limit usage by skill (day/week); it is not a live, per-task dollar-cost comparison tool.</aside>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">13:30 - 14:45 · Fee Logic Rollout with Two-Pass Skills</div>
+    <h1 class="w-84">Race: Manual vs Dump vs Glob+Grep</h1>
+    <p class="bench-note w-82 note-tight-plus">Same task, three lanes, seven minutes. Explain how <code>fee_rollout.py</code>'s cliff-rate tiers currently price a $2,000,000 account, and name the two breakpoints WM-202 requires ($1,000,000 and $5,000,000).</p>
+
+    <div class="race-controls" data-race-root>
+      <label for="race-salary-input">Average senior dev rate ($/hour)</label>
+      <input id="race-salary-input" class="race-input" type="number" min="1" step="1" value="95" />
+      <button id="race-start-all" class="race-btn race-btn-primary" type="button">Start All Timers</button>
+      <button id="race-reset-all" class="race-btn" type="button">Reset</button>
+    </div>
+
+    <div class="category-grid grid-three-wide race-grid" data-race-root>
+      <div class="category-card race-card" data-lane="manual">
+        <h4>Lane 1: Manual</h4>
+        <p>No Claude Code. Humans inspect files directly.</p>
+        <p class="race-time" id="race-time-manual">00:00</p>
+        <div class="race-row">
+          <label for="race-token-manual">Token spend ($)</label>
+          <input id="race-token-manual" class="race-input" readonly type="number" min="0" step="0.01" value="0.00" />
+        </div>
+        <button id="race-stop-manual" class="race-btn" type="button">Stop</button>
+        <p class="race-metric">Labor: <span id="race-labor-manual">$0.00</span></p>
+        <p class="race-metric">Total: <span id="race-total-manual">$0.00</span></p>
+      </div>
+
+      <div class="category-card race-card" data-lane="dump">
+        <h4>Lane 2: Dump</h4>
+        <p>Unconstrained ask. Let Claude choose its approach, then verify one claim with a targeted read.</p>
+        <p class="race-time" id="race-time-dump">00:00</p>
+        <div class="race-row">
+          <label for="race-token-dump">Token spend ($)</label>
+          <input id="race-token-dump" class="race-input" type="number" min="0" step="0.01" value="0.00" />
+        </div>
+        <p style="font-size: 0.85rem; color: #666; margin: 0.4rem 0 0.8rem 0;">Run <code>/context</code> before and after to capture token counts.</p>
+        <button id="race-stop-dump" class="race-btn" type="button">Stop</button>
+        <p class="race-metric">Labor: <span id="race-labor-dump">$0.00</span></p>
+        <p class="race-metric">Total: <span id="race-total-dump">$0.00</span></p>
+      </div>
+
+      <div class="category-card race-card" data-lane="globgrep">
+        <h4>Lane 3: Glob+Grep</h4>
+        <p>Use tool discipline: Grep for <code>quarterly_advisory_fee</code> in <code>fee_rollout.py</code> first, then Read only that function and the matching test case for evidence.</p>
+        <p class="race-time" id="race-time-globgrep">00:00</p>
+        <div class="race-row">
+          <label for="race-token-globgrep">Token spend ($)</label>
+          <input id="race-token-globgrep" class="race-input" type="number" min="0" step="0.01" value="0.00" />
+        </div>
+        <p style="font-size: 0.85rem; color: #666; margin: 0.4rem 0 0.8rem 0;">Run <code>/context</code> before and after to capture token counts.</p>
+        <button id="race-stop-globgrep" class="race-btn" type="button">Stop</button>
+        <p class="race-metric">Labor: <span id="race-labor-globgrep">$0.00</span></p>
+        <p class="race-metric">Total: <span id="race-total-globgrep">$0.00</span></p>
+      </div>
+    </div>
+
+    <div class="survey-box box-94" style="margin-top: 0.8rem;">
+      <span class="live-tag">Live Cost Compare</span>
+      <p class="lead-copy" id="race-winner">Start all timers, stop each lane when they submit, then compare total spend.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    if (window.__lab2RaceInit) return;
+    window.__lab2RaceInit = true;
+
+    var lanes = ["manual", "dump", "globgrep"];
+    var state = {};
+
+    function laneEls(name) {
+      return {
+        time: document.getElementById("race-time-" + name),
+        token: document.getElementById("race-token-" + name),
+        stop: document.getElementById("race-stop-" + name),
+        labor: document.getElementById("race-labor-" + name),
+        total: document.getElementById("race-total-" + name),
+      };
+    }
+
+    lanes.forEach(function (name) {
+      state[name] = {
+        elapsedMs: 0,
+        running: false,
+        lastStartMs: null,
+        els: laneEls(name),
+      };
+    });
+
+    var salaryInput = document.getElementById("race-salary-input");
+    var startAllBtn = document.getElementById("race-start-all");
+    var resetAllBtn = document.getElementById("race-reset-all");
+    var winnerEl = document.getElementById("race-winner");
+
+    function nowMs() {
+      return Date.now();
+    }
+
+    function money(n) {
+      return "$" + n.toFixed(2);
+    }
+
+    function asNumber(value, fallback) {
+      var n = parseFloat(value);
+      return Number.isFinite(n) ? n : fallback;
+    }
+
+    function elapsedFor(name, currentMs) {
+      var lane = state[name];
+      if (!lane.running || lane.lastStartMs === null) return lane.elapsedMs;
+      return lane.elapsedMs + (currentMs - lane.lastStartMs);
+    }
+
+    function formatClock(ms) {
+      var totalSec = Math.floor(ms / 1000);
+      var m = Math.floor(totalSec / 60);
+      var s = totalSec % 60;
+      return String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+    }
+
+    function computeTotal(name, currentMs) {
+      var rate = asNumber(salaryInput.value, 95);
+      var tokenSpend = asNumber(state[name].els.token.value, 0);
+      var elapsed = elapsedFor(name, currentMs);
+      var labor = rate * (elapsed / 3600000);
+      return {
+        labor: labor,
+        total: labor + tokenSpend,
+      };
+    }
+
+    function updateWinner(currentMs) {
+      var totals = lanes.map(function (name) {
+        return { name: name, total: computeTotal(name, currentMs).total };
+      });
+      totals.sort(function (a, b) { return a.total - b.total; });
+
+      var labels = {
+        manual: "Manual",
+        dump: "Dump",
+        globgrep: "Glob+Grep",
+      };
+
+      winnerEl.textContent = "Current lowest spend: " + labels[totals[0].name] +
+        " (" + money(totals[0].total) + ")";
+    }
+
+    function render() {
+      var currentMs = nowMs();
+      lanes.forEach(function (name) {
+        var lane = state[name];
+        var elapsed = elapsedFor(name, currentMs);
+        var cost = computeTotal(name, currentMs);
+
+        lane.els.time.textContent = formatClock(elapsed);
+        lane.els.labor.textContent = money(cost.labor);
+        lane.els.total.textContent = money(cost.total);
+        lane.els.stop.textContent = lane.running ? "Stop" : "Resume";
+      });
+
+      updateWinner(currentMs);
+    }
+
+    function startLane(name) {
+      var lane = state[name];
+      if (lane.running) return;
+      lane.running = true;
+      lane.lastStartMs = nowMs();
+    }
+
+    function stopLane(name) {
+      var lane = state[name];
+      if (!lane.running) return;
+      lane.elapsedMs = elapsedFor(name, nowMs());
+      lane.running = false;
+      lane.lastStartMs = null;
+    }
+
+    lanes.forEach(function (name) {
+      state[name].els.stop.addEventListener("click", function () {
+        if (state[name].running) {
+          stopLane(name);
+        } else {
+          startLane(name);
+        }
+        render();
+      });
+
+      state[name].els.token.addEventListener("input", render);
+    });
+
+    salaryInput.addEventListener("input", render);
+
+    startAllBtn.addEventListener("click", function () {
+      lanes.forEach(startLane);
+      render();
+    });
+
+    resetAllBtn.addEventListener("click", function () {
+      lanes.forEach(function (name) {
+        state[name].running = false;
+        state[name].lastStartMs = null;
+        state[name].elapsedMs = 0;
+      });
+      render();
+    });
+
+    setInterval(render, 250);
+    render();
+  })();
+</script>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">13:30 – 14:45 · Fee Logic Rollout with Two-Pass Skills</div>
+    <h1 class="w-80">Anatomy of a SKILL.md</h1>
+    <p class="bench-note w-78 note-tight-plus">Two fields in the frontmatter decide whether Claude Code ever reaches for it.</p>
+
+    <div class="split-layout" style="align-items: stretch; gap: 1rem; max-width: 92%;">
+      <div class="category-grid" style="grid-template-columns: 1fr; max-width: none; flex: 1 1 62%;">
+      <div class="category-card fragment" data-fragment-index="1">
+        <p style="font-size: 1.5rem; text-align: left; margin-bottom: 0.3rem;">· · ·</p>
+        <h4 style="font-size: 1.65rem;">name</h4>
+        <p style="font-size: 1.5rem;">The identifier for the Skill, also what you'd type after the <code>/</code> to invoke it directly.</p>
+      </div>
+      <div class="category-card fragment" data-fragment-index="2">
+        <h4 style="font-size: 1.65rem;">description (with a "USE WHEN" trigger)</h4>
+        <p style="font-size: 1.5rem;">What makes auto-discovery work. A vague description is why a technically-available Skill can sit unused; be specific about the situation that should trigger it.</p>
+        <p style="font-size: 1.5rem; text-align: left; margin-top: 0.5rem;">· · ·</p>
+      </div>
+      <div class="category-card fragment" data-fragment-index="3">
+        <h4 style="font-size: 1.65rem;">Workflow: Ordered list of task descriptions</h4>
+        <p style="font-size: 1.5rem;">The body of the Skill: a numbered sequence of steps Claude executes in order. Each step is a plain-language task description, not a script.</p>
+      </div>
+      </div>
+      <div class="split-card anatomy-quote-card fragment" data-fragment-index="4" style="flex: 0 0 34%;">
+        <h3>Rule of thumb: when to create a Skill.md</h3>
+        <p>"A Skill.md should be created when you are solving the same shape of problem more than once and want to preserve the domain rules so that you don't have to re-explain them each time. This conserves tokens."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">13:30 – 14:45 · Fee Logic Rollout with Two-Pass Skills</div>
+    <h1 class="w-84">Anthropic-Hosted Skills You Can Download</h1>
+    <p class="bench-note w-78 note-tight-plus">You don't always start from a blank page; check for an existing Skill before authoring one.</p>
+
+    <div class="split-layout">
+      <div class="split-media">
+        <img src="../images/anthropic-hosted-skills.png" alt="Anthropic-hosted Skills repository" style="width: 100%; height: auto; border-radius: 10px; display: block;"/>
+      </div>
+      <div class="split-card">
+        <h3>Same anatomy, already built</h3>
+        <ul class="split-bullets">
+          <li class="fragment">Anthropic publishes ready-made Skills (<code>github.com/anthropics/skills</code>) you drop into <code>.claude/skills/</code> the same way you just built your own.</li>
+          <li class="fragment">Same anatomy as the one you authored today: <code>SKILL.md</code> plus a "USE WHEN" trigger.</li>
+          <li class="fragment"><strong>Takeaway:</strong> check for an existing Skill before authoring one from scratch.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">13:30 – 14:45 · Fee Logic Rollout with Two-Pass Skills</div>
+    <h1 class="w-80">Personal vs Project Skills</h1>
+    <p class="bench-note w-78 note-tight-plus">Same anatomy either way; where the folder lives decides who it follows.</p>
+
+    <div class="category-grid grid-two-wide">
+      <div class="category-card fragment" data-fragment-index="1">
+        <h4>Personal: <code>~/.claude/skills/&lt;name&gt;/SKILL.md</code></h4>
+        <p>Lives in your home directory, not the repo. Follows you into every project on this machine; nobody else on the team gets it unless they author their own.</p>
+      </div>
+      <div class="category-card fragment" data-fragment-index="2">
+        <h4>Project: <code>.claude/skills/&lt;name&gt;/SKILL.md</code></h4>
+        <p>Lives inside the repo, committed like any other source file. Anyone who clones the project gets it, which is what today's fee-rollout Skill should be.</p>
+      </div>
+    </div>
+
+    <ul class="split-bullets" style="margin-top: 1.2rem;">
+      <li class="fragment" data-fragment-index="3">A Skill is a <strong>folder</strong>, not a loose file: <code>&lt;skill-name&gt;/SKILL.md</code> inside one of those two <code>skills/</code> directories.</li>
+      <li class="fragment" data-fragment-index="4">The folder can also hold a <code>reference.md</code> (loads on demand) or a <code>scripts/</code> helper, but <code>SKILL.md</code> itself is required.</li>
+      <li class="fragment" data-fragment-index="5">Same-name precedence: <strong>enterprise &rarr; personal &rarr; project</strong>.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">13:30 – 14:45 · Fee Logic Rollout with Two-Pass Skills</div>
+    <h1 class="w-80">Watch Your Skill Run</h1>
+    <p class="bench-note w-78 note-tight-plus">Invoke your fee-specific Skill on <code>monthly_advisory_fee</code> and watch it work the phases you wrote.</p>
+
+    <div class="split-layout">
+      <div class="split-media">
+        <img src="../images/todowrite.png" alt="TodoWrite tracking a Skill's phases" style="width: 100%; height: auto; border-radius: 10px; display: block;"/>
+      </div>
+      <div class="split-card">
+        <h3>TodoWrite makes the phases visible</h3>
+        <ul class="split-bullets">
+          <li>Built-in planning tool: each step becomes a visible, checked-off item, not a black box.</li>
+          <li>If it skips a phase, edits something out of scope, or doesn't stop to ask when it should: that's feedback on your Skill's wording, not a one-off prompt problem.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">13:30 – 14:45 · Fee Logic Rollout with Two-Pass Skills</div>
+    <h1 class="w-80">Quick Check: Fee Logic Rollout &amp; Your First Team Skill</h1>
+
+    <div class="mcq-list">
+      <div class="mcq-item fragment" data-fragment-index="1">
+        <p class="mcq-question">1. Which sequence keeps Claude Code's context lean when exploring <code>fee_rollout.py</code> and its test file?</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="2">(a) Glob to find the files, Grep to narrow by keyword, Read only the one you need</p>
+        <p class="mcq-option fragment" data-fragment-index="3">(b) Read every file in the folder first, then decide what matters</p>
+        <p class="mcq-option fragment" data-fragment-index="4">(c) Run <code>cat *.py</code> in one shot</p>
+        <span class="mcq-reveal fragment" data-fragment-index="5"></span>
+      </div>
+      <div class="mcq-item fragment" data-fragment-index="6">
+        <p class="mcq-question">2. What must a Skill's frontmatter description include for Claude Code to reliably reach for it on its own?</p>
+        <p class="mcq-option fragment" data-fragment-index="7">(a) A list of every file it might touch</p>
+        <p class="mcq-option fragment" data-fragment-index="8">(b) The author's name</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="9">(c) A "USE WHEN" trigger phrase describing the situation that should invoke it</p>
+        <span class="mcq-reveal fragment" data-fragment-index="10"></span>
+      </div>
+      <div class="mcq-item fragment" data-fragment-index="11">
+        <p class="mcq-question">3. Besides auto-discovery, how else can you run a Skill you've authored?</p>
+        <p class="mcq-option fragment" data-fragment-index="12">(a) Skills can only ever run automatically</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="13">(b) Type <code>/&lt;skill-name&gt;</code> to invoke it directly, the same mechanism as <code>/model</code></p>
+        <p class="mcq-option fragment" data-fragment-index="14">(c) Only by pasting its full file contents into the prompt</p>
+        <span class="mcq-reveal fragment" data-fragment-index="15"></span>
+      </div>
+      <div class="mcq-item fragment" data-fragment-index="16">
+        <p class="mcq-question">4. What should your own Skill name as its verification target?</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="17">(a) <code>test_fee_rollout.py -k monthly</code>: the specific test that defines "done" for your pass</p>
+        <p class="mcq-option fragment" data-fragment-index="18">(b) A confident summary from Claude Code that the change works</p>
+        <p class="mcq-option fragment" data-fragment-index="19">(c) "Run the tests," whichever ones happen to be green</p>
+        <span class="mcq-reveal fragment" data-fragment-index="20"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">13:30 – 14:45 · Fee Logic Rollout with Two-Pass Skills</div>
+    <h1 class="w-80">You Can Now...</h1>
+
+    <ul class="split-bullets objectives-list" style="margin-top: 1.2rem;">
+      <li>Use Claude Code's built-in tools, Glob to find the fee module and its tests, Grep to confirm the tiered-rate pattern, instead of dumping every file into context.</li>
+      <li>Author your own Skill (<code>.claude/skills/&lt;your-name&gt;-fee-standardization-flow/SKILL.md</code>) that packages a repeatable workflow as a team standard, instead of re-explaining the same domain rule every time.</li>
+      <li>Invoke your own Skill to apply the progressive-tier rule to <code>monthly_advisory_fee</code>, verified by <code>test_fee_rollout.py</code>.</li>
+      <li>Distinguish Claude's built-in capabilities, Anthropic's downloadable Skills, and the Skill you author yourself, and recognize which to reach for.</li>
+    </ul>
+
+    <div class="category-grid grid-two-wide" style="margin-top: 1.2rem;">
+      <div class="category-card">
+        <h4>Lab 1: you consumed one</h4>
+        <p><code>scoped-bugfix-flow</code> ran the analyze &rarr; implement &rarr; verify &rarr; deliver shape for you. You never had to look inside it. You just used it.</p>
+      </div>
+      <div class="category-card">
+        <h4>Lab 2: you author one</h4>
+        <p>Open <code>scoped-bugfix-flow</code> end to end as a template, then write your own Skill that packages that same shape for a workflow of your own.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </div>
+</div>
+
+<div class="slide-footer-label">Claude Code Developer Enablement · Day 1 · Lab 2</div>
+
+<script src="../vendor/reveal.js-6.0.1/reveal.js"></script>
+<script src="../vendor/reveal.js-6.0.1/plugin/notes.js"></script>
+<script src="../vendor/reveal.js-6.0.1/plugin/highlight.js"></script>
+<script>
+  (function() {
+    var savedScale = 1;
+    try {
+      savedScale = parseFloat(window.localStorage.getItem('deck-font-scale')) || 1;
+    } catch (e) {}
+    window.__deckFontScale = Math.min(Math.max(savedScale, 0.8), 1.6);
+    document.documentElement.style.setProperty('--deck-font-scale', window.__deckFontScale.toFixed(2));
+  })();
+
+  Reveal.initialize({
+    hash: true,
+    center: false,
+    width: 1920,
+    height: 1080,
+    margin: 0,
+    minScale: 0.2,
+    maxScale: 2.0,
+    transition: 'none',
+    controls: false,
+    progress: false,
+    slideNumber: false,
+    plugins: [ RevealNotes, RevealHighlight ]
+  });
+
+  // Adjust line numbers based on data-start attribute
+  function adjustLineNumbers() {
+    document.querySelectorAll('code[data-start]').forEach(function(code) {
+      var startLine = parseInt(code.getAttribute('data-start'), 10);
+      if (isNaN(startLine)) return;
+
+      var table = code.querySelector('table[class*="hljs"]');
+      if (!table) return;
+
+      var rows = table.querySelectorAll('tr');
+      rows.forEach(function(row, idx) {
+        var lineCell = row.querySelector('td:first-child');
+        if (lineCell) {
+          var lineNum = startLine + idx;
+          lineCell.textContent = lineNum;
+        }
+      });
+    });
+  }
+
+  Reveal.on('ready', adjustLineNumbers);
+  Reveal.on('slidechanged', adjustLineNumbers);
+
+  (function() {
+    if (window.__slideNavInit) return;
+    window.__slideNavInit = true;
+
+    function buildNav() {
+      var slides = Reveal.getSlides();
+      var objIdx = {};
+      slides.forEach(function(s, i) {
+        var eyebrow = s.querySelector('.eyebrow');
+        if (s.querySelector('[data-nav-objectives]') || (eyebrow && eyebrow.textContent.trim().endsWith('Learning Objectives'))) objIdx[i] = true;
+      });
+
+      var bar = document.createElement('div');
+      bar.className = 'slide-nav-bar';
+
+      var prev = document.createElement('button');
+      prev.className = 'slide-nav-arrow';
+      prev.innerHTML = '&#8592;';
+      prev.setAttribute('aria-label', 'Previous slide');
+      prev.addEventListener('click', function() { Reveal.prev(); });
+
+      var dotsEl = document.createElement('div');
+      dotsEl.className = 'slide-nav-dots';
+
+      slides.forEach(function(_, i) {
+        var dot = document.createElement('button');
+        dot.className = 'slide-nav-dot' + (objIdx[i] ? ' objectives' : '');
+        dot.textContent = String(i + 1);
+        dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+        dot.addEventListener('click', (function(idx) {
+          return function() { Reveal.slide(idx); };
+        })(i));
+        dotsEl.appendChild(dot);
+      });
+
+      var next = document.createElement('button');
+      next.className = 'slide-nav-arrow';
+      next.innerHTML = '&#8594;';
+      next.setAttribute('aria-label', 'Next slide');
+      next.addEventListener('click', function() { Reveal.next(); });
+
+      bar.appendChild(prev);
+      bar.appendChild(dotsEl);
+      bar.appendChild(next);
+      document.body.appendChild(bar);
+      updateNav(Reveal.getState().indexh || 0);
+    }
+
+    function updateNav(idx) {
+      document.querySelectorAll('.slide-nav-dot').forEach(function(d, i) {
+        d.classList.toggle('active', i === idx);
+      });
+    }
+
+    Reveal.on('ready', function() { buildNav(); });
+    Reveal.on('slidechanged', function(e) { updateNav(e.indexh); });
+  })();
+
+  (function() {
+    if (window.__slideFontControlsInit) return;
+    window.__slideFontControlsInit = true;
+
+    var minScale = 0.8;
+    var maxScale = 1.6;
+    var step = 0.1;
+    var scale = window.__deckFontScale || 1;
+    var resetButton;
+
+    function saveScale() {
+      try {
+        window.localStorage.setItem('deck-font-scale', scale.toFixed(2));
+      } catch (e) {}
+    }
+
+    function applyScale() {
+      scale = Math.min(Math.max(scale, minScale), maxScale);
+      document.documentElement.style.setProperty('--deck-font-scale', scale.toFixed(2));
+      if (resetButton) resetButton.textContent = Math.round(scale * 100) + '%';
+      saveScale();
+      if (window.Reveal && typeof Reveal.layout === 'function') Reveal.layout();
+    }
+
+    function addButton(parent, label, ariaLabel, onClick, className) {
+      var button = document.createElement('button');
+      button.className = 'slide-font-button' + (className ? ' ' + className : '');
+      button.type = 'button';
+      button.textContent = label;
+      button.setAttribute('aria-label', ariaLabel);
+      button.addEventListener('click', onClick);
+      parent.appendChild(button);
+      return button;
+    }
+
+    function buildControls() {
+      var controls = document.createElement('div');
+      controls.className = 'slide-font-controls';
+      addButton(controls, 'A-', 'Decrease slide text size', function() { scale -= step; applyScale(); });
+      resetButton = addButton(controls, '100%', 'Reset slide text size', function() { scale = 1; applyScale(); }, 'slide-font-reset');
+      addButton(controls, 'A+', 'Increase slide text size', function() { scale += step; applyScale(); });
+      document.body.appendChild(controls);
+      applyScale();
+    }
+
+    Reveal.on('ready', buildControls);
+  })();
+</script>
+</body>
+</html>

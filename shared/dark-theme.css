@@ -1,0 +1,72 @@
+/* ============================================================
+   shared/dark-theme.css
+   Navy/translucent card system used by labs 3-8 (Reveal.js dark
+   generation). Labs 1-2 intentionally keep their own lighter card
+   treatment and do not import this file.
+   ============================================================ */
+
+.agenda-columns {
+  display: flex;
+  gap: 4vw;
+  max-width: 100%;
+}
+
+.bench-note {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 78%;
+  margin: 0.3rem 0 1.4rem 0;
+}
+
+.category-card {
+  background: rgba(5, 10, 40, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.category-card h4 {
+  margin: 0 0 0.35rem 0;
+  font-size: 1.25rem;
+  color: var(--teal);
+}
+
+.category-card p {
+  margin: 0;
+  font-size: 1.08rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.overlay-grid .category-card {
+  background: rgba(5, 10, 40, 0.82);
+  backdrop-filter: blur(3px);
+  padding: 0.65rem 0.8rem;
+}
+
+h1 {
+  font-size: 3.4rem;
+  line-height: 1.1;
+  margin: 0 0 1rem 0;
+  max-width: 60%;
+  font-weight: 700;
+}
+
+.survey-box {
+  margin-top: 1.3rem;
+  border: 2px dashed rgba(255, 255, 255, 0.45);
+  border-radius: 16px;
+  padding: 1.6rem 1.8rem;
+  background: rgba(7, 12, 51, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+.survey-wrap {
+  max-width: 640px;
+}
+
+.example-card {
+  background: rgba(5, 10, 40, 0.6);
+}

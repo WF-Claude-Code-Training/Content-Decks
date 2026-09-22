@@ -1,0 +1,12 @@
+{
+  "title": "Lab 5: Ship a Feature Through the Pod",
+  "subtitle": "Claude Code Developer Enablement",
+  "footer_suffix": "Day 2 · Lab 5",
+  "summary": "Investigate, migrate, extend, and document a real feature using a five role pod, across two tickets.",
+  "sections": [
+    {
+      "slug": "01-map-before-you-touch",
+      "title": "Ship a Feature Through the Pod"
+    }
+  ]
+}

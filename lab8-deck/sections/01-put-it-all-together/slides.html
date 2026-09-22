@@ -1,0 +1,340 @@
+<section>
+  <div class="slide-card">
+    <div class="brand-strip">
+      <img src="__STAGING__/images/anthropic-logo.jpg" alt="Anthropic" class="brand-logo" />
+      <span class="brand-sep">&times;</span>
+      <img src="__STAGING__/images/cognizant-logo.jpeg" alt="Cognizant" class="brand-logo" />
+      <span class="brand-sep">&times;</span>
+      <img src="__STAGING__/images/wells-fargo-logo.jpeg" alt="Wells Fargo" class="brand-logo" />
+    </div>
+
+    <div class="eyebrow">Claude Code Developer Enablement · Day 2</div>
+    <h1>Lab 8: Put It <span class="accent">All Together</span></h1>
+    <p class="subtitle">Two subagents, run in parallel, synthesized by you: the Skill-vs-Subagent call, applied cold to a real codebase.</p>
+
+    <div class="meta-row">
+      <div>
+        <span class="meta-label">Block</span>
+        <span>Capstone: Skill &amp; Subagent Recommendation</span>
+      </div>
+      <div>
+        <span class="meta-label">Deliverable</span>
+        <span>my-recommendation.md</span>
+      </div>
+      <div>
+        <span class="meta-label">Time</span>
+        <span>15:00 – 16:30</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="agenda-title">Where Lab 8 Fits</div>
+    <div class="agenda-sub" style="margin-top:0.9rem; margin-bottom:0.9rem;">Everything so far, applied cold to a codebase you didn't grow in this course</div>
+
+    <div class="agenda-columns">
+      <div class="agenda-col">
+        <h3>Recap · Lab 7</h3>
+        <div class="agenda-item"><span class="time">Built</span><span class="topic">A Skill (<code>structured-logging-rollout</code>) that threads a shared logging abstraction through three modules, whose own Phase C delegates review to a subagent (<code>logging-reviewer</code>).</span></div>
+        <div class="agenda-item"><span class="time">Gap</span><span class="topic">Every subagent so far has run against a fixture built for this course, never against a codebase nobody wrote for teaching purposes.</span></div>
+      </div>
+
+      <div class="agenda-col">
+        <h3>This lab · Lab 8</h3>
+        <div class="agenda-item"><span class="time">New</span><span class="topic">Two pre-built subagents, <code>codebase-mapper</code> and <code>pattern-scout</code>, run in parallel against a real codebase: yours, or the course repo as a fallback.</span></div>
+        <div class="agenda-item"><span class="time">New</span><span class="topic">You do the synthesis yourself: cross-referencing two independent reports into a citation-backed recommendation, then defending it to the room.</span></div>
+        <div class="agenda-item"><span class="time">Next</span><span class="topic">Day 3 opens a new arc: the same operating model, applied to a site-nominated legacy module.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">15:00 – 16:30 · Learning Objectives</div>
+    <h1 class="w-80">After This Lab, You Will Be Able To...</h1>
+
+    <ul class="split-bullets objectives-list" style="margin-top: 1.6rem;">
+      <li class="fragment" data-fragment-index="1">Run two independent, read-only subagents in parallel against a real codebase, and read their reports before doing anything else.</li>
+      <li class="fragment" data-fragment-index="2">Cross-reference two subagents' independent findings into a citation-backed judgment call: the synthesis step neither subagent makes for you.</li>
+      <li class="fragment" data-fragment-index="3">Apply the Skill-vs-Subagent decision test from Lab 4/5 cold, to code you didn't grow in this course.</li>
+      <li class="fragment" data-fragment-index="4">Defend a written recommendation to peers, and treat a presentation that survives challenge as a legitimate verifiable target when no test file can substitute for judgment.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">15:00 – 16:30 · Grounding the Lab</div>
+    <h1 class="w-82">No New Ticket: Just Every Move You Know, Combined</h1>
+    <p class="bench-note w-78 note-tight-plus">
+      Every subagent up to now ran against a fixture built for this course. This lab hands you two subagents and points them at a codebase nobody wrote for teaching purposes: yours, or the course repo as a fallback.
+    </p>
+
+    <div class="category-grid grid-two-wide">
+      <div class="category-card">
+        <h4>The problem</h4>
+        <p>You know how to be handed a subagent (Lab 4), author one (Lab 5), and let a Skill delegate to one (Lab 7), but only ever against code built for the lab. Applying that judgment to real, messy code is a different skill than following a script.</p>
+      </div>
+      <div class="category-card">
+        <h4>The fix</h4>
+        <p>Run <code>codebase-mapper</code> and <code>pattern-scout</code> in parallel, cross-reference what they find yourself, and produce a short, citation-backed recommendation: no ticket, no test file, just a codebase and a room of peers.</p>
+      </div>
+    </div>
+
+    <div class="survey-box box-92">
+      <span class="live-tag">Your goal for Lab 8</span>
+      <p class="lead-copy">
+        Produce <code>my-recommendation.md</code>, every row backed by a citation, and present it to the room; expect at least one challenge.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">15:00 – 16:30 · The Pattern</div>
+    <h1 class="title-benchmark">Install → Orient → Fan-Out → Synthesize → Present</h1>
+    <p class="bench-note">This lab doesn't introduce a new runtime shape: it reuses "two independent calls, fanned out in parallel" from Lab 5, and adds one step neither subagent can do for you.</p>
+
+    <div class="bench-wrap">
+      <table class="bench-table">
+        <thead>
+          <tr><th class="metric-col">Part</th><th>What happens</th><th>Output</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="metric-name">Install</td><td>Copy <code>.claude/agents/</code> and <code>scripts/</code> into your target codebase (or <code>--add-dir</code> it in)</td><td class="hero-score">Both subagents loaded</td></tr>
+          <tr><td class="metric-name">Orient</td><td>A five-minute skim of the target's structure, the Lab 5 habit, applied here too</td><td class="hero-score">A rough expectation to check the subagents against</td></tr>
+          <tr><td class="metric-name">Fan-out</td><td>Run <code>codebase-mapper</code> and <code>pattern-scout</code> together; neither depends on the other</td><td class="hero-score">Two independent reports</td></tr>
+          <tr><td class="metric-name">Synthesize</td><td>Cross-reference both reports yourself, apply the Lab 4/5 Skill-vs-Subagent test</td><td class="hero-score">A citation-backed recommendation</td></tr>
+          <tr><td class="metric-name">Present</td><td>~3 minutes to the room</td><td class="hero-score">Peer challenge: the actual verification</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">15:00 – 16:30 · The Actual Point</div>
+    <h1 class="w-80">The Synthesis Is Not Delegated: That's the Point</h1>
+    <p class="bench-note w-78 note-tight">
+      Two subagents produce two independent reports. Cross-referencing them into a judgment call is work only the main conversation does.
+    </p>
+
+    <div class="category-grid grid-two-wide">
+      <div class="category-card">
+        <h4>What the subagents do</h4>
+        <p><code>codebase-mapper</code> reports architecture, entry points, data flow, and hotspots. <code>pattern-scout</code> reports repetition signals (Skill candidates) and risk signals (Subagent candidates), as two separate lists. Neither one recommends anything.</p>
+      </div>
+      <div class="category-card">
+        <h4>What only you do</h4>
+        <p>Cross-reference the two reports; a hotspot both flagged is a far stronger case than either signal alone, then apply the Lab 4/5 test to each candidate that survives: bounded and repeated (Skill), or does isolation / an enforced tool restriction / a different model actually earn its overhead here (Subagent)?</p>
+      </div>
+    </div>
+
+    <div class="bench-footnote" style="margin-top:1.6rem;">
+      A third subagent doesn't do this step. Delegating the judgment call itself would defeat the lab's whole purpose.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">15:00 – 16:30 · Why the Hook Matters More Here</div>
+    <h1 class="w-80">Enforced Restriction, Now on Code You Don't Fully Control</h1>
+    <p class="bench-note w-78 note-tight">
+      Lab 7 introduced hooks. This is the first lab where the target might be a codebase you don't fully control the blast radius of yet, your team's, not a lab fixture.
+    </p>
+
+    <div class="category-grid grid-two-wide">
+      <div class="category-card">
+        <h4>Read tools aren't enough on their own</h4>
+        <p><code>pattern-scout</code> also needs <code>Bash</code>, to read git history: <code>log</code>, <code>shortlog</code>, <code>blame</code>. A permission mode alone can't tell <code>git log</code> from <code>git push</code> apart just by looking at the tool name.</p>
+      </div>
+      <div class="category-card">
+        <h4>The hook makes it enforced, not requested</h4>
+        <p><code>validate-readonly-git.sh</code> runs on every <code>PreToolUse</code> <code>Bash</code> call and blocks anything that isn't a read-only git history command, no matter what permission mode the session is running in.</p>
+      </div>
+    </div>
+
+    <div class="bench-footnote" style="margin-top:1.6rem;">
+      Confirm it, don't assume it: the Definition of Done asks you to watch the hook visibly block at least one command during the session, even one you tried on purpose.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">15:00 – 16:30 · The Verification</div>
+    <h1 class="w-80">A Presentation Is a Legitimate Verifiable Target</h1>
+    <p class="bench-note w-78 note-tight">
+      Every earlier lab's Verification ingredient was something automated: a test file, a checker script, a fail-closed gate. This lab's is a person in the room.
+    </p>
+
+    <div class="category-grid grid-two-wide">
+      <div class="category-card">
+        <h4>When a script can verify</h4>
+        <p>The acceptance criteria are objective and can be written down in code ahead of time: the fee tiers, the impact note's required call sites, a release gate's exit code.</p>
+      </div>
+      <div class="category-card">
+        <h4>When it can't</h4>
+        <p>The deliverable is judgment about real, varied code: "is this actually repeated" or "does this risk really earn a subagent" are calls a peer who knows the codebase can challenge, and a script can't.</p>
+      </div>
+    </div>
+
+    <div class="bench-footnote" style="margin-top:1.6rem;">
+      Verified by a short presentation, not a test file; expect at least one challenge, especially if you analyzed a codebase others in the room also touch.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card code-example-slide">
+    <div class="eyebrow">15:00 – 16:30 · Code Example</div>
+    <h1 class="w-84"><code>codebase-mapper</code>: One Job, Four Things to Report</h1>
+    <p class="bench-note w-78 note-tight">
+      Read-only, and deliberately doesn't recommend anything itself: that synthesis belongs to the main session, after it reads this report alongside <code>pattern-scout</code>'s.
+    </p>
+    <div class="code-block">
+      <p class="code-label">.claude/agents/codebase-mapper.md</p>
+      <pre><code class="language-markdown">---
+name: codebase-mapper
+description: Maps a codebase's architecture: entry points, module
+  boundaries, major data flows, and flags complexity hotspots.
+  Read-only. Use when orienting in a codebase before recommending
+  Skills or Subagents for it.
+tools: Read, Grep, Glob
+model: sonnet
+---
+
+## What to produce
+1. Shape: top-level module/package layout, in a few lines
+2. Entry points: where execution starts, cite file and function
+3. Data flow: for the 2-3 most central objects, cite each hop
+4. Complexity hotspots: name it, cite it, say why it qualifies</code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card code-example-slide">
+    <div class="eyebrow">15:00 – 16:30 · Code Example</div>
+    <h1 class="w-84">A Hook, Not a Suggestion</h1>
+    <p class="bench-note w-78 note-tight">
+      <code>pattern-scout</code>'s <code>Bash</code> tool is real, because git-history inspection needs it; the <code>hooks:</code> block is what keeps it from being anything more than that.
+    </p>
+    <div class="code-block">
+      <p class="code-label">.claude/agents/pattern-scout.md</p>
+      <pre><code class="language-yaml">---
+name: pattern-scout
+description: Finds repeated, hand-done workflows (Skill candidates),
+  and high-risk or judgment-heavy code (Subagent candidates).
+  Read-only, git-history-aware.
+tools: Read, Grep, Glob, Bash
+model: sonnet
+hooks:
+  PreToolUse:
+    - matcher: "Bash"
+      hooks:
+        - type: command
+          command: "./scripts/validate-readonly-git.sh"
+---</code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">15:00 – 16:30 · Put It Into Practice</div>
+    <h1 class="w-78">Lab 8 Handoff</h1>
+    <p class="bench-note w-78 note-tight">
+      Install the toolkit, orient briefly, then fan out both subagents before you do anything else yourself.
+    </p>
+
+    <div class="agenda-columns columns-playbook">
+      <div class="agenda-col col-fill">
+        <h3>See it work</h3>
+        <div class="agenda-item"><span class="time">Choose</span><span class="topic">Your team's codebase (preferred), or the course repo / <code>lab4-standalone</code> / <code>lab5-standalone</code> as a fallback; data governance rules still apply.</span></div>
+        <div class="agenda-item"><span class="time">Install</span><span class="topic"><code>cp -r .claude/agents scripts /path/to/target/</code>. Restart once if <code>.claude/agents/</code> is new there.</span></div>
+        <div class="agenda-item"><span class="time">Fan-out</span><span class="topic">"Use codebase-mapper and pattern-scout in parallel to analyze [target]..."; read both reports before doing anything else.</span></div>
+      </div>
+      <div class="agenda-col col-fill">
+        <h3>Synthesize &amp; deliver</h3>
+        <div class="agenda-item"><span class="time">Synthesize</span><span class="topic">Cross-reference the two reports; keep only candidates that pass the Lab 4/5 test, backed by a citation.</span></div>
+        <div class="agenda-item"><span class="time">Produce</span><span class="topic"><code>cp templates/recommendation-one-pager.md my-recommendation.md</code> and fill out all five sections.</span></div>
+        <div class="agenda-item"><span class="time">Present</span><span class="topic">~3 minutes to the room; expect a challenge.</span></div>
+      </div>
+    </div>
+
+    <div class="survey-box box-94">
+      <span class="live-tag">The takeaway</span>
+      <p class="handoff-copy">
+        Running two subagents in parallel is a skill you already had after Lab 5. Synthesizing their independent findings into a judgment call neither of them made for you is the actual capstone.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">15:00 – 16:30 · Knowledge Check</div>
+    <h1 class="w-80">Quick Check: Put It All Together</h1>
+
+    <div class="mcq-list">
+      <div class="mcq-item fragment" data-fragment-index="1">
+        <p class="mcq-question">1. Why run <code>codebase-mapper</code> and <code>pattern-scout</code> in parallel instead of one after the other?</p>
+        <p class="mcq-option fragment" data-fragment-index="2">(a) Parallel subagents always produce better reports</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="3">(b) Neither depends on the other's output; sequencing them wastes the point of delegating, the same reasoning as Lab 5's fan-out</p>
+        <p class="mcq-option fragment" data-fragment-index="4">(c) The hook requires them to run together</p>
+        <span class="mcq-reveal fragment" data-fragment-index="5"></span>
+      </div>
+
+      <div class="mcq-item fragment" data-fragment-index="6">
+        <p class="mcq-question">2. Who does the cross-referencing between the two subagents' reports?</p>
+        <p class="mcq-option fragment" data-fragment-index="7">(a) A third subagent, purpose-built for synthesis</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="8">(b) The human, in the main conversation: that synthesis is deliberately not delegated further</p>
+        <p class="mcq-option fragment" data-fragment-index="9">(c) Whichever subagent finishes first</p>
+        <span class="mcq-reveal fragment" data-fragment-index="10"></span>
+      </div>
+
+      <div class="mcq-item fragment" data-fragment-index="11">
+        <p class="mcq-question">3. <code>codebase-mapper</code> flags a hotspot that <code>pattern-scout</code> doesn't mention at all. Is it automatically a strong Skill/Subagent candidate?</p>
+        <p class="mcq-option fragment" data-fragment-index="12">(a) Yes: one subagent flagging it is enough</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="13">(b) No: overlap between the two reports is the stronger signal, and every candidate still has to pass the Lab 4/5 test on its own merits</p>
+        <p class="mcq-option fragment" data-fragment-index="14">(c) No: only <code>pattern-scout</code>'s findings count toward the recommendation</p>
+        <span class="mcq-reveal fragment" data-fragment-index="15"></span>
+      </div>
+
+      <div class="mcq-item fragment" data-fragment-index="16">
+        <p class="mcq-question">4. Why is a presentation an acceptable verifiable target here, when every earlier lab used a test file or checker script?</p>
+        <p class="mcq-option fragment" data-fragment-index="17">(a) Presentations are easier to grade than code</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="18">(b) The deliverable is open-ended judgment about real, varied code: a defensible presentation that survives peer challenge is the honest substitute when no deterministic check can grade it</p>
+        <p class="mcq-option fragment" data-fragment-index="19">(c) This lab has no verifiable target at all</p>
+        <span class="mcq-reveal fragment" data-fragment-index="20"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">15:00 – 16:30 · Recap</div>
+    <h1 class="w-80">You Can Now...</h1>
+
+    <ul class="split-bullets objectives-list" style="margin-top: 1.2rem;">
+      <li class="fragment" data-fragment-index="1">Run two independent, read-only subagents in parallel against a real codebase, and read their reports before doing anything else.</li>
+      <li class="fragment" data-fragment-index="2">Cross-reference two subagents' independent findings into a citation-backed judgment call: the synthesis step neither subagent makes for you.</li>
+      <li class="fragment" data-fragment-index="3">Apply the Skill-vs-Subagent decision test from Lab 4/5 cold, to code you didn't grow in this course.</li>
+      <li class="fragment" data-fragment-index="4">Defend a written recommendation to peers, and treat a presentation that survives challenge as a legitimate verifiable target when no test file can substitute for judgment.</li>
+    </ul>
+
+    <div class="survey-box box-94">
+      <span class="live-tag">Next up</span>
+      <p class="lead-copy">You've done this live in Lab 8, the capstone of Day 2. Day 3 opens a new arc: the same operating model, applied to a site-nominated legacy module.</p>
+    </div>
+  </div>
+</section>
+

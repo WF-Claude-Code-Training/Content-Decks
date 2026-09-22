@@ -1,0 +1,147 @@
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · Learning Objectives</div>
+    <h1 class="w-84">Part 2: Route a Real Ticket Through the Pod</h1>
+
+    <ul class="split-bullets objectives-list" style="margin-top: 1.6rem;">
+      <li class="fragment">Reframe a vague ticket into outcome, scope, verification, deliverable, and guardrails before any code changes.</li>
+      <li class="fragment">Decide which roles a ticket needs and in what order; not every ticket needs all four.</li>
+      <li class="fragment">Treat a reviewer's verdict, not a green test suite, as the finish line.</li>
+      <li class="fragment">Explain WM-115's back-compat trap: why widening a default to fit a new caller is a regression wearing a feature's clothes.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · Grounding the Ticket</div>
+    <h1 class="w-82">WM-115: Ops Can't Add a Split Ratio Without a Release</h1>
+    <p class="bench-note w-82 note-tight">Written the way tickets actually arrive: a symptom, a vague ask, and no statement of what must keep working. Reframing it is the first thing you do, since no prompts are supplied for this part.</p>
+
+    <div class="category-grid grid-two-wide problem-fix-grid" style="margin-top: 1.2rem;">
+      <div class="category-card">
+        <h4>The seam already exists</h4>
+        <p><code>reconcile_positions</code> already accepts <code>strategies=</code>. This ticket uses a seam that's already there, it doesn't cut a new one. Have a role read the signature before anyone proposes an architecture.</p>
+      </div>
+      <div class="category-card">
+        <h4>The back-compat trap</h4>
+        <p>A caller who passes no reference data must keep today's exact behavior. Widening a default is how you silently change every existing caller.</p>
+      </div>
+    </div>
+
+    <div class="survey-box box-94" style="margin-top: 1.2rem;">
+      <span class="live-tag">The acceptance contract</span>
+      <p class="lead-copy"><code>test_reconcile_epic.py</code>, six seeded failures. Read it before you plan: it answers what reconciliation should do at 2am when the file Ops maintains is missing or malformed, a question the ticket itself doesn't answer.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · The Payoff</div>
+    <h1 class="w-80">ORCL Moves From Escalated to Resolved</h1>
+    <p class="bench-note w-78 note-tight">Both commands below are required acceptance tests. Compare the two outputs.</p>
+
+    <div class="split-layout" style="margin-top: 1rem;">
+      <div class="split-card">
+        <h3>Without reference data</h3>
+        <ul class="split-bullets">
+          <li class="fragment" data-fragment-index="1">Today's back-compat behavior, no flag.</li>
+          <li class="fragment" data-fragment-index="2">ORCL escalates: 3 resolved, 4 escalated. Ratio <code>1.5</code> isn't in the compiled-in table.</li>
+          <li class="fragment" data-fragment-index="3">Correct on Day 1, and still correct: nothing reads free text, and auto-resolving on a press-release note would have been a guess.</li>
+        </ul>
+      </div>
+      <div class="split-card">
+        <h3>With Ops-loaded reference data</h3>
+        <ul class="split-bullets">
+          <li class="fragment" data-fragment-index="4"><code>--reference-data reference_data/split_ratios.json</code>, WM-115's change.</li>
+          <li class="fragment" data-fragment-index="5">ORCL resolves via <code>stock_split_adjustment</code>: 4 resolved, 3 escalated. Ops added <code>1.5</code> to the JSON file, no code change needed.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="survey-box box-94" style="margin-top: 0.8rem;">
+      <span class="live-tag">Say this out loud when you present</span>
+      <p class="lead-copy">You didn't make the system guess better. You shortened the path from "a human knows the answer" to "the system knows it too" from a release to a data change.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · Guardrails</div>
+    <h1 class="w-80">What Stays True No Matter How You Route It</h1>
+
+    <div class="category-grid grid-three-wide problem-fix-grid" style="margin-top: 1.2rem;">
+      <div class="category-card">
+        <h4>Don't touch Ops's data</h4>
+        <p><code>reference_data/*.json</code> is Ops- and Risk-owned. A missing or malformed file is a case the contract covers, not a reason to fix the data.</p>
+      </div>
+      <div class="category-card">
+        <h4>Don't widen a default</h4>
+        <p>A caller who passes nothing must get today's exact behavior. A new capability that changes existing callers is a regression wearing a feature's clothes.</p>
+      </div>
+      <div class="category-card">
+        <h4>Never guess a value</h4>
+        <p>No ratio, rate, or band outside a reference table, ever. A config file doesn't relax the escalate-rather-than-guess rule; it's why the file exists.</p>
+      </div>
+    </div>
+
+    <div class="survey-box box-94" style="margin-top: 1.2rem;">
+      <span class="live-tag">Read-only by design</span>
+      <p class="lead-copy"><code>contract-reviewer</code> and <code>reference-data-steward</code> report; they don't fix. If one flags something, route the fix back to <code>implementer</code>. Don't loosen the checklist, and don't grant either role <code>Bash</code> so it can "just fix it."</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · Knowledge Check</div>
+    <h1 class="w-80">Quick Check: Reframing and Routing WM-115</h1>
+
+    <div class="mcq-list">
+      <div class="mcq-item fragment" data-fragment-index="1">
+        <p class="mcq-question">1. WM-115 asks Ops to control a split ratio without a release. What's the first move, before naming any role?</p>
+        <p class="mcq-option fragment" data-fragment-index="2">(a) Start implementing the flag right away, since the ask is clear enough.</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="3">(b) Reframe it: outcome, scope, verification, deliverable, guardrails.</p>
+        <p class="mcq-option fragment" data-fragment-index="4">(c) Design a new configuration architecture from scratch.</p>
+        <span class="mcq-reveal fragment" data-fragment-index="5"></span>
+      </div>
+
+      <div class="mcq-item fragment" data-fragment-index="6">
+        <p class="mcq-question">2. A caller that passes no reference data starts behaving differently after your change. What happened?</p>
+        <p class="mcq-option fragment" data-fragment-index="7">(a) Nothing to worry about: more capability is always better.</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="8">(b) A default got widened, which is a regression wearing a feature's clothes; the back-compat test exists to catch exactly this.</p>
+        <p class="mcq-option fragment" data-fragment-index="9">(c) The reviewer role should have caught it and fixed it directly.</p>
+        <span class="mcq-reveal fragment" data-fragment-index="10"></span>
+      </div>
+
+      <div class="mcq-item fragment" data-fragment-index="11">
+        <p class="mcq-question">3. Why does <code>reference-data-steward</code>'s verdict matter for WM-115 specifically, more than for most tickets?</p>
+        <p class="mcq-option fragment" data-fragment-index="12">(a) It doesn't: it's the same checklist every time.</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="13">(b) "Could Ops change this without an engineer and a release?" <em>is</em> WM-115's acceptance criterion.</p>
+        <p class="mcq-option fragment" data-fragment-index="14">(c) It's the only role that can run <code>pytest</code>.</p>
+        <span class="mcq-reveal fragment" data-fragment-index="15"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 10:45 · Recap</div>
+    <h1 class="w-80">You Can Now...</h1>
+
+    <ul class="split-bullets objectives-list" style="margin-top: 1.2rem;">
+      <li class="fragment">Reframe a vague ticket into outcome, scope, verification, deliverable, and guardrails before any code changes.</li>
+      <li class="fragment">Decide which roles a ticket needs and in what order; not every ticket needs all four.</li>
+      <li class="fragment">Treat a reviewer's verdict, not a green test suite, as the finish line.</li>
+      <li class="fragment">Explain WM-115's back-compat trap: why widening a default to fit a new caller is a regression wearing a feature's clothes.</li>
+    </ul>
+
+    <div class="survey-box box-94" style="margin-top: 1.2rem;">
+      <span class="live-tag">Watch for this again</span>
+      <p class="lead-copy"><code>contract-reviewer</code>'s restriction is enforced; <code>implementer</code>'s is a contract in prose. That gap is deliberate setup for Lab 7's <code>PreToolUse</code> hook, the layer that makes "please don't touch the fee tiers" something that cannot be done.</p>
+    </div>
+  </div>
+</section>

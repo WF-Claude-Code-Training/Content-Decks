@@ -1,0 +1,10 @@
+{
+  "title": "Lab 4: Meet the Pod, Then Add to It",
+  "subtitle": "Claude Code Developer Enablement",
+  "footer_suffix": "Day 2 · Lab 4",
+  "summary": "Read three shipped subagent roles, watch them hand off a reconciliation bug fix end to end, author a fourth role of your own, then route a real ticket (WM-115) through the pod you just staffed.",
+  "sections": [
+    { "slug": "01-role-pod-and-boundaries", "title": "The Role Pod & Its Boundaries" },
+    { "slug": "02-run-the-ticket-through-the-pod", "title": "Run a Real Ticket Through the Pod" }
+  ]
+}

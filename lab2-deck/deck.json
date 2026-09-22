@@ -1,0 +1,9 @@
+{
+  "title": "Lab 2: Fee Logic Rollout with Two-Pass Skills",
+  "subtitle": "Claude Code Developer Enablement",
+  "footer_suffix": "Day 1 · Lab 2",
+  "summary": "Use an existing Skill to fix quarterly fees, then author your own fee-specific Skill to fix monthly fees: the same pattern, twice, so you feel when a domain Skill earns its keep.",
+  "sections": [
+    { "slug": "01-backlog-and-skills", "title": "Backlog & Skills" }
+  ]
+}

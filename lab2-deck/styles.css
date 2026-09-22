@@ -1,0 +1,522 @@
+@import url("../shared/base.css");
+
+.section-subhead {
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 1.4rem 0 0.6rem 0;
+}
+
+h1 {
+  font-size: 3.4rem;
+  line-height: 1.1;
+  margin: 0 0 0.6rem 0;
+  max-width: 60%;
+  font-weight: 700;
+}
+
+/* ---------- Agenda slide ---------- */
+
+.agenda-columns {
+  display: flex;
+  gap: 4rem;
+  max-width: 100%;
+}
+
+/* ---------- Survey placeholder slide ---------- */
+.survey-wrap {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.survey-box {
+  margin-top: 1.8rem;
+  border: 2px dashed rgba(255, 255, 255, 0.45);
+  border-radius: 16px;
+  padding: 2.2rem;
+  background: rgba(7, 12, 51, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+.survey-box-lg .live-tag {
+  font-size: 0.9rem;
+}
+
+.survey-box-lg .survey-lead {
+  font-size: 1.32rem;
+}
+
+.survey-box-lg .survey-support {
+  font-size: 1.14rem;
+}
+
+.survey-box-lg .qr-placeholder {
+  font-size: 0.84rem;
+}
+
+.survey-box-lg .survey-meta {
+  font-size: 1.14rem;
+}
+
+/* ---------- Benchmark comparison slide ---------- */
+
+.bench-note {
+  font-size: 1.2rem;
+  color: var(--muted);
+  max-width: 78%;
+  margin: 0 0 1.4rem 0;
+}
+
+.category-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.category-card h4 {
+  margin: 0 0 0.35rem 0;
+  font-size: 1.15rem;
+  color: #070c33;
+}
+
+.category-card p {
+  margin: 0;
+  font-size: 1rem;
+  color: #3a3a3a;
+  line-height: 1.45;
+}
+
+/* ---------- Mindset shift diagram (Section 02, Slides 1-2 — auto-animate pair) ---------- */
+.mindset-shift {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 94%;
+}
+
+.shift-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+}
+
+.shift-row-label {
+  min-width: 10rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.shift-new .shift-row-label {
+  color: var(--teal);
+}
+
+.shift-steps {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.shift-step {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  padding: 0.42rem 1.1rem;
+  font-size: 1.07rem;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.04);
+  white-space: nowrap;
+}
+
+.shift-arrow {
+  color: var(--muted);
+  opacity: 0.6;
+  font-size: 1.17rem;
+}
+
+.shift-step.accent {
+  border-color: rgba(53, 182, 201, 0.6);
+  color: var(--teal);
+  background: rgba(53, 182, 201, 0.12);
+  font-weight: 600;
+}
+
+.shift-arrow.accent {
+  color: var(--teal);
+  opacity: 0.85;
+}
+
+/* Per-step pill colors. Same hue on both rows for the same slot (Plan /
+   Frame outcome are both blue, etc.) so the color itself reinforces the
+   1:1 mapping between the traditional step and its agentic counterpart. */
+.shift-step.pill-blue {
+  border-color: rgba(91, 155, 213, 0.45);
+  background: rgba(91, 155, 213, 0.1);
+  color: #7fb2e0;
+}
+
+.shift-step.pill-teal {
+  border-color: rgba(53, 182, 201, 0.45);
+  background: rgba(53, 182, 201, 0.1);
+  color: var(--teal);
+}
+
+.shift-step.pill-gold {
+  border-color: rgba(255, 205, 65, 0.45);
+  background: rgba(255, 205, 65, 0.1);
+  color: var(--wf-gold);
+}
+
+.shift-step.pill-red {
+  border-color: rgba(239, 95, 104, 0.45);
+  background: rgba(239, 95, 104, 0.1);
+  color: #ef5f68;
+}
+
+.shift-step.accent.pill-blue {
+  border-color: #7fb2e0;
+  background: rgba(91, 155, 213, 0.22);
+  color: #cfe3f7;
+}
+
+.shift-step.accent.pill-teal {
+  border-color: var(--teal);
+  background: rgba(53, 182, 201, 0.22);
+  color: var(--teal);
+}
+
+.shift-step.accent.pill-gold {
+  border-color: var(--wf-gold);
+  background: rgba(255, 205, 65, 0.22);
+  color: var(--wf-gold);
+}
+
+.shift-step.accent.pill-red {
+  border-color: #ef5f68;
+  background: rgba(239, 95, 104, 0.22);
+  color: #ffb3b8;
+}
+
+.shift-pivot {
+  align-self: center;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin: 0.1rem 0;
+}
+
+/* Solo intro state (slide 1 of the auto-animate pair): the same row, scaled
+   up and given room to breathe, before it shrinks into its final position
+   next to the agentic-framing row on slide 2. */
+.shift-row-intro {
+  transform: scale(1.1);
+  transform-origin: center;
+}
+
+/* ---------- Utilities ---------- */
+
+.race-grid {
+  align-items: stretch;
+}
+
+.race-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.race-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  max-width: 94%;
+  margin-bottom: 0.9rem;
+}
+
+.race-controls label,
+.race-row label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--teal);
+}
+
+.race-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  margin-top: 0.2rem;
+}
+
+.race-input {
+  border: 1px solid rgba(10, 20, 60, 0.25);
+  border-radius: 6px;
+  padding: 0.26rem 0.38rem;
+  font-size: 0.82rem;
+  color: #0f1738;
+  background: #ffffff;
+  min-width: 7.6rem;
+}
+
+.race-btn {
+  border: 1px solid rgba(10, 20, 60, 0.25);
+  border-radius: 7px;
+  padding: 0.28rem 0.58rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #10205b;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.race-btn-primary {
+  background: #00b140;
+  border-color: #00b140;
+  color: #041138;
+}
+
+.race-btn-primary:hover,
+.race-btn-primary:focus-visible {
+  background: #00c247;
+  border-color: #00c247;
+}
+
+.race-time {
+  margin: 0.15rem 0 0.1rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #041138;
+}
+
+.race-metric {
+  margin: 0;
+  font-size: 0.84rem;
+  color: #2f2f2f;
+}
+
+.grid-five-wide {
+  grid-template-columns: repeat(5, 1fr);
+  max-width: 97%;
+  gap: 0.7rem;
+}
+
+.grid-five-wide .category-card {
+  padding: 0.75rem 0.8rem;
+}
+
+.grid-five-wide .category-card h4 {
+  font-size: 0.86rem;
+}
+
+.grid-five-wide .category-card p {
+  font-size: 0.76rem;
+}
+
+.overlay-grid .category-card {
+  background: #ffffff;
+  padding: 0.65rem 0.8rem;
+}
+
+/* Reusable wherever a 4-stage cycle needs to read as a loop, not a list — e.g.
+   Read -> Decide -> Act -> Observe. Node colors reuse the pill-blue/teal/gold/red
+   sequence from .shift-step so repeated stage diagrams share one color language. */
+.loop-diagram {
+  max-width: 97%;
+  margin-top: 0.4rem;
+}
+
+.loop-row {
+  display: flex;
+  align-items: flex-start;
+}
+
+.loop-node {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 0;
+}
+
+.loop-desc {
+  margin: 0;
+  max-width: 90%;
+  font-size: 0.86rem;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.loop-arrow-wrap {
+  display: flex;
+  flex: 0 0 2.6rem;
+  align-items: center;
+  justify-content: center;
+  height: 108px;
+}
+
+.loop-arrow {
+  font-size: 1.6rem;
+  color: var(--muted);
+}
+
+.loop-return {
+  position: relative;
+  height: 2.2rem;
+  margin: 0.6rem 7.5% 1.7rem 7.5%;
+  border: 2px solid var(--muted);
+  border-top: none;
+  border-radius: 0 0 16px 16px;
+  opacity: 0.7;
+}
+
+.loop-return::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: -8px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 8px solid var(--muted);
+}
+
+.loop-return-label {
+  position: absolute;
+  bottom: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ---------- Cross-day program arc (agenda slide) ---------- */
+.day-arc {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  max-width: 96%;
+  margin-top: 1.6rem;
+}
+
+.day-arc-card {
+  flex: 1;
+  border-radius: 10px;
+  padding: 0.9rem 1.05rem;
+}
+
+.day-arc-tag {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.day-arc-scale {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.85;
+  margin: 0 0 0.4rem 0;
+}
+
+.day-arc-card h4 {
+  margin: 0 0 0.35rem 0;
+  font-size: 1.3rem;
+}
+
+.day-arc-card p {
+  margin: 0;
+  font-size: 1.12rem;
+  line-height: 1.4;
+}
+
+.day-arc-current {
+  background: rgba(53, 182, 201, 0.12);
+  border: 1px solid rgba(53, 182, 201, 0.55);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.day-arc-current .day-arc-tag,
+.day-arc-current .day-arc-scale {
+  color: var(--teal);
+}
+
+.day-arc-current h4 {
+  color: var(--text);
+}
+
+.day-arc-current p {
+  color: var(--muted);
+}
+
+.day-arc-muted {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  opacity: 0.72;
+}
+
+.day-arc-muted .day-arc-tag,
+.day-arc-muted .day-arc-scale {
+  color: var(--muted);
+}
+
+.day-arc-muted h4 {
+  color: var(--muted);
+  font-size: 1.2rem;
+}
+
+.day-arc-muted p {
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+/* ---------- Split-screen step slides (playbook) ---------- */
+
+.split-stack {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.split-card h3 {
+  margin: 0 0 0.9rem 0;
+  color: var(--teal);
+  font-size: 1.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.anatomy-quote-card h3 {
+  color: var(--blue);
+  font-size: 1.55rem;
+  margin-bottom: 0.8rem;
+}
+
+.anatomy-quote-card p {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.42rem;
+  line-height: 1.55;
+  font-style: italic;
+}
+

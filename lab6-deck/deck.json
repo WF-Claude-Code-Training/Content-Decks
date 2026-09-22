@@ -1,0 +1,12 @@
+{
+  "title": "Wells Fargo Presents: DevX and MCP",
+  "subtitle": "Claude Code Developer Enablement",
+  "footer_suffix": "Day 2 · Lab 6",
+  "summary": "A Wells Fargo employee demo of DevX MCP in the Wells Fargo ecosystem.",
+  "sections": [
+    {
+      "slug": "01-devx-mcp-demo",
+      "title": "DevX & MCP Demo"
+    }
+  ]
+}

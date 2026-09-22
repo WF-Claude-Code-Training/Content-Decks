@@ -1,0 +1,71 @@
+@import url("../shared/base.css");
+@import url("../shared/dark-theme.css");
+
+/* ---------- Split-screen step slides (playbook) ---------- */
+
+.split-card h3 {
+  margin: 0 0 0.9rem 0;
+  color: var(--teal);
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.anatomy-quote-card h3 {
+  color: var(--blue);
+  font-size: 1.55rem;
+  margin-bottom: 0.8rem;
+}
+
+.anatomy-quote-card p {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.42rem;
+  line-height: 1.55;
+  font-style: italic;
+}
+
+.lab5-slide-font-plus-20 h1 {
+  font-size: 4.08rem;
+}
+
+.lab5-slide-font-plus-20 .bench-note {
+  font-size: 1.2rem;
+}
+
+.lab5-slide-font-plus-20 .category-card h4 {
+  font-size: 1.5rem;
+}
+
+.lab5-slide-font-plus-20 .category-card p {
+  font-size: 1.3rem;
+}
+
+.lab5-slide-font-plus-20 .survey-box .live-tag {
+  font-size: 0.9rem;
+}
+
+.lab5-slide-font-plus-20 .lead-copy {
+  font-size: 1.26rem;
+}
+
+/* ---------- Compact Read/Decide/Act/Observe loop (Lab 5's table-heavy loop slide) ---------- */
+.loop-orbit.loop-orbit-compact {
+  width: 560px;
+  max-width: 46%;
+  height: 190px;
+  margin: 1.4rem auto 1.7rem auto;
+}
+
+.loop-orbit-compact .loop-circle {
+  width: 66px;
+  height: 66px;
+  font-size: 0.82rem;
+  margin-bottom: 0.3rem;
+  border-width: 1.5px;
+}
+
+.loop-orbit-compact .loop-orbit-arrow {
+  font-size: 1.1rem;
+}
+

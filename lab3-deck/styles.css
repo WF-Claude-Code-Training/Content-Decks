@@ -1,0 +1,11 @@
+@import url("../shared/base.css");
+@import url("../shared/dark-theme.css");
+
+.split-card h3 {
+  margin: 0 0 0.9rem 0;
+  color: var(--teal);
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+

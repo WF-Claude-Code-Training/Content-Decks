@@ -1,0 +1,12 @@
+{
+  "title": "Lab 7: Build the Enforcement Layer",
+  "subtitle": "Claude Code Developer Enablement",
+  "footer_suffix": "Day 2 · Lab 7",
+  "summary": "Hold all three layers of control at once: a Skill that carries the logging procedure, two subagents that supply independent judgment and disagree, and a hook that enforces a guardrail no request could.",
+  "sections": [
+    {
+      "slug": "01-structured-logging-rollout",
+      "title": "Build the Enforcement Layer"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Day 1: Foundations & the Agentic Mindset",
+  "subtitle": "Claude Code Developer Enablement",
+  "footer_suffix": "Day 1",
+  "summary": "Day 1 opening (agenda, survey, spotlight) plus the Agentic Mindset Shift + Lab 1: WM-101 combined block.",
+  "sections": [
+    { "slug": "01-opening", "title": "Opening" },
+    { "slug": "02-mindset-shift", "title": "Mindset Shift" }
+  ]
+}

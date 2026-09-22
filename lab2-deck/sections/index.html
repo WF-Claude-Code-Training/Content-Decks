@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lab 2 Deck Sections</title>
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  .sections-shell {
+    min-height: 100vh;
+    padding: 5vh 6vw;
+    color: var(--text);
+  }
+  .sections-shell h1 {
+    max-width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  .section-grid {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    gap: 1rem;
+    max-width: 1100px;
+  }
+  .section-tile {
+    display: block;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 12px;
+    background: rgba(6, 11, 42, 0.72);
+    padding: 1rem 1.1rem;
+    color: var(--text);
+  }
+  .section-tile:hover { background: rgba(53, 182, 201, 0.18); }
+  .section-tile h3 {
+    margin: 0 0 0.35rem 0;
+    color: var(--teal);
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .section-tile p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+</style>
+</head>
+<body>
+<div class="sections-shell">
+  <div class="eyebrow">Day 1 · Lab 2 · Modular Deck Paths</div>
+
+  <div class="section-grid">
+    <a class="section-tile" href="01-backlog-and-skills/index.html">
+      <h3>01 · Backlog &amp; Skills</h3>
+      <p>Tool discipline (Glob/Grep/Read), authoring your own Skill, SKILL.md anatomy, auto-discovery vs. <code>/&lt;skill-name&gt;</code>, TodoWrite in action, knowledge check, and objectives restated (9 slides).</p>
+    </a>
+  </div>
+
+  <div style="margin-top: 1.4rem;">
+    <a class="section-link" href="../index.html">Open Full Deck</a>
+  </div>
+</div>
+</body>
+</html>

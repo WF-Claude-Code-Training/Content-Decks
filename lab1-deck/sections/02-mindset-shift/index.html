@@ -1,0 +1,854 @@
+<!-- GENERATED FILE — do not edit directly.
+     Source: lab1-deck/sections/<slug>/slides.html
+     Regenerate with: python3 scripts/build_deck.py --deck lab1-deck -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Day 1: Foundations & the Agentic Mindset — Mindset Shift</title>
+<link rel="stylesheet" href="../../../vendor/reveal.js-6.0.1/reveal.css" />
+<link rel="stylesheet" href="../../../vendor/reveal.js-6.0.1/plugin/highlight/vscode-dark-modern.css" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+:root {
+  --deck-font-scale: 1;
+}
+html {
+  font-size: calc(16px * var(--deck-font-scale));
+}
+.slide-nav-bar {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 100;
+  background: rgba(5,10,40,0.78);
+  border-radius: 28px;
+  padding: 6px 12px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.slide-nav-arrow {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.8);
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+.slide-nav-arrow:hover {
+  background: rgba(255,255,255,0.12);
+}
+.slide-nav-dots {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  transition: gap 0.3s ease;
+}
+.slide-nav-bar:hover .slide-nav-dots {
+  gap: 4px;
+}
+.slide-nav-dot {
+  max-width: 0;
+  min-width: 0;
+  height: 28px;
+  overflow: hidden;
+  opacity: 0;
+  border-style: solid;
+  border-width: 0;
+  border-color: rgba(255,255,255,0.28);
+  border-radius: 5px;
+  color: rgba(255,255,255,0.5);
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 600;
+  font-family: inherit;
+  transition: max-width 0.3s ease, opacity 0.25s ease, border-width 0s, padding 0.3s ease;
+}
+.slide-nav-dot.active {
+  max-width: 28px;
+  width: 28px;
+  opacity: 1;
+  border-width: 1px;
+  border-color: rgba(255,255,255,0.7);
+  color: #fff;
+  background: rgba(255,255,255,0.18);
+}
+.slide-nav-dot.objectives {
+  border-color: #35b6c9;
+  color: #35b6c9;
+}
+.slide-nav-dot.objectives.active {
+  background: rgba(53,182,201,0.35);
+  border-color: #35b6c9;
+  color: #fff;
+}
+.slide-nav-bar:hover .slide-nav-dot {
+  max-width: 28px;
+  width: 28px;
+  opacity: 1;
+  border-width: 1px;
+}
+.slide-nav-dot:hover {
+  background: rgba(255,255,255,0.1);
+}
+.slide-font-controls {
+  position: fixed;
+  right: 24px;
+  bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 100;
+  background: rgba(5,10,40,0.78);
+  border-radius: 28px;
+  padding: 6px 8px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.slide-font-button {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.86);
+  min-width: 36px;
+  height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  line-height: 1;
+  font-family: inherit;
+  font-weight: 700;
+  transition: background 0.15s;
+}
+.slide-font-button:hover {
+  background: rgba(255,255,255,0.12);
+}
+.slide-font-reset {
+  min-width: 48px;
+  color: #35b6c9;
+}
+</style>
+</head>
+<body>
+
+<div class="section-links" aria-label="Section navigation">
+  <a class="section-link" href="../../../index.html">Main Menu</a>
+  <a class="section-link" href="../01-opening/index.html">&larr; Prev Section</a>
+</div>
+
+<div class="reveal">
+  <div class="slides">
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 11:15 · The Agentic Mindset Shift</div>
+    <h1 class="w-80">After This 105-Minute Session, You Will Be Able To...</h1>
+
+    <ul class="split-bullets objectives-list" style="margin-top: 1.6rem;">
+      <li class="fragment">Describe the Read → Decide → Act → Observe loop, and name a task in your day where a coding agent adds value, and one where it doesn't.</li>
+      <li class="fragment">Write a well-formed task frame with all 5 ingredients.</li>
+      <li class="fragment">Run a SKILL.md explicitly with slash commands.</li>
+      <li class="fragment">Ship one small, verified change, backed by test evidence, not just a claim that it works.</li>
+    </ul>
+  </div>
+</section>
+
+<section data-auto-animate>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 11:00 · The Agentic Mindset Shift</div>
+    <h1 class="w-80">From Autocomplete to Agentic Delegation</h1>
+
+    <div class="category-grid grid-two-wide">
+      <div class="category-card">
+        <h4>Autocomplete (Claude or Copilot)</h4>
+        <p>Completes lines and single files. You stay in control of the architecture; the tool fills in details.</p>
+      </div>
+      <div class="category-card">
+        <h4>Agentic Coding</h4>
+        <p>Multi-file refactorings, multi-repo work. You delegate an outcome and review the result; the agent owns the approach.</p>
+      </div>
+    </div>
+
+    <div class="mindset-shift" style="margin-top: 2.6rem;">
+      <div class="shift-row shift-old shift-row-intro" data-id="shift-row">
+        <span class="shift-row-label">Traditional dev</span>
+        <div class="shift-steps">
+          <span class="shift-step pill-blue">Plan</span>
+          <span class="shift-arrow">&#8594;</span>
+          <span class="shift-step pill-teal">Research</span>
+          <span class="shift-arrow">&#8594;</span>
+          <span class="shift-step pill-gold">Code</span>
+          <span class="shift-arrow">&#8594;</span>
+          <span class="shift-step pill-red">Test</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    Intro (before the Copilot/Agentic cards): "You've lived in GitHub Copilot. Here's what changes when you move to agentic coding."
+    This is how you code today: plan it, research it, write it, test it. Click to see what changes.
+  </aside>
+</section>
+
+<section data-auto-animate>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 11:00 · The Agentic Mindset Shift</div>
+    <h1 class="w-80">From Autocomplete to Agentic Delegation</h1>
+
+    <div class="category-grid grid-two-wide">
+      <div class="category-card">
+        <h4>Autocomplete (Claude or Copilot)</h4>
+        <p>Completes lines and single files. You stay in control of the architecture; the tool fills in details.</p>
+      </div>
+      <div class="category-card">
+        <h4>Agentic Coding</h4>
+        <p>Multi-file refactorings, multi-repo work. You delegate an outcome and review the result; the agent owns the approach.</p>
+      </div>
+    </div>
+
+    <div class="mindset-shift" style="margin-top: 1.6rem;">
+      <div class="shift-row shift-old" data-id="shift-row">
+        <span class="shift-row-label">Traditional dev</span>
+        <div class="shift-steps">
+          <span class="shift-step pill-blue">Plan</span>
+          <span class="shift-arrow">&#8594;</span>
+          <span class="shift-step pill-teal">Research</span>
+          <span class="shift-arrow">&#8594;</span>
+          <span class="shift-step pill-gold">Code</span>
+          <span class="shift-arrow">&#8594;</span>
+          <span class="shift-step pill-red">Test</span>
+        </div>
+      </div>
+      <div class="shift-pivot">&#8595; the shift &#8595;</div>
+      <div class="shift-row shift-new">
+        <span class="shift-row-label">Agentic framing</span>
+        <div class="shift-steps">
+          <span class="shift-step accent pill-blue">Frame outcome</span>
+          <span class="shift-arrow accent">&#8594;</span>
+          <span class="shift-step accent pill-teal">Delegate</span>
+          <span class="shift-arrow accent">&#8594;</span>
+          <span class="shift-step accent pill-gold">Verify</span>
+          <span class="shift-arrow accent">&#8594;</span>
+          <span class="shift-step accent pill-red">Reuse as rule</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    Transition: "That shift, from tool-as-detail-filler to tool-as-trusted-worker-under-review, is what this program builds on."
+    Closing (into the lab): "Today you'll move through all three stages once, live, on a real bug."
+  </aside>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 11:00 · The Agentic Mindset Shift</div>
+    <h1 class="w-84">Meet the Loop: Read &rarr; Decide &rarr; Act &rarr; Observe</h1>
+
+    <div class="loop-orbit">
+      <div class="loop-orbit-ring"></div>
+      <div class="loop-orbit-node pos-top">
+        <h3 class="loop-circle loop-blue">Read</h3>
+        <p class="loop-desc">Gathers the context it needs: the relevant files, the ticket, the existing tests.</p>
+      </div>
+      <div class="loop-orbit-arrow a1">&#8594;</div>
+      <div class="loop-orbit-node pos-right">
+        <h3 class="loop-circle loop-teal">Decide</h3>
+        <p class="loop-desc">Picks an approach: which files to touch, in what order.</p>
+      </div>
+      <div class="loop-orbit-arrow a2">&#8594;</div>
+      <div class="loop-orbit-node pos-bottom">
+        <h3 class="loop-circle loop-gold">Act</h3>
+        <p class="loop-desc">Makes the change: edits, runs commands, produces a draft result.</p>
+      </div>
+      <div class="loop-orbit-arrow a3">&#8594;</div>
+      <div class="loop-orbit-node pos-left">
+        <h3 class="loop-circle loop-red">Observe</h3>
+        <p class="loop-desc">Checks its own result and decides: done, keep going, or stop and ask.</p>
+      </div>
+      <div class="loop-orbit-arrow a4">&#8594;</div>
+    </div>
+
+    <div class="category-grid grid-two-wide" style="margin-top: 1.4rem;">
+      <div class="category-card fragment">
+        <h4>Good fit for the loop</h4>
+        <p>A multi-file rename plus a regression sweep: many small Read→Decide→Act→Observe cycles, each cheap to verify, too tedious to want to do by hand.</p>
+      </div>
+      <div class="category-card fragment">
+        <h4>Poor fit for the loop</h4>
+        <p>A one-line config toggle you could type yourself in ten seconds; framing and verifying it costs more than just making the edit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 11:00 · The Agentic Mindset Shift</div>
+    <h1 class="w-80">READ STAGE - CLAUDE.md &amp; Skills</h1>
+    <p class="bench-note w-78 note-tight-plus">Package the frame into one of these, and the loop runs again without you re-deciding it from scratch each time.</p>
+
+    <div class="category-grid grid-two-wide">
+      <div class="category-card fragment" data-fragment-index="1">
+        <h4>CLAUDE.md</h4>
+        <p>Always-loaded project rules: the standing brief Claude Code reads before anything else.</p>
+      </div>
+      <div class="category-card fragment" data-fragment-index="2">
+        <h4>.claude/skills/SKILL.md</h4>
+        <p>A named, on-demand workflow, parameterized by the frame you hand it, not by the ticket. <code>scoped-bugfix-flow</code> is the one Lab 1 uses.</p>
+      </div>
+    </div>
+
+    <div class="survey-box box-92" style="margin-top: 1.4rem;">
+      <div style="display: flex; gap: 1rem; align-items: center; justify-content: center;">
+        <img src="../../../images/claude-md.png" alt="CLAUDE.md" class="fragment" data-fragment-index="1" style="max-height: 400px; height: auto; width: auto; object-fit: contain;" />
+        <img src="../../../images/skill.png" alt="Skills" class="fragment" data-fragment-index="2" style="max-height: 400px; height: auto; width: auto; object-fit: contain;" />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="slide-card agents-contract-slide">
+    <div class="eyebrow">09:30 – 11:00 · The Agentic Mindset Shift</div>
+    <h1 class="w-84">READ STAGE - One Shared Contract: AGENTS.md</h1>
+    <p class="bench-note w-82 note-tight-plus">Keep your operating rules in one place, then point both assistants at that same source of truth.</p>
+
+    <div class="category-grid grid-two-wide agents-contract-grid">
+      <div class="category-card">
+        <h4>AGENTS.md (single source)</h4>
+        <p>Project-level behavior contract: architecture boundaries, coding standards, test expectations, and escalation rules.</p>
+      </div>
+      <div class="category-card">
+        <h4>Thin pointers in tool-specific files</h4>
+        <p><code>CLAUDE.md</code>, <code>.github/copilot-instructions.md</code>, and <code>DEVIN.md</code> stay lightweight and reference <code>AGENTS.md</code> so guidance stays aligned.</p>
+      </div>
+    </div>
+
+    <div class="split-layout" style="margin-top: 1.2rem;">
+      <div class="split-media">
+        <img src="../../../images/agents-md.png" alt="AGENTS.md open in editor with sections highlighted" style="width: 100%; height: 100%; object-fit: contain;" />
+      </div>
+      <div class="split-media">
+        <img src="../../../images/thin-claud-copilot.png" alt="CLAUDE.md and copilot-instructions.md both pointing to AGENTS.md" style="width: 100%; height: 100%; object-fit: contain;" />
+      </div>
+    </div>
+
+    <div class="bench-footnote" style="margin-top: 1.2rem;">
+      Pattern intent: one update path for rules, fewer drift bugs between assistants, and easier governance reviews.<br/>
+      Tool-neutral by design: the same shared contract pattern works across Claude Code, Copilot, and Devin.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 11:00 · The Agentic Mindset Shift</div>
+    <h1 class="w-84">Two Ways In: Auto-Discovery and <code>/&lt;skill-name&gt;</code></h1>
+
+    <div class="split-layout">
+      <div class="split-media">
+        <img src="../../../images/skill-with-slash.png" alt="Slash-command menu showing authored Skill alongside /model" style="width: 100%; height: auto; border-radius: 10px; display: block;"/>
+      </div>
+      <div class="split-card">
+        <h3>Same Skill, two entry points</h3>
+        <ul class="split-bullets">
+          <li class="fragment"><strong>Auto-invoked</strong>: Claude reaches for it on its own when your prompt matches its "USE WHEN" description.</li>
+          <li class="fragment"><strong>Explicit</strong>: type <code>/&lt;skill-name&gt;</code> to invoke it directly, the same slash-command mechanism as this morning's <code>/model</code>.</li>
+          <li class="fragment">A well-worded description means you rarely need the explicit form, but it's there for when you want to invoke it by name, on purpose.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bench-footnote" style="margin-top: 1.2rem;">
+      <strong>Copilot parallel:</strong> Copilot Chat's Prompt Files are the closest analog, but they're static text insertion, not a slash-invokable, tool-bounded workflow; there's no equivalent to a Skill Claude Code can also reach for on its own.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 11:00 · The Agentic Mindset Shift</div>
+    <h1 class="w-78">DECIDE STAGE</h1>
+
+    <div class="split-layout">
+      <div class="split-media">
+        <img src="../../../images/pick-model.png" alt="model picker / /model slash command" style="width: 100%; height: 100%; object-fit: contain;" />
+      </div>
+      <div class="split-card">
+        <h3>Before you start</h3>
+        <ul class="split-bullets">
+          <li class="fragment">Click the model badge at the bottom of the panel, or type <code>/model</code>, to bring up the model list</li>
+          <li class="fragment">Fast tier for routine, formulaic steps; a stronger tier when framing or reasoning is the bottleneck.</li>
+          <li class="fragment">Don't pick out of habit; the right tier depends on the task.</li>
+          <li class="fragment">The bottom bar also shows an <strong>agent count</strong>: how many subagents are running in parallel right now.</li>
+          <li class="fragment">The clock next to it counts down the <strong>prompt cache</strong> window &mdash; once it hits zero, the next message reprocesses the full conversation instead of reading from cache.</li>
+          <li class="fragment">Cache reads cost ~10% of the standard input-token rate; writing to the cache carries a premium (~1.25x for the 5-minute window, ~2x for the 1-hour window) &mdash; paid once, then every re-read is the cheap 10%.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <h1>Decide Stage</h1>
+    <img src="../../../images/Model comparison.png" alt="Model comparison" style="width: 100%; height: 100%; object-fit: contain; max-height: 70vh;" />
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 11:00 · The Agentic Mindset Shift</div>
+    <h1 class="w-84">Decide Stage: Pick the Right Risk Posture</h1>
+    <p class="bench-note w-82 note-tight-plus">Same task, different mode, different operational risk.</p>
+
+    <h3 class="section-subhead">Pick Your Mode</h3>
+    <div class="split-layout">
+      <div class="split-media"><img src="../../../images/mode.png" alt="mode indicator in the Claude Code panel" style="width: 100%; height: 100%; object-fit: contain;" /></div>
+      <div class="split-card">
+        <h3>Why this matters before you pick</h3>
+        <ul class="split-bullets">
+          <li class="fragment fade-up"><strong>Your mode choice sets the speed vs. control tradeoff</strong> for every change in this task.</li>
+          <li class="fragment fade-up"><strong>Plan mode</strong> lowers risk on ambiguous or high-impact changes by forcing review before execution.</li>
+          <li class="fragment fade-up"><strong>Default (act) mode</strong> increases throughput on well-scoped tasks with known acceptance criteria.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 11:00 · The Agentic Mindset Shift</div>
+    <h1 class="w-78">ACT Stage</h1>
+    <p class="bench-note w-78 note-tight-plus">The one device you'll use all day: first by hand, then designed into something that runs without you.</p>
+
+    <h3 class="section-subhead">The Five-Ingredient Frame</h3>
+    <div class="guardrails-frame-wrapper">
+      <div class="guardrails-frame">
+        <div class="frame-top category-card fragment"><h4>Outcome</h4><p>The end state, not the keystrokes.</p></div>
+        <div class="frame-middle">
+          <div class="frame-left category-card fragment"><h4>Scope</h4><p>The concrete target and boundaries.</p></div>
+          <div class="frame-right category-card fragment"><h4>Verification</h4><p>How "done" is checked: run it, don't eyeball it.</p></div>
+        </div>
+        <div class="frame-bottom category-card fragment"><h4>Deliverable</h4><p>The reviewable artifact handed back.</p></div>
+      </div>
+      <div class="guardrails-content fragment">
+        <p style="text-align: center; color: var(--muted); font-size: 0.95rem; margin: 0; padding: 0.5rem 0.8rem;">
+          <strong style="color: var(--text);">Guardrails:</strong> What NOT to do, and when to stop and ask.
+        </p>
+      </div>
+    </div>
+
+    <div class="category-grid grid-two-wide" style="margin-top: 1.4rem;">
+      <div class="category-card fragment">
+        <h4>Write it, run it once</h4>
+        <p>You write the frame by hand and drive Claude Code (or Copilot Chat) through one task, start to finish. <strong>This is Lab 1.</strong></p>
+      </div>
+      <div class="category-card fragment">
+        <h4>Design it in, it runs without you</h4>
+        <p>You bake the same frame into a Skill you invoke on demand, or an agent that runs it autonomously. <strong>This is Lab 2 → Lab 4.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 11:00 · The Agentic Mindset Shift</div>
+    <h1 class="w-78">The Frame in Practice: Poor, Better, Best</h1>
+    <p class="bench-note w-78 note-tight-plus">Same task, reviewing open reconciliation exceptions, framed four ways.</p>
+
+    <div class="category-grid grid-four-wide">
+      <div class="category-card example-card example-poor fragment">
+        <h4>Poor</h4>
+        <p class="example-task">"Fix the reconciliation exceptions in the Meridian account."</p>
+        <div class="example-inner-card fragment">
+          <p>No scope, no verification, no deliverable; Claude has to guess what "fixed" means and how to prove it.</p>
+        </div>
+      </div>
+      <div class="category-card example-card example-poor fragment">
+        <h4>Poor</h4>
+        <p class="example-task">"Outcome: fix the fee bug. Scope: the fee module. Verification: run the tests. Deliverable: updated code. Guardrails: don't break anything."</p>
+        <div class="example-inner-card fragment">
+          <p>Every ingredient is present but too vague to execute or check against: <strong>completeness isn't quality</strong> (Lab 1).</p>
+        </div>
+      </div>
+      <div class="category-card example-card example-better fragment">
+        <h4>Better</h4>
+        <p class="example-task">"Investigate the 12 open exceptions in <code>recon_meridian.csv</code> and classify each as a timing break or a true break."</p>
+        <div class="example-inner-card fragment">
+          <p>Scope is named. Still missing verification and a defined deliverable format.</p>
+        </div>
+      </div>
+      <div class="category-card example-card example-best fragment">
+        <h4>Best</h4>
+        <p class="example-task">"Classify the 12 open exceptions in <code>recon_meridian.csv</code> as timing or true breaks. Verify each against the custodian feed. Deliver a triage table showing the reasoning per exception. Don't auto-clear anything flagged as a true break: escalate those."</p>
+        <div class="example-inner-card fragment">
+          <p>All five ingredients present: outcome, scope, verification, deliverable, guardrails.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 11:00 · The Agentic Mindset Shift</div>
+    <h1 class="w-80">Observe Stage</h1>
+    <h3 class="section-subhead">Responsible AI &amp; Human-in-the-Loop</h3>
+    <p class="bench-note w-78 note-tight-plus">Agent output is never treated as ground truth; state it before anyone touches a keyboard.</p>
+
+    <div class="category-grid grid-three-wide">
+      <div class="category-card fragment fade-up" data-fragment-index="1">
+        <h4>The agent reports back</h4>
+        <p>A diff, a test result, a summary: always something you review, never something you rubber-stamp.</p>
+      </div>
+      <div class="category-card fragment fade-up" data-fragment-index="2">
+        <h4>You verify independently</h4>
+        <p>Run the tests yourself. Read the diff yourself. The scorer and the test suite are checklists, not judges of truth.</p>
+      </div>
+      <div class="category-card fragment fade-up" data-fragment-index="3">
+        <h4>Check it against the frame</h4>
+        <p>Verification isn't invented at review time; it's the method the task frame already named. Observe is where you hold the output to that bar.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 11:00 · The Agentic Mindset Shift</div>
+    <h1 class="w-84">The Loop, Powered by the Frame</h1>
+    <p class="bench-note w-82 note-tight">Same four stages you just met, now with the frame attached. Claude Code is an agent that runs the loop on every task and the frame governs it at every step.</p>
+
+    <div class="loop-orbit">
+      <div class="loop-orbit-ring"></div>
+      <div class="loop-orbit-node pos-top">
+        <h3 class="loop-circle loop-blue">Read</h3>
+        <p class="loop-desc">Reads the relevant files and CLAUDE.md before touching anything.</p>
+      </div>
+      <div class="loop-orbit-arrow a1">&#8594;</div>
+      <div class="loop-orbit-node pos-right">
+        <h3 class="loop-circle loop-teal">Decide</h3>
+        <p class="loop-desc">Picks an approach against the frame's <strong>Outcome</strong>: the target it's aiming for.</p>
+      </div>
+      <div class="loop-orbit-arrow a2">&#8594;</div>
+      <div class="loop-orbit-node pos-bottom">
+        <h3 class="loop-circle loop-gold">Act</h3>
+        <p class="loop-desc">Edits within the frame's <strong>Scope</strong>: the boundary it isn't allowed to cross.</p>
+      </div>
+      <div class="loop-orbit-arrow a3">&#8594;</div>
+      <div class="loop-orbit-node pos-left">
+        <h3 class="loop-circle loop-red">Observe</h3>
+        <p class="loop-desc">Checks its own work against <strong>Verification</strong>, then hands back the <strong>Deliverable</strong>.</p>
+      </div>
+      <div class="loop-orbit-arrow a4">&#8594;</div>
+    </div>
+
+    <div class="survey-box box-94">
+      <span class="live-tag">Guardrails are different</span>
+      <p class="loop-copy"><strong>Guardrails</strong> is a cross-cutting override that can interrupt <em>any</em> stage above (a risk threshold, a protected file). Not a gap in the loop; the thing that can override the loop.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 11:00 · The Agentic Mindset Shift</div>
+    <h1 class="w-84">Read → Decide → Act → Observe, on This Bug</h1>
+    <p class="bench-note w-82 note-tight">
+      You just saw the loop and the frame generically. Watch them become real on this exact bug.
+    </p>
+
+    <div class="agenda-columns columns-loop">
+      <div class="agenda-col col-fill fragment">
+        <h3>Read</h3>
+        <div class="agenda-item"><span class="time">You</span><span class="topic">Read current task frame, code</span></div>
+        <div class="agenda-item"><span class="time">Agent</span><span class="topic">Reads CLAUDE.md and project files automatically; <code>/context</code> shows a breakdown of what's currently loaded, as tokens and % of the window.</span></div>
+      </div>
+      <div class="agenda-col col-fill fragment">
+        <h3>Decide</h3>
+        <div class="agenda-item"><span class="time">You</span><span class="topic">Choose plan mode while breakpoint behavior is still unconfirmed, and pick your model.</span></div>
+        <div class="agenda-item"><span class="time">Agent</span><span class="topic">Decides whether it has enough to safely act, or needs to ask.</span></div>
+      </div>
+      <div class="agenda-col col-fill fragment">
+        <h3>Act</h3>
+        <div class="agenda-item"><span class="time">You</span><span class="topic">Write a well formed task frame and reference the scoped-bugfix-flow SKILL.md</span></div>
+        <div class="agenda-item"><span class="time">Agent</span><span class="topic">Executes the scoped-bugfix-flow implementation pass, making only in-scope fee-logic changes in <code>fees.py</code> to deliver the progressive breakpoint fix.</span></div>
+      </div>
+      <div class="agenda-col col-fill fragment">
+        <h3>Observe</h3>
+        <div class="agenda-item"><span class="time">You</span><span class="topic">Run <code>pytest tests/test_fees.py</code> and review the diff yourself.</span></div>
+        <div class="agenda-item"><span class="time">Agent</span><span class="topic">Reports back, but the result is never treated as ground truth.</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 11:00 · The Agentic Mindset Shift</div>
+    <h1 class="w-78">A Small-Change Playbook</h1>
+    <p class="bench-note w-78 note-tight">
+      Turn the applied loop into three concrete choices before you touch a file.
+    </p>
+
+    <div class="agenda-columns columns-playbook">
+      <div class="agenda-col col-fill fragment">
+        <h3>1. Choose your mode</h3>
+        <div class="agenda-item"><span class="time">Plan</span><span class="topic">Use it when the acceptance criteria or test shape is still unclear.</span></div>
+        <div class="agenda-item"><span class="time">Act</span><span class="topic">Use it for a bounded edit once the target is clear.</span></div>
+      </div>
+      <div class="agenda-col col-fill fragment">
+        <h3>2. Choose your model</h3>
+        <div class="agenda-item"><span class="time">Fast</span><span class="topic">Use the cheaper model for routine checks and narrow steps.</span></div>
+        <div class="agenda-item"><span class="time">Stronger</span><span class="topic">Use the more capable model when framing or reasoning is the bottleneck.</span></div>
+      </div>
+      <div class="agenda-col col-fill fragment">
+        <h3>3. Reference your skill</h3>
+        <div class="agenda-item"><span class="time">Frame</span><span class="topic">Name the skill explicitly so the workflow is visible and repeatable.</span></div>
+        <div class="agenda-item"><span class="time">Reuse</span><span class="topic">Keep the task narrow; let <code>CLAUDE.md</code> and <code>.claude/skills/</code> carry the standard.</span></div>
+      </div>
+    </div>
+
+    <div class="survey-box box-94 fragment">
+      <span class="live-tag">Lab 1-1 Outcomes</span>
+      <ul class="split-bullets" style="margin: 1rem 0 0 0;">
+        <li>Write a well-formed task frame with all 5 ingredients.</li>
+        <li>Ship one small, verified change, backed by test evidence, not just a claim that it works.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card quick-check-slide">
+    <div class="eyebrow">09:30 – 11:00 · The Agentic Mindset Shift</div>
+    <h1 class="w-80">Quick Check: The Agentic Mindset Shift</h1>
+
+    <div class="mcq-list">
+      <div class="mcq-item fragment" data-fragment-index="1">
+        <p class="mcq-question">1. Which loop describes agentic coding?</p>
+        <p class="mcq-option fragment" data-fragment-index="2">(a) Read → Act → Observe</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="3">(b) Read → Decide → Act → Observe</p>
+        <p class="mcq-option fragment" data-fragment-index="4">(c) Prompt → Suggest → Accept</p>
+        <span class="mcq-reveal fragment" data-fragment-index="5"></span>
+      </div>
+      <div class="mcq-item fragment" data-fragment-index="6">
+        <p class="mcq-question">2. Which two artifacts let you package a task frame so it runs the loop again without you rewriting it?</p>
+        <p class="mcq-option fragment" data-fragment-index="7">(a) A README and a package.json</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="8">(b) CLAUDE.md and a SKILL.md</p>
+        <p class="mcq-option fragment" data-fragment-index="9">(c) A prompt and a code comment</p>
+        <span class="mcq-reveal fragment" data-fragment-index="10"></span>
+      </div>
+      <div class="mcq-item fragment" data-fragment-index="11">
+        <p class="mcq-question">3. In the thin reference pattern, where should tool-specific instruction files point?</p>
+        <p class="mcq-option fragment" data-fragment-index="12">(a) To each other</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="13">(b) To AGENTS.md as the shared source of truth</p>
+        <p class="mcq-option fragment" data-fragment-index="14">(c) To whichever backlog ticket is active</p>
+        <span class="mcq-reveal fragment" data-fragment-index="15"></span>
+      </div>
+      <div class="mcq-item fragment" data-fragment-index="16">
+        <p class="mcq-question">4. What must accompany a shipped change before it counts as "verified," per this morning's principle?</p>
+        <p class="mcq-option fragment" data-fragment-index="17">(a) A confident summary from the agent</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="18">(b) Test evidence you can actually check</p>
+        <p class="mcq-option fragment" data-fragment-index="19">(c) A green checkmark emoji</p>
+        <span class="mcq-reveal fragment" data-fragment-index="20"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">09:30 – 11:00 · The Agentic Mindset Shift</div>
+    <h1 class="w-80">You Can Now...</h1>
+
+    <ul class="split-bullets objectives-list" style="margin-top: 1.2rem;">
+      <li class="fragment">Describe the Read → Decide → Act → Observe loop, and name a task in your day where a coding agent adds value, and one where it doesn't.</li>
+      <li class="fragment">Write a well-formed task frame with all 5 ingredients.</li>
+      <li class="fragment">Run a SKILL.md explicitly with slash commands.</li>
+      <li class="fragment">Ship one small, verified change, backed by test evidence, not just a claim that it works.</li>
+    </ul>
+  </div>
+</section>
+
+  </div>
+</div>
+
+<div class="slide-footer-label">Claude Code Developer Enablement · Day 1</div>
+
+<script src="../../../vendor/reveal.js-6.0.1/reveal.js"></script>
+<script src="../../../vendor/reveal.js-6.0.1/plugin/notes.js"></script>
+<script src="../../../vendor/reveal.js-6.0.1/plugin/highlight.js"></script>
+<script>
+  (function() {
+    var savedScale = 1;
+    try {
+      savedScale = parseFloat(window.localStorage.getItem('deck-font-scale')) || 1;
+    } catch (e) {}
+    window.__deckFontScale = Math.min(Math.max(savedScale, 0.8), 1.6);
+    document.documentElement.style.setProperty('--deck-font-scale', window.__deckFontScale.toFixed(2));
+  })();
+
+  Reveal.initialize({
+    hash: true,
+    center: false,
+    width: 1920,
+    height: 1080,
+    margin: 0,
+    minScale: 0.2,
+    maxScale: 2.0,
+    transition: 'none',
+    controls: false,
+    progress: false,
+    slideNumber: false,
+    plugins: [ RevealNotes, RevealHighlight ]
+  });
+
+  // Adjust line numbers based on data-start attribute
+  function adjustLineNumbers() {
+    document.querySelectorAll('code[data-start]').forEach(function(code) {
+      var startLine = parseInt(code.getAttribute('data-start'), 10);
+      if (isNaN(startLine)) return;
+
+      var table = code.querySelector('table[class*="hljs"]');
+      if (!table) return;
+
+      var rows = table.querySelectorAll('tr');
+      rows.forEach(function(row, idx) {
+        var lineCell = row.querySelector('td:first-child');
+        if (lineCell) {
+          var lineNum = startLine + idx;
+          lineCell.textContent = lineNum;
+        }
+      });
+    });
+  }
+
+  Reveal.on('ready', adjustLineNumbers);
+  Reveal.on('slidechanged', adjustLineNumbers);
+
+  (function() {
+    if (window.__slideNavInit) return;
+    window.__slideNavInit = true;
+
+    function buildNav() {
+      var slides = Reveal.getSlides();
+      var objIdx = {};
+      slides.forEach(function(s, i) {
+        var eyebrow = s.querySelector('.eyebrow');
+        if (s.querySelector('[data-nav-objectives]') || (eyebrow && eyebrow.textContent.trim().endsWith('Learning Objectives'))) objIdx[i] = true;
+      });
+
+      var bar = document.createElement('div');
+      bar.className = 'slide-nav-bar';
+
+      var prev = document.createElement('button');
+      prev.className = 'slide-nav-arrow';
+      prev.innerHTML = '&#8592;';
+      prev.setAttribute('aria-label', 'Previous slide');
+      prev.addEventListener('click', function() { Reveal.prev(); });
+
+      var dotsEl = document.createElement('div');
+      dotsEl.className = 'slide-nav-dots';
+
+      slides.forEach(function(_, i) {
+        var dot = document.createElement('button');
+        dot.className = 'slide-nav-dot' + (objIdx[i] ? ' objectives' : '');
+        dot.textContent = String(i + 1);
+        dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+        dot.addEventListener('click', (function(idx) {
+          return function() { Reveal.slide(idx); };
+        })(i));
+        dotsEl.appendChild(dot);
+      });
+
+      var next = document.createElement('button');
+      next.className = 'slide-nav-arrow';
+      next.innerHTML = '&#8594;';
+      next.setAttribute('aria-label', 'Next slide');
+      next.addEventListener('click', function() { Reveal.next(); });
+
+      bar.appendChild(prev);
+      bar.appendChild(dotsEl);
+      bar.appendChild(next);
+      document.body.appendChild(bar);
+      updateNav(Reveal.getState().indexh || 0);
+    }
+
+    function updateNav(idx) {
+      document.querySelectorAll('.slide-nav-dot').forEach(function(d, i) {
+        d.classList.toggle('active', i === idx);
+      });
+    }
+
+    Reveal.on('ready', function() { buildNav(); });
+    Reveal.on('slidechanged', function(e) { updateNav(e.indexh); });
+  })();
+
+  (function() {
+    if (window.__slideFontControlsInit) return;
+    window.__slideFontControlsInit = true;
+
+    var minScale = 0.8;
+    var maxScale = 1.6;
+    var step = 0.1;
+    var scale = window.__deckFontScale || 1;
+    var resetButton;
+
+    function saveScale() {
+      try {
+        window.localStorage.setItem('deck-font-scale', scale.toFixed(2));
+      } catch (e) {}
+    }
+
+    function applyScale() {
+      scale = Math.min(Math.max(scale, minScale), maxScale);
+      document.documentElement.style.setProperty('--deck-font-scale', scale.toFixed(2));
+      if (resetButton) resetButton.textContent = Math.round(scale * 100) + '%';
+      saveScale();
+      if (window.Reveal && typeof Reveal.layout === 'function') Reveal.layout();
+    }
+
+    function addButton(parent, label, ariaLabel, onClick, className) {
+      var button = document.createElement('button');
+      button.className = 'slide-font-button' + (className ? ' ' + className : '');
+      button.type = 'button';
+      button.textContent = label;
+      button.setAttribute('aria-label', ariaLabel);
+      button.addEventListener('click', onClick);
+      parent.appendChild(button);
+      return button;
+    }
+
+    function buildControls() {
+      var controls = document.createElement('div');
+      controls.className = 'slide-font-controls';
+      addButton(controls, 'A-', 'Decrease slide text size', function() { scale -= step; applyScale(); });
+      resetButton = addButton(controls, '100%', 'Reset slide text size', function() { scale = 1; applyScale(); }, 'slide-font-reset');
+      addButton(controls, 'A+', 'Increase slide text size', function() { scale += step; applyScale(); });
+      document.body.appendChild(controls);
+      applyScale();
+    }
+
+    Reveal.on('ready', buildControls);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!-- GENERATED FILE — do not edit directly.
+     Source: lab6-deck/sections/<slug>/slides.html
+     Regenerate with: python3 scripts/build_deck.py --deck lab6-deck -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wells Fargo Presents: DevX and MCP</title>
+<link rel="stylesheet" href="../vendor/reveal.js-6.0.1/reveal.css" />
+<link rel="stylesheet" href="../vendor/reveal.js-6.0.1/plugin/highlight/vscode-dark-modern.css" />
+<link rel="stylesheet" href="./styles.css" />
+<style>
+:root {
+  --deck-font-scale: 1;
+}
+html {
+  font-size: calc(16px * var(--deck-font-scale));
+}
+.slide-nav-bar {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 100;
+  background: rgba(5,10,40,0.78);
+  border-radius: 28px;
+  padding: 6px 12px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.slide-nav-arrow {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.8);
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+.slide-nav-arrow:hover {
+  background: rgba(255,255,255,0.12);
+}
+.slide-nav-dots {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  transition: gap 0.3s ease;
+}
+.slide-nav-bar:hover .slide-nav-dots {
+  gap: 4px;
+}
+.slide-nav-dot {
+  max-width: 0;
+  min-width: 0;
+  height: 28px;
+  overflow: hidden;
+  opacity: 0;
+  border-style: solid;
+  border-width: 0;
+  border-color: rgba(255,255,255,0.28);
+  border-radius: 5px;
+  color: rgba(255,255,255,0.5);
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 600;
+  font-family: inherit;
+  transition: max-width 0.3s ease, opacity 0.25s ease, border-width 0s, padding 0.3s ease;
+}
+.slide-nav-dot.active {
+  max-width: 28px;
+  width: 28px;
+  opacity: 1;
+  border-width: 1px;
+  border-color: rgba(255,255,255,0.7);
+  color: #fff;
+  background: rgba(255,255,255,0.18);
+}
+.slide-nav-dot.objectives {
+  border-color: #35b6c9;
+  color: #35b6c9;
+}
+.slide-nav-dot.objectives.active {
+  background: rgba(53,182,201,0.35);
+  border-color: #35b6c9;
+  color: #fff;
+}
+.slide-nav-bar:hover .slide-nav-dot {
+  max-width: 28px;
+  width: 28px;
+  opacity: 1;
+  border-width: 1px;
+}
+.slide-nav-dot:hover {
+  background: rgba(255,255,255,0.1);
+}
+.slide-font-controls {
+  position: fixed;
+  right: 24px;
+  bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 100;
+  background: rgba(5,10,40,0.78);
+  border-radius: 28px;
+  padding: 6px 8px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.slide-font-button {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.86);
+  min-width: 36px;
+  height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  line-height: 1;
+  font-family: inherit;
+  font-weight: 700;
+  transition: background 0.15s;
+}
+.slide-font-button:hover {
+  background: rgba(255,255,255,0.12);
+}
+.slide-font-reset {
+  min-width: 48px;
+  color: #35b6c9;
+}
+</style>
+</head>
+<body>
+
+<div class="section-links" aria-label="Section navigation">
+  <a class="section-link" href="../index.html">Main Menu</a>
+</div>
+
+<div class="reveal">
+  <div class="slides">
+<section>
+  <div class="slide-card">
+    <div class="brand-strip">
+      <img src="../images/anthropic-logo.jpg" alt="Anthropic" class="brand-logo" />
+      <span class="brand-sep">&times;</span>
+      <img src="../images/cognizant-logo.jpeg" alt="Cognizant" class="brand-logo" />
+      <span class="brand-sep">&times;</span>
+      <img src="../images/wells-fargo-logo.jpeg" alt="Wells Fargo" class="brand-logo" />
+    </div>
+
+    <div class="eyebrow">Claude Code Developer Enablement · Day 2</div>
+    <h1>Wells Fargo Presents: <span class="accent">DevX and MCP</span></h1>
+    <p class="subtitle">A Wells Fargo employee demo of DevX MCP in the Wells Fargo ecosystem.</p>
+
+    <div class="meta-row">
+      <div>
+        <span class="meta-label">Block</span>
+        <span>MCP &amp; Developer Experience</span>
+      </div>
+      <div>
+        <span class="meta-label">Format</span>
+        <span>Demo</span>
+      </div>
+      <div>
+        <span class="meta-label">Time</span>
+        <span>12:30 – 13:30</span>
+      </div>
+    </div>
+  </div>
+</section>
+  </div>
+</div>
+
+<div class="slide-footer-label">Claude Code Developer Enablement · Day 2 · Lab 6</div>
+
+<script src="../vendor/reveal.js-6.0.1/reveal.js"></script>
+<script src="../vendor/reveal.js-6.0.1/plugin/notes.js"></script>
+<script src="../vendor/reveal.js-6.0.1/plugin/highlight.js"></script>
+<script>
+  (function() {
+    var savedScale = 1;
+    try {
+      savedScale = parseFloat(window.localStorage.getItem('deck-font-scale')) || 1;
+    } catch (e) {}
+    window.__deckFontScale = Math.min(Math.max(savedScale, 0.8), 1.6);
+    document.documentElement.style.setProperty('--deck-font-scale', window.__deckFontScale.toFixed(2));
+  })();
+
+  Reveal.initialize({
+    hash: true,
+    center: false,
+    width: 1920,
+    height: 1080,
+    margin: 0,
+    minScale: 0.2,
+    maxScale: 2.0,
+    transition: 'none',
+    controls: false,
+    progress: false,
+    slideNumber: false,
+    plugins: [ RevealNotes, RevealHighlight ]
+  });
+
+  // Adjust line numbers based on data-start attribute
+  function adjustLineNumbers() {
+    document.querySelectorAll('code[data-start]').forEach(function(code) {
+      var startLine = parseInt(code.getAttribute('data-start'), 10);
+      if (isNaN(startLine)) return;
+
+      var table = code.querySelector('table[class*="hljs"]');
+      if (!table) return;
+
+      var rows = table.querySelectorAll('tr');
+      rows.forEach(function(row, idx) {
+        var lineCell = row.querySelector('td:first-child');
+        if (lineCell) {
+          var lineNum = startLine + idx;
+          lineCell.textContent = lineNum;
+        }
+      });
+    });
+  }
+
+  Reveal.on('ready', adjustLineNumbers);
+  Reveal.on('slidechanged', adjustLineNumbers);
+
+  (function() {
+    if (window.__slideNavInit) return;
+    window.__slideNavInit = true;
+
+    function buildNav() {
+      var slides = Reveal.getSlides();
+      var objIdx = {};
+      slides.forEach(function(s, i) {
+        var eyebrow = s.querySelector('.eyebrow');
+        if (s.querySelector('[data-nav-objectives]') || (eyebrow && eyebrow.textContent.trim().endsWith('Learning Objectives'))) objIdx[i] = true;
+      });
+
+      var bar = document.createElement('div');
+      bar.className = 'slide-nav-bar';
+
+      var prev = document.createElement('button');
+      prev.className = 'slide-nav-arrow';
+      prev.innerHTML = '&#8592;';
+      prev.setAttribute('aria-label', 'Previous slide');
+      prev.addEventListener('click', function() { Reveal.prev(); });
+
+      var dotsEl = document.createElement('div');
+      dotsEl.className = 'slide-nav-dots';
+
+      slides.forEach(function(_, i) {
+        var dot = document.createElement('button');
+        dot.className = 'slide-nav-dot' + (objIdx[i] ? ' objectives' : '');
+        dot.textContent = String(i + 1);
+        dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+        dot.addEventListener('click', (function(idx) {
+          return function() { Reveal.slide(idx); };
+        })(i));
+        dotsEl.appendChild(dot);
+      });
+
+      var next = document.createElement('button');
+      next.className = 'slide-nav-arrow';
+      next.innerHTML = '&#8594;';
+      next.setAttribute('aria-label', 'Next slide');
+      next.addEventListener('click', function() { Reveal.next(); });
+
+      bar.appendChild(prev);
+      bar.appendChild(dotsEl);
+      bar.appendChild(next);
+      document.body.appendChild(bar);
+      updateNav(Reveal.getState().indexh || 0);
+    }
+
+    function updateNav(idx) {
+      document.querySelectorAll('.slide-nav-dot').forEach(function(d, i) {
+        d.classList.toggle('active', i === idx);
+      });
+    }
+
+    Reveal.on('ready', function() { buildNav(); });
+    Reveal.on('slidechanged', function(e) { updateNav(e.indexh); });
+  })();
+
+  (function() {
+    if (window.__slideFontControlsInit) return;
+    window.__slideFontControlsInit = true;
+
+    var minScale = 0.8;
+    var maxScale = 1.6;
+    var step = 0.1;
+    var scale = window.__deckFontScale || 1;
+    var resetButton;
+
+    function saveScale() {
+      try {
+        window.localStorage.setItem('deck-font-scale', scale.toFixed(2));
+      } catch (e) {}
+    }
+
+    function applyScale() {
+      scale = Math.min(Math.max(scale, minScale), maxScale);
+      document.documentElement.style.setProperty('--deck-font-scale', scale.toFixed(2));
+      if (resetButton) resetButton.textContent = Math.round(scale * 100) + '%';
+      saveScale();
+      if (window.Reveal && typeof Reveal.layout === 'function') Reveal.layout();
+    }
+
+    function addButton(parent, label, ariaLabel, onClick, className) {
+      var button = document.createElement('button');
+      button.className = 'slide-font-button' + (className ? ' ' + className : '');
+      button.type = 'button';
+      button.textContent = label;
+      button.setAttribute('aria-label', ariaLabel);
+      button.addEventListener('click', onClick);
+      parent.appendChild(button);
+      return button;
+    }
+
+    function buildControls() {
+      var controls = document.createElement('div');
+      controls.className = 'slide-font-controls';
+      addButton(controls, 'A-', 'Decrease slide text size', function() { scale -= step; applyScale(); });
+      resetButton = addButton(controls, '100%', 'Reset slide text size', function() { scale = 1; applyScale(); }, 'slide-font-reset');
+      addButton(controls, 'A+', 'Increase slide text size', function() { scale += step; applyScale(); });
+      document.body.appendChild(controls);
+      applyScale();
+    }
+
+    Reveal.on('ready', buildControls);
+  })();
+</script>
+</body>
+</html>

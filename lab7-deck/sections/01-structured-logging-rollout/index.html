@@ -1,0 +1,837 @@
+<!-- GENERATED FILE — do not edit directly.
+     Source: lab7-deck/sections/<slug>/slides.html
+     Regenerate with: python3 scripts/build_deck.py --deck lab7-deck -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lab 7: Build the Enforcement Layer — Build the Enforcement Layer</title>
+<link rel="stylesheet" href="../../../vendor/reveal.js-6.0.1/reveal.css" />
+<link rel="stylesheet" href="../../../vendor/reveal.js-6.0.1/plugin/highlight/vscode-dark-modern.css" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+:root {
+  --deck-font-scale: 1;
+}
+html {
+  font-size: calc(16px * var(--deck-font-scale));
+}
+.slide-nav-bar {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 100;
+  background: rgba(5,10,40,0.78);
+  border-radius: 28px;
+  padding: 6px 12px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.slide-nav-arrow {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.8);
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+.slide-nav-arrow:hover {
+  background: rgba(255,255,255,0.12);
+}
+.slide-nav-dots {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  transition: gap 0.3s ease;
+}
+.slide-nav-bar:hover .slide-nav-dots {
+  gap: 4px;
+}
+.slide-nav-dot {
+  max-width: 0;
+  min-width: 0;
+  height: 28px;
+  overflow: hidden;
+  opacity: 0;
+  border-style: solid;
+  border-width: 0;
+  border-color: rgba(255,255,255,0.28);
+  border-radius: 5px;
+  color: rgba(255,255,255,0.5);
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 600;
+  font-family: inherit;
+  transition: max-width 0.3s ease, opacity 0.25s ease, border-width 0s, padding 0.3s ease;
+}
+.slide-nav-dot.active {
+  max-width: 28px;
+  width: 28px;
+  opacity: 1;
+  border-width: 1px;
+  border-color: rgba(255,255,255,0.7);
+  color: #fff;
+  background: rgba(255,255,255,0.18);
+}
+.slide-nav-dot.objectives {
+  border-color: #35b6c9;
+  color: #35b6c9;
+}
+.slide-nav-dot.objectives.active {
+  background: rgba(53,182,201,0.35);
+  border-color: #35b6c9;
+  color: #fff;
+}
+.slide-nav-bar:hover .slide-nav-dot {
+  max-width: 28px;
+  width: 28px;
+  opacity: 1;
+  border-width: 1px;
+}
+.slide-nav-dot:hover {
+  background: rgba(255,255,255,0.1);
+}
+.slide-font-controls {
+  position: fixed;
+  right: 24px;
+  bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 100;
+  background: rgba(5,10,40,0.78);
+  border-radius: 28px;
+  padding: 6px 8px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.slide-font-button {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.86);
+  min-width: 36px;
+  height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  line-height: 1;
+  font-family: inherit;
+  font-weight: 700;
+  transition: background 0.15s;
+}
+.slide-font-button:hover {
+  background: rgba(255,255,255,0.12);
+}
+.slide-font-reset {
+  min-width: 48px;
+  color: #35b6c9;
+}
+</style>
+</head>
+<body>
+
+<div class="section-links" aria-label="Section navigation">
+  <a class="section-link" href="../../../index.html">Main Menu</a>
+</div>
+
+<div class="reveal">
+  <div class="slides">
+<section>
+  <div class="slide-card">
+    <div class="brand-strip">
+      <img src="../../../images/anthropic-logo.jpg" alt="Anthropic" class="brand-logo" />
+      <span class="brand-sep">&times;</span>
+      <img src="../../../images/cognizant-logo.jpeg" alt="Cognizant" class="brand-logo" />
+      <span class="brand-sep">&times;</span>
+      <img src="../../../images/wells-fargo-logo.jpeg" alt="Wells Fargo" class="brand-logo" />
+    </div>
+
+    <div class="eyebrow">Claude Code Developer Enablement · Day 2</div>
+    <h1>Lab 7: Build the <span class="accent">Enforcement Layer</span></h1>
+    <p class="subtitle">Hold all three layers of control at once: a Skill, two subagents that disagree, and a hook that can't be talked around.</p>
+
+    <div class="meta-row">
+      <div>
+        <span class="meta-label">Block</span>
+        <span>Build the Enforcement Layer</span>
+      </div>
+      <div>
+        <span class="meta-label">Ticket</span>
+        <span>WM-109</span>
+      </div>
+      <div>
+        <span class="meta-label">Time</span>
+        <span>13:30 – 14:45</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="agenda-title">Where Lab 7 Fits</div>
+    <div class="agenda-sub" style="margin-top:0.9rem; margin-bottom:0.9rem;">From getting work done through roles to the layer underneath</div>
+
+    <div class="agenda-columns">
+      <div class="agenda-col">
+        <h3>Recap · Labs 4 &amp; 5</h3>
+        <div class="agenda-item fragment fade-up" data-fragment-index="1"><span class="time">Lab 4</span><span class="topic">Staffed a pod and shipped a four-ticket epic on one module.</span></div>
+        <div class="agenda-item fragment fade-up" data-fragment-index="2"><span class="time">Lab 5</span><span class="topic">Mapped a change's blast radius and migrated a signature across six files.</span></div>
+        <div class="agenda-item fragment fade-up" data-fragment-index="3"><span class="time">Gap</span><span class="topic">Both labs were about getting work done through roles. "Don't touch that" was still just a request.</span></div>
+      </div>
+
+      <div class="agenda-col">
+        <h3>This lab · Lab 7</h3>
+        <div class="agenda-item fragment fade-up" data-fragment-index="4"><span class="time">New</span><span class="topic">A Skill that carries the logging procedure.</span></div>
+        <div class="agenda-item fragment fade-up" data-fragment-index="5"><span class="time">New</span><span class="topic">Two subagents that supply independent judgment, and disagree with each other.</span></div>
+        <div class="agenda-item fragment fade-up" data-fragment-index="6"><span class="time">New</span><span class="topic">A <code>PreToolUse</code> hook that enforces a guardrail deterministically, even on a bad afternoon.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card" data-nav-objectives>
+    <div class="eyebrow">13:30 – 14:45 · Learning Objectives</div>
+    <h1 class="w-80">After This Lab, You Will Be Able To...</h1>
+
+    <ul class="split-bullets objectives-list" style="margin-top: 1.6rem;">
+      <li class="fragment fade-up" data-fragment-index="1">Place a guardrail in the right layer, Skill, subagent, or hook, using an explicit decision test, and explain how each layer fails.</li>
+      <li class="fragment fade-up" data-fragment-index="2">Distinguish the two shapes of hook, additive vs. subtractive, and recognize that most guardrails worth having are the harder, subtractive kind.</li>
+      <li class="fragment fade-up" data-fragment-index="3">Read a <code>PreToolUse</code> hook's contract, stdin JSON, exit 0/2, stderr as a prompt, and make the fail-open vs. fail-closed decision deliberately.</li>
+      <li class="fragment fade-up" data-fragment-index="4">Manage guardrails across a pod: choose between a session-wide hook and one scoped to a single role.</li>
+      <li class="fragment fade-up" data-fragment-index="5">Adjudicate two reviewers that disagree, conformance vs. audit sufficiency, by deciding and recording the outcome.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">13:30 – 14:45 · The Spine</div>
+    <h1 class="title-benchmark">Three Layers of Control</h1>
+    <p class="bench-note">Labs 4 and 5 built roles. This lab is where the roles become a framework, because it holds all three kinds of control at once.</p>
+
+    <div class="bench-wrap">
+      <table class="bench-table">
+        <thead>
+          <tr>
+            <th class="metric-col">Layer</th>
+            <th>What it is</th>
+            <th>How it fails</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="fragment fade-up" data-fragment-index="1">
+            <td class="metric-name">Skill</td>
+            <td>A procedure, written down once, that travels with the repo</td>
+            <td class="hero-score">Silently, if nobody invokes it</td>
+          </tr>
+          <tr class="fragment fade-up" data-fragment-index="2">
+            <td class="metric-name">Subagent</td>
+            <td>An independent opinion, in its own context, with its own tool budget</td>
+            <td class="hero-score">Arguably, a reviewer can be wrong or talked around</td>
+          </tr>
+          <tr class="fragment fade-up" data-fragment-index="3">
+            <td class="metric-name">Hook</td>
+            <td>A deterministic denial before a tool call runs</td>
+            <td class="hero-score">Loudly, or not at all, it cannot be reasoned with</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="bench-footnote fragment fade-up" data-fragment-index="4">
+        <strong>The important part isn't how to write a hook.</strong> It's learning which guardrails deserve one.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card big-card-text">
+    <div class="eyebrow">13:30 – 14:45 · The Decision Test</div>
+    <h1 class="w-80">Choosing the Layer Is the Design Work</h1>
+    <p class="bench-note w-78 note-tight">
+      Lab 4's <code>check_pod.py</code> labelled two roles "contract-only": asked, not prevented, from crossing the test/source line. A <code>tools:</code> list gates tool types, not file paths. Layer three is the answer to that gap.
+    </p>
+
+    <div class="category-grid grid-two-wide">
+      <div class="category-card fragment fade-up" data-fragment-index="1">
+        <h4>The test</h4>
+        <ul>
+          <li>Could a well-intentioned, competent engineer violate this by accident?</li>
+          <li>Could review miss it?</li>
+          <li>Are the consequences something you can't take back?</li>
+        </ul>
+        <p>If yes to all three, it's a hook.</p>
+      </div>
+      <div class="category-card fragment fade-up" data-fragment-index="2">
+        <h4>The cost of getting it wrong</h4>
+        <ul>
+          <li><strong>Under-enforce:</strong> you're relying on diligence alone</li>
+          <li><strong>Over-enforce:</strong> a judgment call gets hooked, and people route around it</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">13:30 – 14:45 · Why a Hook Is Different</div>
+    <h1 class="w-80">A Hook Is the Only Guardrail That Isn't a Request</h1>
+    <p class="bench-note w-78 note-tight">A <code>PreToolUse</code> denial happens before the tool runs. It doesn't negotiate.</p>
+
+    <ul class="split-bullets" style="margin-top: 1.4rem;">
+      <li class="fragment fade-up" data-fragment-index="1">A Skill can be skipped. Nobody enforces that it gets invoked.</li>
+      <li class="fragment fade-up" data-fragment-index="2">A subagent can be wrong, shallow, or talked around by a persistent ask.</li>
+      <li class="fragment fade-up" data-fragment-index="3">A hook can't be reasoned with. That's the point, and why it's reserved for mistakes you can't take back.</li>
+      <li class="fragment fade-up" data-fragment-index="4">Hooking everything is its own mistake: a hook that blocks a legitimate change gets disabled on day one.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">13:30 – 14:45 · Once You've Decided It's a Hook</div>
+    <h1 class="title-benchmark">Two Shapes of Hook</h1>
+    <p class="bench-note">This decides how much work you're in for.</p>
+
+    <div class="bench-wrap">
+      <table class="bench-table">
+        <thead>
+          <tr>
+            <th class="metric-col"></th>
+            <th>Additive check</th>
+            <th>Subtractive check</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="metric-name">Asks</td>
+            <td>Does this <strong>add</strong> something forbidden?</td>
+            <td>Does this <strong>remove</strong> something required?</td>
+          </tr>
+          <tr>
+            <td class="metric-name">Needs</td>
+            <td>Only the text being introduced</td>
+            <td>The simulated result vs. what's on disk</td>
+          </tr>
+          <tr>
+            <td class="metric-name">Example</td>
+            <td><code>no_print.py</code> (shipped, read it)</td>
+            <td><code>protected_regions.py</code> (yours to write)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="bench-footnote fragment fade-up" data-fragment-index="1">
+        <strong>Most real guardrails are subtractive.</strong> Reading the tool input alone can't answer them.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card big-card-text">
+    <div class="eyebrow">13:30 – 14:45 · The Mechanics</div>
+    <h1 class="w-80">The Hook Interface</h1>
+    <p class="bench-note w-78 note-tight">
+      One interface, reusable for any <code>PreToolUse</code> hook. This is what makes a hook a control instead of a suggestion.
+    </p>
+
+    <div class="category-grid grid-three-wide">
+      <div class="category-card">
+        <h4>In</h4>
+        <ul>
+          <li class="fragment fade-up" data-fragment-index="1">The <code>PreToolUse</code> event arrives as JSON on stdin</li>
+          <li class="fragment fade-up" data-fragment-index="2">Tool name, tool input, file path all included</li>
+        </ul>
+      </div>
+      <div class="category-card">
+        <h4>Out</h4>
+        <ul>
+          <li class="fragment fade-up" data-fragment-index="3"><strong>Exit 0</strong> allows the tool call</li>
+          <li class="fragment fade-up" data-fragment-index="4"><strong>Exit 2</strong> blocks it, reason on stderr</li>
+        </ul>
+      </div>
+      <div class="category-card">
+        <h4>What stderr really is</h4>
+        <ul>
+          <li class="fragment fade-up" data-fragment-index="5">Claude Code feeds it back to the model</li>
+          <li class="fragment fade-up" data-fragment-index="6">It's a prompt, not a log line</li>
+          <li class="fragment fade-up" data-fragment-index="7">Name the legitimate alternative, don't just refuse</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">13:30 – 14:45 · Two Decisions the Tests Don't Make for You</div>
+    <h1 class="w-80">Fail Open or Fail Closed?</h1>
+    <p class="bench-note w-78 note-tight">Same question, possibly a different answer, every time you write a hook.</p>
+
+    <div class="category-grid grid-two-wide">
+      <div class="category-card fragment fade-up" data-fragment-index="1">
+        <h4><code>no_print.py</code> fails open</h4>
+        <ul>
+          <li>Every "can't tell" path returns 0</li>
+          <li>The docstring says why: it's one layer among several, a miss gets caught downstream</li>
+        </ul>
+      </div>
+      <div class="category-card fragment fade-up" data-fragment-index="2">
+        <h4>Yours may need to fail closed</h4>
+        <ul>
+          <li>It protects a fee table review already missed once</li>
+          <li>A regex check will block a semantically identical reformat, and that's a written-down trade, not a discovered bug</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bench-footnote fragment fade-up" data-fragment-index="3">
+      A hook with a known, documented blind spot is stronger than one with an assumed-perfect reputation.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card code-example-slide">
+    <div class="eyebrow">13:30 – 14:45 · Worked Example, Then Yours</div>
+    <h1 class="w-84">Read One, Write One</h1>
+    <p class="bench-note w-78 note-tight">
+      <code>no_print.py</code> ships done: it blocks a <code>print()</code> added during the logging rollout. Read it before writing <code>protected_regions.py</code>, the harder, subtractive shape.
+    </p>
+    <div class="code-block">
+      <p class="code-label">.claude/hooks/protected_regions.py, the check at its heart</p>
+      <pre><code class="language-python">violations = [
+    entry for entry in entries
+    if entry["snippet"] in current and entry["snippet"] not in new_content
+]
+if violations:
+    print("Blocked: this edit would remove or alter a protected region:",
+          file=sys.stderr)
+    sys.exit(2)  # exit 2 = PreToolUse denies the tool call</code></pre>
+    </div>
+    <ul class="split-bullets" style="margin-top: 1rem;">
+      <li class="fragment fade-up" data-fragment-index="1">Handles <code>Write</code>, <code>Edit</code>, and <code>MultiEdit</code></li>
+      <li class="fragment fade-up" data-fragment-index="2">Allows a <code>logger.info(...)</code> call inserted next to a protected region</li>
+      <li class="fragment fade-up" data-fragment-index="3">Blocks only when a protected snippet would actually disappear</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">13:30 – 14:45 · The Proof</div>
+    <h1 class="w-80">Watch It Deny You</h1>
+    <p class="bench-note w-78 note-tight">Tests prove the logic. They don't prove Claude Code is actually invoking the hook.</p>
+
+    <div class="agenda-columns">
+      <div class="agenda-col">
+        <h3>Try it</h3>
+        <div class="agenda-item fragment fade-up" data-fragment-index="1"><span class="time">Ask</span><span class="topic">"Add a print statement in fees.py so I can see it while debugging."</span></div>
+        <div class="agenda-item fragment fade-up" data-fragment-index="2"><span class="time">Watch</span><span class="topic">A deterministic refusal, then read the reason on stderr.</span></div>
+      </div>
+      <div class="agenda-col">
+        <h3>Why it matters</h3>
+        <div class="agenda-item fragment fade-up" data-fragment-index="3"><span class="time">Trust</span><span class="topic">A hook that passes tests but has never denied you anything is one you don't yet trust.</span></div>
+        <div class="agenda-item fragment fade-up" data-fragment-index="4"><span class="time">Watch out</span><span class="topic">"I needed a quick print to debug" is how guardrails get removed in real codebases. Sit with the friction once.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card big-card-text">
+    <div class="eyebrow">13:30 – 14:45 · Closing Lab 4's Gap</div>
+    <h1 class="w-80">Managing Guardrails in a Pod</h1>
+    <p class="bench-note w-78 note-tight">Where a hook lives, and how strictly, is a pod-level decision, not just a scripting one.</p>
+
+    <div class="category-grid grid-two-wide">
+      <div class="category-card fragment fade-up" data-fragment-index="1">
+        <h4>Session-scoped</h4>
+        <ul>
+          <li>Wired in <code>.claude/settings.json</code></li>
+          <li>Applies to every tool call, every role</li>
+          <li>What both this lab's hooks use</li>
+        </ul>
+      </div>
+      <div class="category-card fragment fade-up" data-fragment-index="2">
+        <h4>Agent-scoped</h4>
+        <ul>
+          <li>Attached to one subagent's own frontmatter</li>
+          <li>Turns "never edit a test file" from contract-only into tool-enforced, for that role alone</li>
+          <li>This is how Lab 4's gap closes for real</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bench-footnote fragment fade-up" data-fragment-index="3">
+      Contract-only vs. tool-enforced is the difference between a framework and a wish.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">13:30 – 14:45 · The Collision</div>
+    <h1 class="w-80">Two Reviewers Earn Their Keep by Disagreeing</h1>
+    <p class="bench-note w-78 note-tight"><code>logging-reviewer</code> checks conformance. <code>risk-officer</code> checks audit sufficiency. They should disagree.</p>
+
+    <div class="category-grid grid-two-wide">
+      <div class="category-card fragment fade-up" data-fragment-index="1">
+        <h4><code>logging-reviewer</code></h4>
+        <ul>
+          <li>Event names, field conventions</li>
+          <li>Routine paths staying silent</li>
+          <li>Nothing else in the diff changed</li>
+        </ul>
+      </div>
+      <div class="category-card fragment fade-up" data-fragment-index="2">
+        <h4><code>risk-officer</code></h4>
+        <ul>
+          <li>Could an analyst reconstruct the decision, not just the outcome?</li>
+          <li>Read-only by design: <code>Read</code>, <code>Grep</code> only</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bench-footnote fragment fade-up" data-fragment-index="3">
+      Don't resolve a disagreement by picking a favorite or loosening a checklist. Decide, and record the outcome: extend the convention, or accept the gap in writing.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card big-card-text">
+    <div class="eyebrow">13:30 – 14:45 · Optional Stretch</div>
+    <h1 class="w-80">A Third Way to Review: Workflows</h1>
+    <p class="bench-note w-78 note-tight">
+      Skip-safe, and worth a look if your environment has it. A workflow trades a subagent's judgment for a script's coverage.
+    </p>
+
+    <div class="category-grid grid-three-wide">
+      <div class="category-card fragment fade-up" data-fragment-index="1">
+        <h4>What it is</h4>
+        <ul>
+          <li><code>.claude/workflows/audit-review.js</code> fans out across four dimensions at once</li>
+          <li>Each finding then goes to two independent skeptics told to refute it</li>
+          <li>Control flow lives in code, not in a model's judgment</li>
+        </ul>
+      </div>
+      <div class="category-card fragment fade-up" data-fragment-index="2">
+        <h4>When to reach for one</h4>
+        <ul>
+          <li>It's the pairing review you'd give yourself with unlimited patience: reread the same diff once per concern, then argue with your own findings</li>
+          <li>Worth it once that discipline needs to happen every time, not just when you remember to</li>
+          <li>Wrong tool for a single bounded task; you're paying for coverage, not speed</li>
+        </ul>
+      </div>
+      <div class="category-card fragment fade-up" data-fragment-index="3">
+        <h4>Compare it to what you built</h4>
+        <ul>
+          <li>Run it against your own WM-109 diff</li>
+          <li>Which findings did it surface that your two reviewers didn't?</li>
+          <li>Were they worth the cost? Be willing to conclude no</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bench-footnote fragment fade-up" data-fragment-index="4">
+      A workflow buys coverage and confidence, not speed. Use it when you'd otherwise have to choose between being thorough and being finished.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">13:30 – 14:45 · The Discipline</div>
+    <h1 class="w-80">What Not to Hook</h1>
+    <p class="bench-note w-78 note-tight">A framework is defined as much by what it declines to enforce as by what it blocks.</p>
+
+    <ul class="split-bullets" style="margin-top: 1.4rem;">
+      <li class="fragment fade-up" data-fragment-index="1"><strong>Never log raw PII:</strong> important, but what exactly matches? A hook that fires on every string field is a nuisance, not a control.</li>
+      <li class="fragment fade-up" data-fragment-index="2"><strong>Don't widen scope beyond three named modules:</strong> trivially hookable by path, until a legitimate fourth module needs logging.</li>
+      <li class="fragment fade-up" data-fragment-index="3">"We considered a hook here and chose not to" is a stronger position in a design review than never having thought about it.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">13:30 – 14:45 · Put It Into Practice</div>
+    <h1 class="w-78">Lab 7 Handoff</h1>
+    <p class="bench-note w-78 note-tight">
+      WM-109: thread a shared structured logger through <code>fees.py</code>, <code>reconcile.py</code>, and <code>drift.py</code>, then build the enforcement layer around it.
+    </p>
+
+    <div class="agenda-columns columns-playbook">
+      <div class="agenda-col col-fill">
+        <h3>Build</h3>
+        <div class="agenda-item"><span class="time">Skill</span><span class="topic">Use <code>structured-logging-rollout</code> to thread <code>get_logger(...)</code> through <code>fees.py</code>, <code>reconcile.py</code>, <code>drift.py</code>.</span></div>
+        <div class="agenda-item"><span class="time">Hook</span><span class="topic">Read <code>no_print.py</code>, then write <code>protected_regions.py</code> and wire it into <code>settings.json</code>.</span></div>
+        <div class="agenda-item"><span class="time">Query</span><span class="topic">Build <code>audit_query.py</code> so the trail is answerable, not just recorded.</span></div>
+      </div>
+      <div class="agenda-col col-fill">
+        <h3>Verify &amp; deliver</h3>
+        <div class="agenda-item"><span class="time">Verify</span><span class="topic">Watch your hook deny a real edit, then <code>pytest</code> fully green.</span></div>
+        <div class="agenda-item"><span class="time">Review</span><span class="topic">Both <code>logging-reviewer</code> and <code>risk-officer</code> weigh in, name what they disagreed about.</span></div>
+        <div class="agenda-item"><span class="time">Deliver</span><span class="topic">Fail-open/closed decision, one thing you chose not to log, and how you adjudicated the disagreement.</span></div>
+      </div>
+    </div>
+
+    <div class="survey-box box-94">
+      <span class="live-tag">The takeaway</span>
+      <p class="handoff-copy">
+        The Skill carries the procedure. The subagents supply judgment, and disagree on purpose. The hook enforces the one thing that isn't negotiable. That's the enforcement layer.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card">
+    <div class="eyebrow">13:30 – 14:45 · Knowledge Check</div>
+    <h1 class="w-80">Quick Check: Build the Enforcement Layer</h1>
+
+    <div class="mcq-list quick-check-slide">
+      <div class="mcq-item fragment" data-fragment-index="1">
+        <p class="mcq-question">1. A guardrail says "don't alter the fee-tier table during a logging rollout." Which layer?</p>
+        <p class="mcq-option fragment" data-fragment-index="2">(a) Skill</p>
+        <p class="mcq-option fragment" data-fragment-index="3">(b) Subagent</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="4">(c) Hook: one careless edit misprices every fee, review already missed it once, and there's no legitimate exception</p>
+        <span class="mcq-reveal fragment" data-fragment-index="5"></span>
+      </div>
+
+      <div class="mcq-item fragment" data-fragment-index="6">
+        <p class="mcq-question">2. What makes a hook "subtractive," and why is it harder than an additive one?</p>
+        <p class="mcq-option fragment" data-fragment-index="7">(a) It only scans the text being added</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="8">(b) It asks whether a change removes something required, so it must simulate the file after the edit and compare it to disk</p>
+        <p class="mcq-option fragment" data-fragment-index="9">(c) It runs after the tool call instead of before</p>
+        <span class="mcq-reveal fragment" data-fragment-index="10"></span>
+      </div>
+
+      <div class="mcq-item fragment" data-fragment-index="11">
+        <p class="mcq-question">3. A <code>PreToolUse</code> hook exits 2 and writes to stderr. What happens to that message?</p>
+        <p class="mcq-option fragment" data-fragment-index="12">(a) It's written to a log file and nothing else</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="13">(b) Claude Code feeds it back to the model as a prompt, so the denial should name the legitimate alternative, not just refuse</p>
+        <p class="mcq-option fragment" data-fragment-index="14">(c) It's discarded once the tool call is blocked</p>
+        <span class="mcq-reveal fragment" data-fragment-index="15"></span>
+      </div>
+
+      <div class="mcq-item fragment" data-fragment-index="16">
+        <p class="mcq-question">4. Why can't a <code>tools:</code> list express "this role may edit source but never tests"?</p>
+        <p class="mcq-option fragment" data-fragment-index="17">(a) Subagents can't be given Edit at all</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="18">(b) A tools list gates tool types, not file paths; an agent-scoped <code>PreToolUse</code> hook is the missing expression</p>
+        <p class="mcq-option fragment" data-fragment-index="19">(c) It can, with the right YAML syntax</p>
+        <span class="mcq-reveal fragment" data-fragment-index="20"></span>
+      </div>
+
+      <div class="mcq-item fragment" data-fragment-index="21">
+        <p class="mcq-question">5. <code>logging-reviewer</code> approves; <code>risk-officer</code> flags a missing field. How do you resolve it?</p>
+        <p class="mcq-option fragment" data-fragment-index="22">(a) Go with whichever reviewer approved</p>
+        <p class="mcq-option fragment" data-fragment-index="23">(b) Loosen the checklist until both agree</p>
+        <p class="mcq-option mcq-option-correct fragment" data-fragment-index="24">(c) Decide and record it: extend the convention, or accept the gap in writing</p>
+        <span class="mcq-reveal fragment" data-fragment-index="25"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="slide-card" data-nav-objectives>
+    <div class="eyebrow">13:30 – 14:45 · Recap</div>
+    <h1 class="w-80">You Can Now...</h1>
+
+    <ul class="split-bullets objectives-list" style="margin-top: 1.2rem;">
+      <li class="fragment fade-up" data-fragment-index="1">Place a guardrail in the right layer, Skill, subagent, or hook, and explain how each layer fails.</li>
+      <li class="fragment fade-up" data-fragment-index="2">Tell an additive hook from a subtractive one, and know most guardrails worth having are subtractive.</li>
+      <li class="fragment fade-up" data-fragment-index="3">Read a hook's contract, stdin JSON, exit 0/2, stderr as a prompt, and make the fail-open vs. fail-closed call on purpose.</li>
+      <li class="fragment fade-up" data-fragment-index="4">Choose between a session-wide hook and an agent-scoped one, closing Lab 4's contract-only gap for real.</li>
+      <li class="fragment fade-up" data-fragment-index="5">Adjudicate two reviewers that disagree, by deciding and recording the outcome, never by loosening a checklist.</li>
+    </ul>
+
+    <div class="survey-box box-94">
+      <span class="live-tag">Next up</span>
+      <p class="lead-copy">Lab 8 is the capstone: bring your own repo's guardrails and write the three-layer table for them.</p>
+    </div>
+  </div>
+</section>
+
+  </div>
+</div>
+
+<div class="slide-footer-label">Claude Code Developer Enablement · Day 2 · Lab 7</div>
+
+<script src="../../../vendor/reveal.js-6.0.1/reveal.js"></script>
+<script src="../../../vendor/reveal.js-6.0.1/plugin/notes.js"></script>
+<script src="../../../vendor/reveal.js-6.0.1/plugin/highlight.js"></script>
+<script>
+  (function() {
+    var savedScale = 1;
+    try {
+      savedScale = parseFloat(window.localStorage.getItem('deck-font-scale')) || 1;
+    } catch (e) {}
+    window.__deckFontScale = Math.min(Math.max(savedScale, 0.8), 1.6);
+    document.documentElement.style.setProperty('--deck-font-scale', window.__deckFontScale.toFixed(2));
+  })();
+
+  Reveal.initialize({
+    hash: true,
+    center: false,
+    width: 1920,
+    height: 1080,
+    margin: 0,
+    minScale: 0.2,
+    maxScale: 2.0,
+    transition: 'none',
+    controls: false,
+    progress: false,
+    slideNumber: false,
+    plugins: [ RevealNotes, RevealHighlight ]
+  });
+
+  // Adjust line numbers based on data-start attribute
+  function adjustLineNumbers() {
+    document.querySelectorAll('code[data-start]').forEach(function(code) {
+      var startLine = parseInt(code.getAttribute('data-start'), 10);
+      if (isNaN(startLine)) return;
+
+      var table = code.querySelector('table[class*="hljs"]');
+      if (!table) return;
+
+      var rows = table.querySelectorAll('tr');
+      rows.forEach(function(row, idx) {
+        var lineCell = row.querySelector('td:first-child');
+        if (lineCell) {
+          var lineNum = startLine + idx;
+          lineCell.textContent = lineNum;
+        }
+      });
+    });
+  }
+
+  Reveal.on('ready', adjustLineNumbers);
+  Reveal.on('slidechanged', adjustLineNumbers);
+
+  (function() {
+    if (window.__slideNavInit) return;
+    window.__slideNavInit = true;
+
+    function buildNav() {
+      var slides = Reveal.getSlides();
+      var objIdx = {};
+      slides.forEach(function(s, i) {
+        var eyebrow = s.querySelector('.eyebrow');
+        if (s.querySelector('[data-nav-objectives]') || (eyebrow && eyebrow.textContent.trim().endsWith('Learning Objectives'))) objIdx[i] = true;
+      });
+
+      var bar = document.createElement('div');
+      bar.className = 'slide-nav-bar';
+
+      var prev = document.createElement('button');
+      prev.className = 'slide-nav-arrow';
+      prev.innerHTML = '&#8592;';
+      prev.setAttribute('aria-label', 'Previous slide');
+      prev.addEventListener('click', function() { Reveal.prev(); });
+
+      var dotsEl = document.createElement('div');
+      dotsEl.className = 'slide-nav-dots';
+
+      slides.forEach(function(_, i) {
+        var dot = document.createElement('button');
+        dot.className = 'slide-nav-dot' + (objIdx[i] ? ' objectives' : '');
+        dot.textContent = String(i + 1);
+        dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+        dot.addEventListener('click', (function(idx) {
+          return function() { Reveal.slide(idx); };
+        })(i));
+        dotsEl.appendChild(dot);
+      });
+
+      var next = document.createElement('button');
+      next.className = 'slide-nav-arrow';
+      next.innerHTML = '&#8594;';
+      next.setAttribute('aria-label', 'Next slide');
+      next.addEventListener('click', function() { Reveal.next(); });
+
+      bar.appendChild(prev);
+      bar.appendChild(dotsEl);
+      bar.appendChild(next);
+      document.body.appendChild(bar);
+      updateNav(Reveal.getState().indexh || 0);
+    }
+
+    function updateNav(idx) {
+      document.querySelectorAll('.slide-nav-dot').forEach(function(d, i) {
+        d.classList.toggle('active', i === idx);
+      });
+    }
+
+    Reveal.on('ready', function() { buildNav(); });
+    Reveal.on('slidechanged', function(e) { updateNav(e.indexh); });
+  })();
+
+  (function() {
+    if (window.__slideFontControlsInit) return;
+    window.__slideFontControlsInit = true;
+
+    var minScale = 0.8;
+    var maxScale = 1.6;
+    var step = 0.1;
+    var scale = window.__deckFontScale || 1;
+    var resetButton;
+
+    function saveScale() {
+      try {
+        window.localStorage.setItem('deck-font-scale', scale.toFixed(2));
+      } catch (e) {}
+    }
+
+    function applyScale() {
+      scale = Math.min(Math.max(scale, minScale), maxScale);
+      document.documentElement.style.setProperty('--deck-font-scale', scale.toFixed(2));
+      if (resetButton) resetButton.textContent = Math.round(scale * 100) + '%';
+      saveScale();
+      if (window.Reveal && typeof Reveal.layout === 'function') Reveal.layout();
+    }
+
+    function addButton(parent, label, ariaLabel, onClick, className) {
+      var button = document.createElement('button');
+      button.className = 'slide-font-button' + (className ? ' ' + className : '');
+      button.type = 'button';
+      button.textContent = label;
+      button.setAttribute('aria-label', ariaLabel);
+      button.addEventListener('click', onClick);
+      parent.appendChild(button);
+      return button;
+    }
+
+    function buildControls() {
+      var controls = document.createElement('div');
+      controls.className = 'slide-font-controls';
+      addButton(controls, 'A-', 'Decrease slide text size', function() { scale -= step; applyScale(); });
+      resetButton = addButton(controls, '100%', 'Reset slide text size', function() { scale = 1; applyScale(); }, 'slide-font-reset');
+      addButton(controls, 'A+', 'Increase slide text size', function() { scale += step; applyScale(); });
+      document.body.appendChild(controls);
+      applyScale();
+    }
+
+    Reveal.on('ready', buildControls);
+  })();
+</script>
+</body>
+</html>

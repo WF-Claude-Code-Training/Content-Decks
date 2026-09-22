@@ -1,0 +1,9 @@
+{
+  "title": "Lab 3: Plan Mode & Test-Driven Delivery",
+  "subtitle": "Claude Code Developer Enablement",
+  "footer_suffix": "Day 1 · Lab 3",
+  "summary": "Plan mode and test-driven delivery using WM-110 drift alert hysteresis with a verifiable failing-test target.",
+  "sections": [
+    { "slug": "01-plan-mode-and-tdd", "title": "Plan Mode & TDD" }
+  ]
+}

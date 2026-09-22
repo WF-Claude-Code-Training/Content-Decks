@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Claude Code Developer Enablement Program: 3-Day Detailed Schedule</title>
+<style>
+  :root {
+    --navy: #0b1240;
+    --navy-deep: #060a26;
+    --teal: #1596ab;
+    --teal-light: #e3f6f8;
+    --blue: #2e6fb0;
+    --blue-light: #e7f0fa;
+    --slate: #5b6478;
+    --slate-light: #edeff3;
+    --purple: #7a4fc9;
+    --purple-light: #efe8fb;
+    --green: #1f8a5f;
+    --green-light: #e5f5ee;
+    --amber: #b5790a;
+    --amber-light: #fdf1dd;
+    --rose: #c23a6b;
+    --rose-light: #fbe8f0;
+    --indigo: #3f4bc0;
+    --indigo-light: #e9eafb;
+    --ink: #17203a;
+    --muted: #5c6478;
+    --rule: #dde1ea;
+    --wf-red: #d71e28;
+    --wf-gold: #b5860a;
+    --anthropic: #d97757;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    color: var(--ink);
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  @page {
+    size: 13.333in 7.5in;
+    margin: 0.45in 0.5in;
+  }
+
+  /* ---------------- Cover page ---------------- */
+  .cover-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6vh 5vw;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color: #f4f6fb;
+  }
+
+  .brand-strip {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 2.2rem;
+  }
+
+  .brand-chip {
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    font-size: 0.85rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.35);
+    background: rgba(255,255,255,0.04);
+  }
+  .brand-chip.anthropic { color: #f2f1ec; border-color: var(--anthropic); }
+  .brand-chip.cognizant { color: #6fd6e8; border-color: #6fd6e8; }
+  .brand-chip.wellsfargo { color: var(--wf-gold); border-color: var(--wf-red); }
+  .brand-logo {
+    height: 76px;
+    width: auto;
+    max-width: 240px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: #ffffff;
+    padding: 4px 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  }
+  .brand-sep { color: #b9c2dd; opacity: 0.7; }
+
+  .cover-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.8rem;
+    color: var(--teal);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .cover-title {
+    font-size: 2.6rem;
+    font-weight: 700;
+    margin: 0 0 0.6rem 0;
+    max-width: 70%;
+  }
+
+  .cover-sub {
+    font-size: 1.05rem;
+    color: #b9c2dd;
+    max-width: 62%;
+    margin: 0 0 2.2rem 0;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 2.6rem;
+    font-size: 0.85rem;
+    color: #b9c2dd;
+    margin-bottom: 2.6rem;
+  }
+  .meta-row div span {
+    display: block;
+    color: #f4f6fb;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .meta-label {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.68rem;
+    color: var(--teal);
+  }
+
+  .arc-glance {
+    display: flex;
+    gap: 1.4rem;
+  }
+
+  .arc-card {
+    flex: 1;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 1rem 1.1rem;
+  }
+
+  .arc-card .day-tag {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--teal);
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+  }
+
+  .arc-card .arc-scale {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #b9c2dd;
+    opacity: 0.85;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .arc-card h4 {
+    margin: 0 0 0.4rem 0;
+    font-size: 1rem;
+    color: #f4f6fb;
+  }
+
+  .arc-card p {
+    margin: 0;
+    font-size: 0.82rem;
+    color: #c3cbe4;
+    line-height: 1.5;
+  }
+
+  /* ---------------- Day pages ---------------- */
+  .day-page {
+    page-break-before: always;
+    padding-top: 0.2in;
+  }
+
+  .day-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 3px solid var(--navy);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .day-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--navy);
+  }
+
+  .day-header .day-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--teal);
+  }
+
+  .arc-box {
+    background: var(--teal-light);
+    border-left: 4px solid var(--teal);
+    padding: 0.6rem 0.9rem;
+    border-radius: 4px;
+    font-size: 0.86rem;
+    color: var(--ink);
+    margin-bottom: 0.55rem;
+  }
+
+  .arc-box strong { color: var(--navy); }
+
+  .callout {
+    background: var(--amber-light);
+    border-left: 4px solid var(--amber);
+    padding: 0.5rem 0.9rem;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    margin-bottom: 0.6rem;
+    color: var(--ink);
+  }
+
+  .objectives {
+    background: var(--green-light);
+    border-left: 4px solid var(--green);
+    padding: 0.5rem 0.9rem 0.55rem;
+    border-radius: 4px;
+    margin: 0.15rem 0 0.6rem 0;
+    page-break-inside: avoid;
+  }
+  .objectives .obj-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    color: var(--green);
+    margin-bottom: 0.3rem;
+  }
+  .objectives ul {
+    margin: 0;
+    padding-left: 1.1rem;
+  }
+  .objectives li {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    margin-bottom: 0.2rem;
+    color: var(--ink);
+  }
+  .objectives li:last-child { margin-bottom: 0; }
+  .objectives li strong { color: var(--navy); }
+
+  .block-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0.7rem 0 0.3rem 0;
+    padding-bottom: 0.15rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  table.sched {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 0.3rem;
+    table-layout: fixed;
+  }
+
+  table.sched th {
+    text-align: left;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    padding: 0.25rem 0.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  table.sched th.col-time { width: 8%; }
+  table.sched th.col-module { width: 19%; }
+  table.sched th.col-detail { width: 48%; }
+  table.sched th.col-delivery { width: 25%; }
+
+  table.sched td {
+    vertical-align: top;
+    padding: 0.4rem 0.5rem;
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.79rem;
+  }
+
+  table.sched tr { page-break-inside: avoid; }
+
+  table.sched td.time {
+    font-variant-numeric: tabular-nums;
+    color: var(--navy);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  table.sched td.module {
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  table.sched tr.break-row td {
+    background: #f5f6f9;
+    color: var(--muted);
+    font-style: italic;
+    font-weight: 600;
+    padding: 0.28rem 0.5rem;
+  }
+
+  code {
+    background: #f0f1f6;
+    padding: 0.03rem 0.28rem;
+    border-radius: 3px;
+    font-size: 0.92em;
+    color: #4a2f9c;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    padding: 0.18rem 0.5rem;
+    border-radius: 999px;
+    white-space: normal;
+  }
+  .badge[data-type="survey"]      { background: var(--rose-light) !important;   color: var(--rose) !important; }
+  .badge[data-type="lecture"]     { background: var(--blue-light) !important;   color: var(--blue) !important; }
+  .badge[data-type="discussion"]  { background: var(--slate-light) !important;  color: var(--slate) !important; }
+  .badge[data-type="briefing"]    { background: var(--teal-light) !important;   color: var(--teal) !important; }
+  .badge[data-type="demo"]        { background: var(--purple-light) !important; color: var(--purple) !important; }
+  .badge[data-type="lab"]         { background: var(--green-light) !important;  color: var(--green) !important; }
+  .badge[data-type="check"]       { background: var(--slate-light) !important;  color: var(--slate) !important; }
+  .badge[data-type="group"]       { background: var(--amber-light) !important;  color: var(--amber) !important; }
+  .badge[data-type="presentation"]{ background: var(--indigo-light) !important; color: var(--indigo) !important; }
+
+  .doc-footer {
+    margin-top: 0.6rem;
+    text-align: center;
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  @media print {
+    .cover-page { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .badge, .arc-box, .callout, tr.break-row td { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<section class="cover-page">
+  <div class="brand-strip">
+    <img src="../images/anthropic-logo.jpg" alt="Anthropic" class="brand-logo" />
+    <span class="brand-sep">&times;</span>
+    <img src="../images/cognizant-logo.jpeg" alt="Cognizant" class="brand-logo" />
+    <span class="brand-sep">&times;</span>
+    <img src="../images/wells-fargo-logo.jpeg" alt="Wells Fargo" class="brand-logo" />
+  </div>
+
+  <div class="cover-eyebrow">Claude Code Developer Enablement Program</div>
+  <h1 class="cover-title">3-Day Detailed Training Schedule</h1>
+  <p class="cover-sub">The Agentic Mindset Shift, one scale at a time: an individual developer, a team, and a full delivery lifecycle.</p>
+
+  <div class="meta-row">
+    <div><span class="meta-label">Hours</span><span>09:00 – 17:00 daily</span></div>
+    <div><span class="meta-label">Audience</span><span>Java / .NET Developers with Python experience</span></div>
+  </div>
+
+  <div class="arc-glance">
+    <div class="arc-card">
+      <div class="day-tag">Day 1</div>
+      <div class="arc-scale">Scale: Individual</div>
+      <h4>Foundations &amp; the Agentic Mindset Shift</h4>
+      <p>The shift starts with one developer: frame a task, delegate it to Claude Code, and verify the result. The afternoon adds Skills, verifiable targets with plan mode, and model right-sizing</p>
+    </div>
+    <div class="arc-card">
+      <div class="day-tag">Day 2</div>
+      <div class="arc-scale">Scale: Team</div>
+      <h4>Enterprise Workflows, Subagents &amp; Safe Extension</h4>
+      <p>The same shift at team scale: map an existing system, coordinate subagents for independent review, and package reusable enterprise patterns for safe delivery.</p>
+    </div>
+    <div class="arc-card">
+      <div class="day-tag">Day 3</div>
+      <div class="arc-scale">Scale: Full Lifecycle</div>
+      <h4>Live Build: Greenfield Delivery</h4>
+      <p>The shift applies to the whole delivery lifecycle: reusable project scaffolding, legacy extraction, a governed greenfield build in pods or individually, and a sustainment plan with KPIs and ownership for one real Wells Fargo slice.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DAY 1 ============ -->
+<section class="day-page">
+  <div class="day-header">
+    <h2>Day 1 · Foundations &amp; the Agentic Mindset</h2>
+    <span class="day-badge">09:00 – 17:00</span>
+  </div>
+  <div class="arc-box">
+    <strong>Arc:</strong> Day 1 moves from <em>what the models are</em> to <em>getting real work done in Claude Code</em>. The morning builds a lean shared foundation around a mindset shift. Your developers have lived in GitHub Copilot, which is designed for autocomplete and single-file completion. Agentic coding serves a different job. It supports multi-file refactors, multi-repo work, and delegating an outcome for review. That is the shift this program builds on. The morning then defines what Claude Code is, the Read → Decide → Act → Observe loop, where the value shows up, and how to use it responsibly in wealth management. It puts every participant in Claude Code before lunch. In Lab 1, they use a starter Skill to implement and verify a management-fee fix. The afternoon builds on that first contact. Participants learn the interface and CLAUDE.md. In Lab 2, they use an existing Skill to correct advisory-fee calculations. They then develop and invoke a fee-specific Skill that can be reused across different time frames. They next use plan mode to give Claude a verifiable target. The day stays practical rather than going deep into model internals. It is designed as a 50/50 lecture-to-hands-on experience.
+  </div>
+
+  <div class="block-title">Morning · Foundations, First Contact &amp; the Agentic Mindset (09:00 – 12:30)</div>
+  <div class="objectives">
+    <div class="obj-label">By the end of the morning you can</div>
+    <ul>
+      <li>Verify your own Claude Code environment in VS Code and get unblocked before content starts.</li>
+      <li>Describe the <strong>Read → Decide → Act → Observe</strong> loop and name a task in your day where an agent adds value, and one where it doesn't.</li>
+      <li>State what code and data you may send under Wells Fargo's managed deployment, and how NPI/PCI and retention are handled.</li>
+      <li>Rewrite a single-turn prompt into an agentic task frame with an explicit outcome and a verification step, then use a starter Skill to implement a management-fee fix.</li>
+      <li>Verify an application change with test evidence, not just a claim that it works.</li>
+    </ul>
+  </div>
+  <table class="sched">
+    <thead><tr><th class="col-time">Time</th><th class="col-module">Module</th><th class="col-detail">Detail &amp; Outcomes</th><th class="col-delivery">Delivery</th></tr></thead>
+    <tbody>
+      <tr><td class="time">08:00-09:00</td><td class="module">Environment Spot-Check</td><td>Run the environment check in the arrival window, before content starts, so the Anthropic and Cognizant TAs can troubleshoot any broken setup while people settle in, rather than discovering it at noon after three hours of lecture. Show-of-hands / colored-card confirmation that VS Code, the Claude Code extension, sign-in, and a test prompt all work; provisioning was completed at the T-1-week readiness gate, so this is verification only. Anyone still blocked is pulled aside by a TA and unblocked before or during the first break.</td><td><span class="badge" data-type="briefing">TA-supported setup</span></td></tr>
+      <tr><td class="time">09:00–09:15</td><td class="module">Pre-Training Survey &amp; Expectations Capture</td><td>Opens the program with a short baseline survey: current AI usage, workflow pain points, expected outcomes, and self-rated confidence, captured live so the same questions can be re-run on Day 3 to measure the shift.</td><td><span class="badge" data-type="survey">Survey</span></td></tr>
+      <tr><td class="time">09:15–09:30</td><td class="module">Wells Fargo Champion Spotlight</td><td>One or two Wells Fargo pilot users tell their own story: the workflow they changed, what it replaced, and what it bought them, in their own words. A peer voice lands harder than any vendor demo and sets the tone for the day. Candidates identified with Senthil and Justin; a second spotlight runs on Day 2.</td><td><span class="badge" data-type="briefing">Spotlight + Q&amp;A</span></td></tr>
+      <tr><td class="time">09:30–11:15</td><td class="module">What Claude Code Is, the Agentic Loop &amp; Lab 1</td><td><strong>Lab 1: Management-Fee Calculation Fix.</strong> Opens with the mindset shift that takes developers from the autocomplete end of the spectrum that focuses on lines and single files to the agentic coding approach, which handles full multi-file refactorings and multi-repo work under human review. Participants learn what Claude Code is, the Read → Decide → Act → Observe loop it runs, and where it adds value in a developer's day. They cover the shared vocabulary needed for this work, including generative AI, foundation models, prompts, context, tokens, hallucination risk, and human-in-the-loop. They also get a light orientation to the model family by tier and responsible AI practice. The session introduces the five-ingredient task frame: outcome, scope, verification, deliverable, and guardrails. Participants use it to turn a single-turn prompt into an actionable request. In Lab 1, they use a starter Skill to implement and verify a management-fee fix; the framing/scoring exercise is timeboxed so the implementation step reliably happens. By the mid-morning pause, everyone has framed and shipped a small, tested change tied to a verifiable outcome. Deeper interface, CLAUDE.md, and tooling work follows in the afternoon.</td><td><span class="badge" data-type="demo">Lecture (30m) + Demo (15m) + Implementation (60m)</span></td></tr>
+      <tr class="break-row"><td class="time">11:15–11:30</td><td colspan="3">Break</td></tr>
+      <tr><td class="time">11:30–12:00</td><td class="module">Data Governance &amp; Access Path</td><td>Grounds responsible-use principles in Wells Fargo's own environment: what code and data may be sent, NPI/PCI handling, and retention terms under Wells Fargo's managed Claude Code deployment inside VS Code. The underlying platform is provisioned and authenticated centrally by Wells Fargo IT, so it is not taught as separate content here.</td><td><span class="badge" data-type="briefing">Briefing (15m) + Discussion (15m)</span></td></tr>
+      <tr><td class="time">12:00–12:30</td><td class="module">Day 2 and 3 Planning + Morning Pulse Check</td><td>Planning session for final lab and capstone: participants identify the project codebase they will use for Lab 8 and discuss how they will apply the workflow to that codebase. They then form their Day 3 pods, or confirm they'll work individually, and discuss the capstone project each pod or individual will take on, including the greenfield outcome they want to build and the evidence and guardrails they will use to demonstrate the result.</td><td><span class="badge" data-type="discussion">Discussion</span></td></tr>
+
+       <tr class="break-row"><td class="time">12:30–13:30</td><td colspan="3">Lunch</td></tr>
+    </tbody>
+  </table>
+
+  <div class="block-title">Afternoon · The Workflow Ladder: Interface, Skills, Plan Mode &amp; TDD and Verifiable Target (13:30 – 17:00)</div>
+  <div class="objectives">
+    <div class="obj-label">By the end of the afternoon you can</div>
+    <ul>
+      <li>Use the Claude Code interface, built-in tools, and a project <code>CLAUDE.md</code> to complete a bounded task. Use Glob and Grep to find the relevant code and tests without loading unnecessary context.</li>
+      <li>Use an existing Skill to correct advisory-fee calculations.</li>
+      <li>Develop and invoke a fee-specific Skill that can be reused for calculations across different time frames.</li>
+      <li>Give Claude a verifiable target (a spec or failing test) and use <strong>plan mode</strong> to approve the plan before it executes.</li>
+      <li>Decide when a repeated workflow needs a Skill versus an isolated, tool-restricted <strong>subagent</strong> and get a scoped code change independently reviewed by one.</li>
+    </ul>
+  </div>
+  <table class="sched">
+    <thead><tr><th class="col-time">Time</th><th class="col-module">Module</th><th class="col-detail">Detail &amp; Outcomes</th><th class="col-delivery">Delivery</th></tr></thead>
+    <tbody>
+      <tr><td class="time">13:30–14:45</td><td class="module">Claude Code Interface &amp; Team Skills</td><td><strong>Lab 2: Reusable Skills for Fee Calculations.</strong> Participants work in the Claude Code interface and use built-in tools, including Glob and Grep, to find relevant code and tests while keeping context focused. They first use an existing Skill to correct advisory-fee calculations. They then develop and invoke a fee-specific Skill from that fix, making it reusable for calculations across different time frames. The lab shows when a generic workflow is sufficient and when domain rules belong in a reusable Skill. Participants verify their changes with focused tests and the full test suite.</td><td><span class="badge" data-type="lab">Lecture (15m) + Interactive Demo (15m) + Lab (45m)</span></td></tr>
+      <tr class="break-row"><td class="time">14:45–15:00</td><td colspan="3">Break</td></tr>
+      <tr><td class="time">15:00–16:30</td><td class="module">Plan Mode &amp; Test-Driven Delivery</td><td><strong>Lab 3: Drift Alert False Positives.</strong> The core of how developers get good results: run plan mode so Claude proposes a plan and executes nothing until approved; write a lightweight spec or failing test first (TDD) so the agent has a verifiable target. Give Claude a spec / failing test and watch plan-then-execute produce a passing change under human review. Reduce false drift alerts by adding hysteresis/min-duration behavior.</td><td><span class="badge" data-type="lab">Lecture (45m) + Lab (45m)</span></td></tr>
+      <tr><td class="time">16:30–17:00</td><td class="module">Day 1 Recap &amp; Preview of Day 2</td><td>Consolidate the learning arc: foundations, Skills + scope, plan mode, delegation, and the decision point between a Skill and a subagent. Preview Day 2 — extending the same codebase with enterprise features. Short survey/retro over day 1.</td><td><span class="badge" data-type="discussion">Discussion</span></td></tr>
+    </tbody>
+  </table>
+  <div class="doc-footer">Claude Code Developer Enablement Program · Confidential Draft</div>
+</section>
+
+<!-- ============ DAY 2 ============ -->
+<section class="day-page">
+  <div class="day-header">
+    <h2>Day 2 · Extending an Enterprise Codebase, the Right Way</h2>
+    <span class="day-badge">09:00 – 17:00</span>
+  </div>
+  <div class="arc-box">
+    <strong>Arc:</strong> Day 2 keeps the same Agentic Mindset focus and grows it. Learners will discover subagent architectures and use them to <strong>understand an existing system, map its dependencies, and find the right change point.</strong> A short demo showing that same workflow connect to a live external system via MCP, and the afternoon <strong>implements real enterprise features</strong> (logging, error handling/retries) as realistic "change in an existing codebase" work. Every lab foregrounds a VS Code best-practice cluster and, where a workflow is worth keeping, packages it as a scoped, shareable Skill or subagent. Each feature maps to an existing backlog ticket, so we extend rather than build.
+  </div>
+
+  <div class="block-title">Morning · Understand the System (09:00 – 12:30)</div>
+  <div class="objectives">
+    <div class="obj-label">By the end of the morning you can</div>
+    <ul>
+      <li>Read and navigate an unfamiliar legacy or distributed system using Glob, Grep, and Citations to understand its structure and data flow.</li>
+      <li>Use an agent to map dependencies across services, extract the critical path, and identify the right change point for a new feature.</li>
+      <li>Document the system's rules and interfaces so you can safely extend it without breaking the existing contract.</li></ul>
+  </div>
+  <table class="sched">
+    <thead><tr><th class="col-time">Time</th><th class="col-module">Module</th><th class="col-detail">Detail &amp; Outcomes</th><th class="col-delivery">Delivery</th></tr></thead>
+    <tbody>
+      <tr><td class="time">09:00–09:15</td><td class="module">Day 2 Agenda &amp; Warm-up</td><td>Reconnects to Day 1: first contact, Skills, plan mode / verifiable targets, and the first agent. Clears overnight questions, and sets up the day's shift from one agent to many.</td><td><span class="badge" data-type="discussion">Discussion</span></td></tr>
+      <tr><td class="time">09:15–09:30</td><td class="module">Wells Fargo Champion Spotlight</td><td>The second peer spotlight, paired with Day 1's morning slot: one or two pilot users show what they have shipped and how their workflow changed, in their own words. Coordinated with Senthil and Justin alongside the Day 1 candidates.</td><td><span class="badge" data-type="briefing">Spotlight + Q&amp;A</span></td></tr>
+      <tr><td class="time">09:30–10:45</td><td class="module">Skill vs. Subagent: Your First Independent Review</td><td><strong>Lab 4: Reconciliation Strategy Fix.</strong> implement a scoped fix against a failing test (using the same discipline as Lab 3), then decide whether the same conversation should be trusted to review its own work. Delegate the result to a pre-built, <strong>project-scoped, read-only subagent</strong> (<code>strategy-reviewer</code>) for an independent pass the main conversation cannot give itself. The lab highlights the difference between a reusable Skill and an isolated subagent, and when enforced tool restrictions and context separation actually buy you something.</td><td><span class="badge" data-type="lab">Lecture (30m) + Lab (45m)</span></td></tr>
+       <tr class="break-row"><td class="time">10:45–11:00</td><td colspan="3">Break</td></tr>
+      <tr><td class="time">11:00–12:30</td><td class="module">Understanding Existing Systems</td><td><strong>Lab 5: Understand: Map Before You Touch.</strong> Participants use Glob, Grep, and Citations to read an unfamiliar system, map its dependencies across services, and identify the critical path. An agent extracts the system's contracts and business rules into structured documentation, so you know what changing without breaking the existing flow.</td><td><span class="badge" data-type="lab">Lecture (30m) + Lab (60m)</span></td></tr>
+       <tr class="break-row"><td class="time">12:30–13:30</td><td colspan="3">Lunch</td></tr>
+    </tbody>
+  </table>
+
+  <div class="block-title">Afternoon · Context Surfaces and Cross-Cutting Concerns (13:30 – 17:00)</div>
+  <div class="objectives">
+    <div class="obj-label">By the end of the afternoon you can</div>
+    <ul>
+       <li>Use a live MCP demo to show how the same workflow connects to external ticket systems in production.</li>
+       <li>Implement structured logging as a cross-cutting concern, integrated into existing business logic without changing the core interfaces.</li>
+      <li>Add a <code>PreToolUse</code> hook that enforces a protected-file guardrail so it is denied by the tooling, not just requested in prose.</li>
+      <li>Use Skills and subagents to package enterprise patterns so they can be reused across multiple features.</li>
+      <li>Apply Day 1's safety practices (plan mode, human-in-the-loop review, diff review, test-driven delivery) to all enterprise feature work.</li>
+      <li>Commit, push, and open a pull request for review with a complete task frame and verified test coverage.</li>
+    </ul>
+  </div>
+
+  <table class="sched">
+    <thead><tr><th class="col-time">Time</th><th class="col-module">Module</th><th class="col-detail">Detail &amp; Outcomes</th><th class="col-delivery">Delivery</th></tr></thead>
+    <tbody>
+      <tr><td class="time">12:30–13:30</td><td class="module">MCP &amp; Developer Experience</td><td><strong>Lab 6: DevX MCP Demo.</strong> A Wells Fargo employee delivers a brief demo on DevX MCP in the Wells Fargo ecosystem.</td><td><span class="badge" data-type="demo">Demo (60m)</span></td></tr>
+      <tr><td class="time">13:30–14:45</td><td class="module">Structured Logging &amp; Cross-Cutting Concerns</td><td><strong>Lab 7: Implement: Structured Logging.</strong> Participants implement structured logging as a reusable concern, integrated into existing business logic without changing the core interfaces. They use a Skill to standardize log format across services, attach context (correlation IDs, request metadata) without manual plumbing, and verify that logging integrates cleanly into existing tests. They then add a <code>PreToolUse</code> hook that checks edits against a protected-file registry and blocks any edit to the fee-tier, reconciliation-strategy, or hysteresis logic, turning an existing guardrail into an enforced control.</td><td><span class="badge" data-type="lab">Lecture (30m) + Lab (45m)</span></td></tr>
+      <tr class="break-row"><td class="time">14:45–15:00</td><td colspan="3">Break</td></tr>
+      <tr><td class="time">15:00–16:30</td><td class="module">Capstone: Skill &amp; Subagent Recommendation</td><td><strong>Lab 8: Putting it all together.</strong> A quick synthesis: participants review the Logging Skill they just built and the enterprise patterns they've learned, then recommend one additional Skill or subagent that would reduce toil for the team. The recommendation is written, not presented, and is used to populate the backlog for post-training sustainment.</td><td><span class="badge" data-type="lab">Exercise (60m)</span></td></tr>
+      <tr><td class="time">16:30–17:00</td><td class="module">Day 2 Recap &amp; Preview of Day 3</td><td>Consolidate the learning arc: review the interplay between a Skill and a subagent. Preview Day 3 — applying the full toolkit to a greenfield build. Short survey/retro over day 2.</td><td><span class="badge" data-type="discussion">Discussion</span></td></tr>
+   
+    </tbody>
+  </table>
+
+
+  <div class="doc-footer">Claude Code Developer Enablement Program · Confidential Draft</div>
+</section>
+
+<!-- ============ DAY 3 ============ -->
+<section class="day-page">
+  <div class="day-header">
+    <h2>Day 3 · Modernization &amp; Greenfield Delivery</h2>
+    <span class="day-badge">09:00 – 17:00</span>
+  </div>
+  <div class="arc-box">
+    <strong>Arc:</strong> Day 3 applies the full toolkit to one real Wells Fargo greenfield build, end to end: stand up a reusable Skills and subagent framework and build a greenfield service, then measure the result and lock in a sustainment plan.
+  </div>
+
+  <div class="block-title">Section 1 · Project Setup &amp; Delivery Sprints (09:00 – 17:00)</div>
+  <div class="objectives">
+    <div class="obj-label">By the end of this section you can</div>
+    <ul>
+      <li>Stand up a project's reusable framework: <code>CLAUDE.md</code>, Skills, and <code>.claude/agents/*.md</code> subagent.</li>
+      <li>Operate in sprint-based pods or individually, iterate on a working use case, and close with a crisp sustainment plan tied to KPIs and ownership.</li>
+    </ul>
+  </div>
+  <table class="sched">
+    <thead><tr><th class="col-time">Time</th><th class="col-module">Module</th><th class="col-detail">Detail &amp; Outcomes</th><th class="col-delivery">Delivery</th></tr></thead>
+    <tbody>
+      <tr><td class="time">09:00–10:45</td><td class="module">Day 3 Project/Pod Setup, Orientation </td><td><strong>Day 3 Setup → Continuous Build:</strong> Orients participants in their pods, or individually, and stands up the reusable framework the rest of the day runs on: <code>CLAUDE.md</code> for always-loaded project rules, built live and customized to the project's own contract; Skills as <code>SKILL.md</code> files under <code>.claude/skills/</code>, reusable subagents as first-class <code>.claude/agents/*.md</code> and artifacts with this time slot spent on customizing and understanding them rather than building each from a blank file. Sets the target for the build and defines the project's <code>CLAUDE.md</code> contract that every later step must honor.</td><td><span class="badge" data-type="discussion">Group Discussions</span></td></tr>
+      <tr class="break-row"><td class="time">10:45–11:00</td><td colspan="3">Break</td></tr>
+      <tr><td class="time">11:00–12:30</td><td class="module">Sprint 1: Greenfield in Pods / Individually — Your Own Use Case</td><td><strong>Greenfield in Pods or Individually:</strong> The cohort splits into autonomous pods of 3–4 developers, or works individually, each on its own use case; the format is confirmed closer to the day based on access and sharing constraints. Every pod or individual runs an orchestrator and subagent workflow with plan mode, audit logging, hooks, diff review, and tests as a pre-commit quality gate. For compliance reasons, what each pod or individual builds stays internal to them. The program tracks only the workflow evidence: how many Skills and subagents were used, which hooks and guardrails were configured, and the measured token cost per line of code shipped.</td><td><span class="badge" data-type="lab">Lab (90m)</span></td></tr>
+      <tr class="break-row"><td class="time">12:30–13:30</td><td colspan="3">Lunch</td></tr>
+      <tr><td class="time">13:30–14:30</td><td class="module">Sprint 2: Build Their Presentations</td><td><strong>Presentation Sprint:</strong> Each pod or individual turns its measured workflow into a concise KPI readout, not a feature walkthrough. They finalize their numbers: how many Skills and subagents were used and the general benefit each provided, which hooks and guardrails were configured, and the token cost per line of code. This sprint is framed as communication work. Pods and individuals prepare to defend those numbers with evidence such as git log, audit log, or session cost, rather than describing what they built.</td><td><span class="badge" data-type="lab">Lab (60m)</span></td></tr>
+      <tr><td class="time">14:30–15:45</td><td class="module">Pod / Individual Presentations</td><td>Each pod or individual presents a short, structured KPI readout: the number of Skills and subagents used, the general benefit each provided, the hooks and guardrails configured, and the measured token cost per line of code. Every number is backed by evidence such as git log, audit log, or session cost, not by a description of the underlying feature or business problem. The presentations focus on process clarity and measured delivery, not on a product pitch.</td><td><span class="badge" data-type="presentation">Presentation (60m)</span></td></tr>
+      <tr class="break-row"><td class="time">15:45–16:00</td><td colspan="3">Break</td></tr>
+      <tr><td class="time">16:00–16:30</td><td class="module">Responsible Practice, KPIs &amp; Sustainment Plan</td><td>Consolidates the safety thread from all three days into a single reference: plan mode for high-stakes work, human-in-the-loop checkpoints, mandatory diff review, complete audit trails, and never treating agent output as ground truth. Each team defines the KPIs it will track (adoption, workflow implementation, productivity, test-coverage gains, PR cycle-time, modernization output) with a recommended owner role and a 30/60/90-day sustainment plan. Participants leave with a concrete commitment for the workflow they will implement next, the safety controls they will require, and the success measure by which they will judge the pilot.</td><td><span class="badge" data-type="discussion">Discussion + Planning (30m)</span></td></tr>
+      <tr><td class="time">16:30–17:00</td><td class="module">Program Close, Certificates</td><td>Closes the program: A post-training survey is completed. Certificates are awarded to participants who successfully deliver their project presentation, and participants are handed off into the sustainment program.</td><td><span class="badge" data-type="survey">Assessment (30m)</span></td></tr>
+    </tbody>
+  </table>
+  <div class="doc-footer">Claude Code Developer Enablement Program · Confidential Draft</div>
+</section>
+
+<!-- ============ LAB PROGRESSION REFERENCE ============ -->
+<section class="day-page">
+  <div class="day-header">
+    <h2>Lab Progression: At a Glance</h2>
+  </div>
+  <div class="arc-box">
+    <strong>Reference:</strong> The complete lab sequence from Lab 1 through Lab 8, organized by agenda block, feature, learning objective, and Claude Code / SDK capability.
+  </div>
+
+  <table class="sched" style="margin-top: 1rem;">
+    <thead>
+      <tr>
+        <th style="width: 6%; padding: 0.5rem; font-size: 0.75rem;">Lab</th>
+        <th style="width: 20%; padding: 0.5rem; font-size: 0.75rem;">Agenda Block</th>
+        <th style="width: 24%; padding: 0.5rem; font-size: 0.75rem;">New App Feature (WM User Story)</th>
+        <th style="width: 25%; padding: 0.5rem; font-size: 0.75rem;">Learning Objective</th>
+        <th style="width: 25%; padding: 0.5rem; font-size: 0.75rem;">Claude Code / SDK Capability</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="font-weight: 700; text-align: center;">1</td>
+        <td>Claude Code Prompting to Task Framing (09:30–11:15)</td>
+        <td><strong>Management-fee calculation fix</strong>: improve a weak task frame, then use a starter Skill to implement and verify an application fix</td>
+        <td>Shift from "write code" prompts to verifiable implementation framing, then execute it with a reusable Skill</td>
+        <td>CLAUDE.md, starter Skill invocation, deterministic scorer + test harness loop</td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700; text-align: center;">2</td>
+        <td>Claude Code Interface &amp; Team Skills (13:30–14:45, D1)</td>
+        <td><strong>Reusable Skills for fee calculations</strong>: use an existing Skill to correct advisory-fee calculations, then develop a fee-specific Skill that can be reused across different time frames</td>
+        <td>Use Glob and Grep to keep context focused, distinguish a generic workflow from a reusable domain Skill, and verify changes with focused and full-suite tests</td>
+        <td>Claude Code panel, CLAUDE.md, built-in Glob and Grep, Skills, targeted and full-suite verification</td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700; text-align: center;">3</td>
+        <td>Plan Mode &amp; Test-Driven Delivery (15:00–16:30, D1)</td>
+        <td><strong>Drift alert false positives</strong>: add hysteresis/min-duration behavior test-first, then implement</td>
+        <td>Use plan-then-execute with explicit, verifiable acceptance criteria</td>
+        <td>Plan mode, spec/TDD, human-in-the-loop approval</td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700; text-align: center;">4</td>
+        <td>Skill vs. Subagent: Your First Independent Review (09:30–10:45, D2)</td>
+        <td><strong>Reconciliation strategy fix</strong>: implement a scoped fix against a failing test, then delegate an independent review to a project-scoped, read-only subagent</td>
+        <td>Distinguish a reusable Skill from an isolated subagent and recognize when context separation and tool restrictions add value</td>
+        <td>Skills, project-scoped subagents, read-only tool restrictions, independent review</td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700; text-align: center;">5</td>
+        <td>Understanding Existing Systems (11:00–12:30, D2)</td>
+        <td><strong>Understand: Map Before You Touch</strong>: use Glob, Grep, and Citations to read an unfamiliar system, map dependencies, and identify the critical path</td>
+        <td>Navigate existing systems, extract contracts and business rules, understand what you can change without breaking</td>
+        <td>Glob, Grep, Citations, system mapping, dependency analysis</td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700; text-align: center;">6</td>
+        <td>MCP &amp; Developer Experience (12:30–13:30, D2)</td>
+        <td><strong>DevX MCP Demo</strong>: a Wells Fargo employee delivers a brief demo on DevX MCP in the Wells Fargo ecosystem</td>
+        <td>Build awareness of how DevX MCP fits into the Wells Fargo ecosystem</td>
+        <td>DevX MCP demonstration</td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700; text-align: center;">7</td>
+        <td>Structured Logging & Cross-Cutting Concerns (13:30–14:45, D2)</td>
+        <td><strong>Implement: Structured Logging</strong>: implement structured logging as a reusable concern, integrated into existing business logic without changing core interfaces, then add a <code>PreToolUse</code> hook that enforces a protected-file guardrail</td>
+        <td>Package enterprise patterns as reusable Skills, integrate cross-cutting concerns cleanly, and enforce a guardrail with a hook instead of prose</td>
+        <td>Skills, structured logging patterns, context propagation, test integration, <code>PreToolUse</code> hooks</td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700; text-align: center;">8</td>
+        <td>Capstone: Skill &amp; Subagent Recommendation (15:00–16:30, D2)</td>
+        <td><strong>Capstone: Skill/Subagent Recommendation</strong>: review the Logging Skill and recommend one additional Skill or subagent for team toil reduction</td>
+        <td>Recognize patterns worth packaging, document future backlog items</td>
+        <td>Pattern recognition, backlog synthesis</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="doc-footer">Claude Code Developer Enablement Program · Confidential Draft</div>
+</section>
+
+
+
+</body>
+</html>

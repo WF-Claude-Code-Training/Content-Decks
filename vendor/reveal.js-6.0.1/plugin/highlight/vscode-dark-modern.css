@@ -1,0 +1,118 @@
+/*
+  vscode-dark-modern.css — highlight.js theme
+  Token colors mirror VS Code's built-in "Dark Modern" / "Dark+" theme so
+  code blocks in the training decks match the editor learners see. Referenced
+  by every deck's index.html as plugin/highlight/vscode-dark-modern.css.
+*/
+
+.hljs {
+  color: #d4d4d4;
+  background: transparent;
+}
+
+/* Comments */
+.hljs-comment,
+.hljs-quote {
+  color: #6a9955;
+  font-style: italic;
+}
+
+/* Keywords, storage, control flow */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-doctag,
+.hljs-name {
+  color: #569cd6;
+}
+
+/* Control-flow / import keywords render purple in Dark Modern */
+.hljs-keyword.hljs-control,
+.hljs-meta .hljs-keyword {
+  color: #c586c0;
+}
+
+/* self / this / language constants */
+.hljs-literal,
+.hljs-variable.language_,
+.hljs-symbol {
+  color: #569cd6;
+}
+
+/* Numbers and other constants */
+.hljs-number,
+.hljs-bullet {
+  color: #b5cea8;
+}
+
+/* Strings */
+.hljs-string,
+.hljs-regexp,
+.hljs-addition {
+  color: #ce9178;
+}
+
+/* Template / escaped substitutions inside strings */
+.hljs-subst {
+  color: #d4d4d4;
+}
+
+/* Function and method names */
+.hljs-title,
+.hljs-title.function_,
+.hljs-section {
+  color: #dcdcaa;
+}
+
+/* Class, type and namespace names */
+.hljs-title.class_,
+.hljs-type,
+.hljs-built_in,
+.hljs-class .hljs-title {
+  color: #4ec9b0;
+}
+
+/* Parameters, variables, properties, attributes */
+.hljs-params,
+.hljs-variable,
+.hljs-attr,
+.hljs-attribute,
+.hljs-property,
+.hljs-template-variable {
+  color: #9cdcfe;
+}
+
+/* Decorators / meta / annotations */
+.hljs-meta,
+.hljs-meta .hljs-string {
+  color: #dcdcaa;
+}
+
+/* Operators and punctuation */
+.hljs-operator,
+.hljs-punctuation {
+  color: #d4d4d4;
+}
+
+/* Tags / selectors in markup */
+.hljs-tag {
+  color: #808080;
+}
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #d7ba7d;
+}
+
+/* Links, deletions, emphasis */
+.hljs-link {
+  color: #9cdcfe;
+  text-decoration: underline;
+}
+.hljs-deletion {
+  color: #ce9178;
+}
+.hljs-emphasis {
+  font-style: italic;
+}
+.hljs-strong {
+  font-weight: bold;
+}

@@ -1,0 +1,909 @@
+/* ============================================================
+   shared/base.css
+   Universal rules used by every deck (labs 1-8). Selectors here
+   were verified byte-identical (or reconciled) across all decks.
+   Deck-specific styles.css files @import this, then add only what
+   is genuinely unique to that deck.
+   ============================================================ */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+:root {
+  --navy: #070c33;
+  --navy-deep: #050822;
+  --teal: #35b6c9;
+  --blue: #2e6fb0;
+  --wf-red: #d71e28;
+  --wf-gold: #ffcd41;
+  --text: #f4f6fb;
+  --muted: #b9c2dd;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ---------- Reveal.js integration ---------- */
+/* Reveal's own viewport wrapper defaults to an opaque white background —
+   make it transparent so the body's cognizant background shows through.
+   Set (not just transparent) so reveal.js's print-pdf export — which reads
+   this element's computed background and copies it onto each generated
+   .pdf-page div — gives every printed page its own correctly-scaled copy,
+   instead of one cover-sized image spread across the whole stacked-page
+   document (which only landed on page 1). */
+.reveal-viewport {
+  background: #000 url("../images/cognizant-background.png") center center / cover no-repeat;
+}
+
+.reveal .slides section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  color: var(--text);
+  padding: 3rem;
+  cursor: pointer;
+}
+
+.reveal .slides section .fragment {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 360ms ease, transform 420ms cubic-bezier(0.2, 0.75, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.reveal .slides section .fragment.visible,
+.reveal .slides section .fragment.current-fragment {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(var(--fragment-index, 0) * 26ms);
+}
+
+.reveal .slides section .mcq-item .mcq-answer.fragment {
+  transform: translateY(8px);
+}
+
+/* ---------- Liquid-glass slide card (universal, all 8 decks) ---------- */
+.slide-card {
+  width: 92%;
+  max-height: 87%;
+  margin-top: 3%;
+  overflow: auto;
+  padding: 3rem 3.5rem;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: linear-gradient(160deg, rgba(6, 11, 42, 0.84), rgba(5, 10, 40, 0.7));
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+  cursor: default;
+}
+
+.section-links {
+  position: fixed;
+  top: 18px;
+  right: 24px;
+  z-index: 60;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.section-link {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(6, 11, 42, 0.62);
+}
+
+.section-link:hover {
+  background: rgba(53, 182, 201, 0.25);
+}
+
+/* ---------- Branding strip (title slide) ---------- */
+.brand-strip {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  margin-bottom: 2.4rem;
+}
+
+.brand-chip {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  font-size: 1.05rem;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.brand-chip.anthropic { color: #f2f1ec; border-color: #d97757; }
+.brand-chip.cognizant { color: #6fd6e8; border-color: #6fd6e8; }
+.brand-chip.wellsfargo { color: var(--wf-gold); border-color: var(--wf-red); }
+
+.brand-logo {
+  height: 44px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 5px 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.brand-sep {
+  color: var(--muted);
+  font-size: 1.1rem;
+  opacity: 0.7;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.95rem;
+  color: var(--teal);
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+}
+
+h1 .accent {
+  color: var(--teal);
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: var(--muted);
+  max-width: 55%;
+  margin: 0 0 2.5rem 0;
+  font-weight: 400;
+}
+
+.meta-row {
+  display: flex;
+  gap: 2.5rem;
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+.meta-row div span {
+  display: block;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.meta-label {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  color: var(--teal);
+}
+
+/* ---------- Agenda slide ---------- */
+.agenda-title {
+  font-size: 2.9rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.agenda-sub {
+  color: var(--muted);
+  font-size: 1.35rem;
+  margin-bottom: 1.8rem;
+}
+
+.agenda-col h3 {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--teal);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.9rem;
+}
+
+.agenda-item {
+  display: flex;
+  gap: 0.9rem;
+  font-size: 1.4rem;
+  margin-bottom: 0.75rem;
+  align-items: baseline;
+}
+
+.agenda-item .time {
+  color: var(--teal);
+  font-variant-numeric: tabular-nums;
+  min-width: 5.4rem;
+  font-weight: 600;
+}
+
+.agenda-item.break .time,
+.agenda-item.break .topic {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.agenda-item .topic {
+  color: var(--text);
+}
+
+/* ---------- Survey placeholder slide ---------- */
+
+.survey-box .live-tag {
+  display: inline-block;
+  background: var(--teal);
+  color: var(--navy-deep);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+
+.qr-placeholder {
+  width: 128px;
+  height: 128px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 1.2rem;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.06) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+}
+
+.survey-meta {
+  margin-top: 1.4rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.survey-meta code {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  color: var(--text);
+}
+
+/* ---------- Benchmark comparison slide ---------- */
+.bench-wrap {
+  max-width: 92%;
+}
+
+table.bench-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0.3rem;
+  margin-bottom: 0.9rem;
+}
+
+table.bench-table th,
+table.bench-table td {
+  text-align: left;
+  padding: 0.55rem 0.9rem;
+  font-size: 1.15rem;
+}
+
+table.bench-table thead th {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.72rem;
+  color: var(--teal);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  font-weight: 700;
+}
+
+table.bench-table th.metric-col { width: 34%; }
+
+table.bench-table tbody tr {
+  background: rgba(5, 10, 40, 0.72);
+}
+
+table.bench-table tbody tr:nth-child(odd) {
+  background: rgba(15, 26, 74, 0.78);
+}
+
+table.bench-table tbody td {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+table.bench-table tbody td:first-child {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+table.bench-table tbody td:last-child {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+table.bench-table tbody td.metric-name {
+  color: var(--muted);
+  font-variant-numeric: normal;
+}
+
+table.bench-table td.hero-score {
+  font-weight: 700;
+  color: var(--teal);
+  position: relative;
+}
+
+table.bench-table td.hero-score::after {
+  content: "";
+  position: absolute;
+  left: 0.3rem;
+  right: 0.3rem;
+  top: 0.15rem;
+  bottom: 0.15rem;
+  border: 1px solid rgba(53, 182, 201, 0.5);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+table.bench-table td.reference-score {
+  color: var(--muted);
+}
+
+.bench-footnote {
+  font-size: 1.15rem;
+  color: var(--muted);
+  max-width: 78%;
+  border-left: 3px solid var(--teal);
+  padding-left: 0.8rem;
+  margin-bottom: 1.6rem;
+}
+
+.bench-footnote strong {
+  color: var(--text);
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  max-width: 96%;
+}
+
+.problem-fix-grid .category-card h4 {
+  font-size: 1.3rem;
+}
+
+.problem-fix-grid .category-card p {
+  font-size: 1.12rem;
+}
+
+.verifiable-target-grid .category-card h4 {
+  font-size: 1.3rem;
+}
+
+.verifiable-target-grid .category-card p {
+  font-size: 1.12rem;
+}
+
+/* ---------- Slide 5-8 utilities ---------- */
+.w-78 { max-width: 78%; }
+.w-80 { max-width: 80%; }
+.w-82 { max-width: 82%; }
+.w-84 { max-width: 84%; }
+
+/* ---------- Loop orbit graphic ---------- */
+
+.loop-circle.loop-blue {
+  border-color: #7fb2e0;
+  background: #13204a;
+  color: #7fb2e0;
+}
+
+.loop-circle.loop-teal {
+  border-color: var(--teal);
+  background: #0d2448;
+  color: var(--teal);
+}
+
+.loop-circle.loop-gold {
+  border-color: var(--wf-gold);
+  background: #2a2735;
+  color: var(--wf-gold);
+}
+
+.loop-circle.loop-red {
+  border-color: #ef5f68;
+  background: #27183a;
+  color: #ef5f68;
+}
+
+.note-tight { margin-bottom: 1rem; }
+.note-tight-plus { margin-bottom: 1.1rem; }
+
+.grid-two-wide {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 92%;
+  gap: 1.2rem;
+}
+
+.grid-three-wide {
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 94%;
+  gap: 0.9rem;
+  margin-top: 1.1rem;
+}
+
+.box-92 {
+  max-width: 92%;
+  margin-top: 1.3rem;
+}
+
+.box-94 {
+  max-width: 94%;
+  margin-top: 1.2rem;
+}
+
+.box-pad-screenshot {
+  max-width: 94%;
+  padding: 1.3rem 1.5rem;
+}
+
+.placeholder-wide {
+  width: 100%;
+  height: 300px;
+  font-size: 0.95rem;
+}
+
+.placeholder-path {
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+.screenshot-frame {
+  position: relative;
+  width: 100%;
+  max-width: 92%;
+  margin-top: 1.3rem;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.45);
+}
+
+.screenshot-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1896 / 954;
+}
+
+.overlay-grid {
+  position: absolute;
+  inset: auto 0 0 0;
+  max-width: 100%;
+  margin: 0;
+  padding: 3rem 1rem 0.9rem;
+  gap: 0.6rem;
+  background: linear-gradient(
+    to top,
+    rgba(4, 8, 32, 0.95) 20%,
+    rgba(4, 8, 32, 0.6) 62%,
+    transparent 100%
+  );
+}
+
+.overlay-grid .category-card h4 {
+  font-size: 0.85rem;
+}
+
+.overlay-grid .category-card p {
+  font-size: 0.74rem;
+  line-height: 1.35;
+}
+
+.lead-copy {
+  margin: 0.7rem 0 0 0;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.loop-copy {
+  margin: 0.7rem 0 0 0;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.handoff-copy {
+  margin: 0.7rem 0 0 0;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.columns-loop {
+  max-width: 97%;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.columns-playbook {
+  max-width: 94%;
+  gap: 1.4rem;
+  align-items: flex-start;
+}
+
+.col-fill {
+  flex: 1;
+}
+
+/* ---------- Benchmark + survey utilities ---------- */
+.title-benchmark {
+  max-width: 85%;
+  font-size: 2.6rem;
+}
+
+.normal-span {
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.survey-title {
+  max-width: 80%;
+}
+
+.survey-lead {
+  margin: 0 0 0.4rem 0;
+  font-size: 1.1rem;
+}
+
+.survey-support {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* ---------- Split-screen step slides (playbook) ---------- */
+.step-eyebrow-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.6rem;
+}
+
+.step-badge {
+  display: inline-block;
+  background: var(--teal);
+  color: var(--navy-deep);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.6rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.split-layout {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  max-width: 96%;
+  align-items: stretch;
+  margin-top: 1.2rem;
+}
+
+.split-media {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  border: 2px dashed rgba(255, 255, 255, 0.4);
+  border-radius: 14px;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.05) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+.split-card {
+  flex: 1;
+  background: rgba(5, 10, 40, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  padding: 1.5rem 1.7rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.split-bullets {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--text);
+  font-size: 1.3rem;
+  line-height: 1.65;
+}
+
+.split-bullets li {
+  margin-bottom: 0.6rem;
+}
+
+.split-bullets li:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Objectives list (standalone, larger than a split-card sidebar) ---------- */
+.objectives-list {
+  font-size: 1.5rem;
+  max-width: 82%;
+}
+
+.objectives-list li {
+  margin-bottom: 0.6rem;
+}
+
+/* ---------- Code example slides ---------- */
+.code-block {
+  width: 100%;
+  max-width: 94%;
+  margin-top: 0.35rem;
+  background: rgba(3, 6, 22, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  padding: 0.7rem 1.2rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.code-label {
+  margin: 0 0 0.55rem 0;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--teal);
+  font-weight: 700;
+}
+
+.code-block pre {
+  margin: 0;
+  overflow-x: auto;
+}
+
+.code-block code {
+  font-family: "SF Mono", "Cascadia Code", Consolas, "Courier New", monospace;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--text);
+  white-space: pre;
+}
+
+.code-block code .cm {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.code-example-slide .bench-note {
+  font-size: 1.12rem;
+  max-width: 84%;
+}
+
+.code-example-slide .code-block {
+  max-width: 96%;
+  padding: 0.9rem 1.35rem;
+}
+
+.code-example-slide .code-label {
+  font-size: 0.95rem;
+}
+
+.code-example-slide .code-block code {
+  font-size: 1.08rem;
+  line-height: 1.55;
+}
+
+/* ---------- Nav controls ---------- */
+.nav-controls {
+  position: fixed;
+  bottom: 22px;
+  right: 28px;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  z-index: 50;
+}
+
+.nav-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--text);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.slide-counter {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  min-width: 3.2rem;
+  text-align: center;
+}
+
+.slide-footer-label {
+  position: fixed;
+  bottom: 26px;
+  left: 32px;
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  z-index: 50;
+}
+
+/* ---------- Read -> Decide -> Act -> Observe orbit graphic ---------- */
+.loop-circle {
+  width: 119px;
+  height: 119px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 0.7rem 0;
+  font-size: 1.265rem;
+  font-weight: 700;
+  border: 2px solid;
+  flex-shrink: 0;
+}
+
+.loop-orbit {
+  position: relative;
+  width: 1150px;
+  max-width: 82%;
+  height: 320px;
+  margin: 5.6rem auto 6.2rem auto;
+}
+
+.loop-orbit-ring {
+  position: absolute;
+  inset: 0;
+  border: 2px dashed rgba(185, 194, 221, 0.35);
+  border-radius: 50%;
+}
+
+.loop-orbit-node {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 280px;
+}
+
+.loop-orbit-node .loop-desc {
+  max-width: 100%;
+}
+
+.loop-orbit-node.pos-top {
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loop-orbit-node.pos-right {
+  top: 50%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+}
+
+.loop-orbit-node.pos-bottom {
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loop-orbit-node.pos-left {
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+
+.loop-orbit-arrow {
+  position: absolute;
+  font-size: 1.9rem;
+  color: var(--teal);
+  opacity: 0.9;
+}
+
+.loop-orbit-arrow.a1 { top: 14.65%; left: 85.35%; transform: translate(-50%, -50%) rotate(45deg); }
+
+.loop-orbit-arrow.a2 { top: 85.35%; left: 85.35%; transform: translate(-50%, -50%) rotate(135deg); }
+
+.loop-orbit-arrow.a3 { top: 85.35%; left: 14.65%; transform: translate(-50%, -50%) rotate(225deg); }
+
+.loop-orbit-arrow.a4 { top: 14.65%; left: 14.65%; transform: translate(-50%, -50%) rotate(315deg); }
+
+
+/* ---------- Knowledge check (MCQ) ---------- */
+.mcq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-width: 96%;
+  margin-top: 0.45rem;
+}
+
+.mcq-item {
+  background: rgba(5, 10, 40, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  padding: 0.34rem 0.9rem 0.72rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.mcq-question {
+  margin: 0 0 0.35rem 0;
+  font-size: 1.32rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.mcq-option {
+  margin: 0.15rem 0;
+  font-size: 1.2rem;
+  color: var(--muted);
+}
+
+.mcq-reveal {
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+
+.mcq-item:has(.mcq-reveal.visible) .mcq-option-correct {
+  color: var(--teal);
+  font-weight: 700;
+}
+
